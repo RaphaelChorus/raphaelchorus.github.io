@@ -9,17 +9,25 @@
         header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
         nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
         .hero { 
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('main.jpg');
-    background-size: cover; 
-    background-position: center;
-    color: white;
-    height: 500px; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    text-align: center; 
-    border-bottom: 5px solid #ffcc00; 
-}
+            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('main.jpg'); /* 사진 어둡기 살짝 조절 */
+            background-size: cover; 
+            background-position: center;
+            color: white;
+            height: 500px; 
+            display: flex; 
+            align-items: center; 
+            /* justify-content: center; <- 가운데 정렬을 뺍니다 */
+            text-align: right; /* 글자들을 오른쪽 정렬합니다 */
+            padding-right: 10%; /* 오른쪽 벽에서 10%만큼 떨어뜨립니다 */
+        }
+        /* 대문 글씨 크기 및 간격 조절 */
+        .hero-text { width: 100%; } /* 글씨 영역이 가로로 꽉 차게 */
+        .hero h2, .hero p {
+            font-size: 3rem; /* 윗줄 아랫줄 모두 아주 크게(기본의 3배) 통일 */
+            font-weight: bold; /* 두껍게 */
+            margin: 5px 0; /* 줄 간격 살짝 좁히기 */
+            line-height: 1.2; /* 글자 높이 간격 조절 */
+        }
         footer { background: #333; color: #fff; padding: 20px; text-align: center; font-size: 0.8rem; }
     </style>
 </head>
@@ -36,8 +44,7 @@
     </header>
 
     <section class="hero">
-        <div>
-            <h2>노래로 찾은 빛</h2>
+        <div class="hero-text"> <h2>노래로 빛을 찾아</h2>
             <p>노래로 세상을 밝힌다.</p>
         </div>
     </section>
