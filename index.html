@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>라파엘코러스 - 노래로 찾은 희망을 외친다</title>
+    /모바일 가독성 향상
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         /* 이 부분은 홈페이지의 '옷'인 디자인(CSS)입니다. 나중에 따로 뺄 수도 있어요. */
         body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
@@ -39,6 +41,28 @@
             word-break: keep-all; /* 한글 단어가 툭 끊기지 않게 함 */
         }
         footer { background: #333; color: #fff; padding: 20px; text-align: center; font-size: 0.8rem; }
+        /* 휴대폰을 위한 특별 설정 (반응형 코드) */
+@media (max-width: 768px) {
+    header { flex-direction: column; padding: 10px; } /* 메뉴를 세로로 나열 */
+    nav { margin-top: 10px; }
+    nav a { margin: 0 10px; font-size: 0.9rem; }
+
+    .hero { 
+        height: 300px; 
+        justify-content: center; /* 모바일에서는 글자를 가운데로 */
+        text-align: center; 
+    }
+
+    .hero-text { 
+        width: 90%; /* 글자 박스를 넓게 사용 */
+        margin-left: 0; /* 중앙 정렬을 위해 마진 제거 */
+        padding-right: 0; 
+    }
+
+    .hero h2, .hero p {
+        font-size: 1.3rem; /* 휴대폰 화면에 맞게 글씨 크기 조절 */
+    }
+}
     </style>
 </head>
 <body>
