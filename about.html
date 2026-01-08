@@ -2,43 +2,72 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>코러스 소개 - 라파엘코러스</title>
     <style>
-        /* 기본 스타일 (홈페이지와 통일감 유지) */
-        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; line-height: 1.8; color: #333; }
+        /* [변경 2] 전체 배경을 화사한 크림색으로 변경 */
+        body { 
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.8; 
+            color: #333; 
+            background-color: #fffbe6; /* 아주 연한 따뜻한 노란색 */
+        }
         header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
         nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        /* 소개 페이지 상단 장식 */
-        .sub-header { background: #f4f4f4; padding: 60px 10%; text-align: center; border-bottom: 5px solid #ffcc00; }
-        .sub-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        
+        /* [변경 1] 소개 페이지 상단 배너에 사진 적용 */
+        .sub-header { 
+            /* 업로드하신 about-banner.jpg 사진을 배경으로 씁니다. 글씨가 잘 보이게 좀 더 어둡게 처리했습니다. */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('about-banner.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 10%; /* 높이를 조금 더 시원하게 키웠습니다 */
+            text-align: center; 
+            color: white; /* 배경이 어두워졌으니 글씨는 흰색으로 */
+            border-bottom: 5px solid #ffcc00; 
+        }
+        
+        /* [변경 3] 'RAPHAEL IS...' 문구 강조 디자인 */
+        .sub-header-surtitle {
+            color: #ffcc00; /* 라파엘코러스 상징 노란색 */
+            font-size: 1.3rem; /* 크기 키움 */
+            font-weight: bold; /* 두껍게 */
+            text-transform: uppercase; /* 대문자로 변환 */
+            letter-spacing: 2px; /* 글자 사이 간격 넓힘 */
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .sub-header h2 { font-size: 2.8rem; margin: 0; font-weight: bold; }
         
         /* 본문 스타일 */
-        .container { max-width: 800px; margin: 50px auto; padding: 0 20px; }
-        .highlight { color: #d32f2f; font-weight: bold; } /* 강조 포인트 색상 */
-        .intro-text { font-size: 1.2rem; margin-bottom: 40px; text-align: center; }
+        .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
+        .highlight { color: #d32f2f; font-weight: bold; } 
+        .intro-text { font-size: 1.2rem; margin-bottom: 50px; text-align: center; }
         
-        /* 경력 사항 박스 */
-        .history-box { background: #fff; border: 1px solid #ddd; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .history-box h3 { border-bottom: 2px solid #ffcc00; padding-bottom: 10px; margin-bottom: 20px; }
+        /* 경력 사항 박스 (화사한 배경 위에서 돋보이게 흰색 박스 유지) */
+        .history-box { background: #fff; border: 1px solid #eee; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .history-box h3 { border-bottom: 2px solid #ffcc00; padding-bottom: 15px; margin-bottom: 30px; font-size: 1.5rem; color: #222;}
         .history-list { list-style: none; padding: 0; }
-        .history-list li { margin-bottom: 15px; display: flex; align-items: flex-start; }
-        .history-list li::before { content: '•'; color: #ffcc00; font-weight: bold; margin-right: 10px; }
+        .history-list li { margin-bottom: 18px; display: flex; align-items: flex-start; font-size: 1.05rem; }
+        .history-list li::before { content: '♬'; color: #ffcc00; font-weight: bold; margin-right: 15px; font-size: 1.2rem; } /* 불릿 포인트를 음표로 변경해봤습니다 */
 
-        footer { background: #333; color: #fff; padding: 20px; text-align: center; margin-top: 50px; font-size: 0.9rem; }
-        /* 휴대폰을 위한 특별 설정 */
-@media (max-width: 768px) {
-    header { flex-direction: column; }
-    nav { margin-top: 10px; }
-    
-    .sub-header h2 { font-size: 1.8rem; } /* 제목 크기 줄임 */
-    
-    .container { padding: 0 15px; margin: 30px auto; }
-    .intro-text { font-size: 1rem; text-align: left; } /* 모바일은 왼쪽 정렬이 읽기 편함 */
-    
-    .history-box { padding: 20px; }
-    .history-list li { font-size: 0.9rem; }
-}
+        footer { background: #333; color: #fff; padding: 30px; text-align: center; margin-top: 80px; font-size: 0.9rem; }
+
+        /* 모바일 최적화 코드 */
+        @media (max-width: 768px) {
+            header { flex-direction: column; }
+            nav { margin-top: 15px; }
+            .sub-header { padding: 60px 5%; }
+            .sub-header-surtitle { font-size: 1.1rem; }
+            .sub-header h2 { font-size: 1.8rem; }
+            .container { margin: 40px auto; }
+            .intro-text { font-size: 1.05rem; text-align: left; }
+            .history-box { padding: 25px; }
+            .history-list li { font-size: 0.95rem; }
+        }
     </style>
 </head>
 <body>
@@ -54,25 +83,24 @@
     </header>
 
     <section class="sub-header">
-        <p style="color: #666; margin: 0;">Raphael is...</p>
+        <span class="sub-header-surtitle">Raphael is...</span>
         <h2>마음의 눈으로 노래하는 하모니</h2>
     </section>
 
     <div class="container">
         <div class="intro-text">
-            <p>비록 눈은 어둡지만, <span class="highlight">투명한 마음과 열정</span>으로<br>
-            세상에서 가장 순수한 화음을 만들어내는 시각장애인 합창단입니다.</p>
+            <p>비록 눈은 어둡게 되었지만, <span class="highlight">열린 마음의 눈</span>으로<br>
+            그 누구보다 순수한 화음을 만들어내는 시각장애인 합창단입니다.</p>
             
             <p>2009년 2월 창단 이래, 라파엘코러스는 <br>
             <strong>국내 최초이자 유일한 민간 시각장애인 합창단</strong>으로서<br>
             음악을 통해 세상에 희망과 용기를 전하고 있습니다.</p>
         </div>
 
-        <hr style="border: 0; border-top: 1px solid #eee; margin: 50px 0;">
-
         <div class="history-box">
-            <h3>2009년 2월 창단 이후의 주요 발자취</h3>
+            <h3>주요 발자취</h3>
             <ul class="history-list">
+                <li><strong>2009년 02월</strong> : 라파엘코러스 창단</li>
                 <li><strong>국제 합창 대회</strong> : 당당히 1등 수상</li>
                 <li><strong>KBS 합창 대회</strong> : 동상 수상</li>
                 <li><strong>해외 연주 활동</strong> : 미국 초청 연주 및 다수의 국내외 공연</li>
@@ -82,7 +110,7 @@
     </div>
 
     <footer>
-        <p>&copy; 라파엘코러스. All rights reserved.</p>
+        <p>&copy; 2024 라파엘코러스. All rights reserved.</p>
     </footer>
 
 </body>
