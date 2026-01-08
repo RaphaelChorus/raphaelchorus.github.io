@@ -5,68 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>코러스 소개 - 라파엘코러스</title>
     <style>
-        /* [변경 2] 전체 배경을 화사한 크림색으로 변경 */
+        /* [공통 스타일] */
         body { 
             font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-            line-height: 1.8; 
-            color: #333; 
-            background-color: #fffbe6; /* 아주 연한 따뜻한 노란색 */
+            margin: 0; padding: 0; line-height: 1.8; color: #333; 
+            background-color: #fffbe6; /* 화사한 크림색 배경 */
         }
         header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
         nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
         
-        /* [변경 1] 소개 페이지 상단 배너에 사진 적용 */
         .sub-header { 
-            /* 업로드하신 about-banner.jpg 사진을 배경으로 씁니다. 글씨가 잘 보이게 좀 더 어둡게 처리했습니다. */
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('about-banner.jpg');
-            background-size: cover;
-            background-position: center;
-            padding: 80px 10%; /* 높이를 조금 더 시원하게 키웠습니다 */
-            text-align: center; 
-            color: white; /* 배경이 어두워졌으니 글씨는 흰색으로 */
+            background-size: cover; background-position: center;
+            padding: 80px 10%; text-align: center; color: white; 
             border-bottom: 5px solid #ffcc00; 
         }
         
-        /* [변경 3] 'RAPHAEL IS...' 문구 강조 디자인 */
         .sub-header-surtitle {
-            color: #ffcc00; /* 라파엘코러스 상징 노란색 */
-            font-size: 1.3rem; /* 크기 키움 */
-            font-weight: bold; /* 두껍게 */
-            text-transform: uppercase; /* 대문자로 변환 */
-            letter-spacing: 2px; /* 글자 사이 간격 넓힘 */
-            display: block;
-            margin-bottom: 15px;
+            color: #ffcc00; font-size: 1.3rem; font-weight: bold; 
+            text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px;
         }
-
         .sub-header h2 { font-size: 2.8rem; margin: 0; font-weight: bold; }
         
-        /* 본문 스타일 */
         .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
         .highlight { color: #d32f2f; font-weight: bold; } 
-        .intro-text { font-size: 1.2rem; margin-bottom: 50px; text-align: center; }
+        .intro-text { font-size: 1.2rem; margin-bottom: 50px; text-align: center; word-break: keep-all; }
         
-        /* 경력 사항 박스 (화사한 배경 위에서 돋보이게 흰색 박스 유지) */
-        .history-box { background: #fff; border: 1px solid #eee; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .history-box { 
+            background: #fff; border: 1px solid #eee; padding: 40px; 
+            border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            margin-bottom: 30px;
+        }
         .history-box h3 { border-bottom: 2px solid #ffcc00; padding-bottom: 15px; margin-bottom: 30px; font-size: 1.5rem; color: #222;}
+        
         .history-list { list-style: none; padding: 0; }
-        .history-list li { margin-bottom: 18px; display: flex; align-items: flex-start; font-size: 1.05rem; }
-        .history-list li::before { content: '♬'; color: #ffcc00; font-weight: bold; margin-right: 15px; font-size: 1.2rem; } /* 불릿 포인트를 음표로 변경해봤습니다 */
+        .history-list li { 
+            margin-bottom: 18px; display: flex; align-items: flex-start; 
+            font-size: 1.05rem; word-break: keep-all; overflow-wrap: break-word; 
+        }
+        /* 각 항목 앞에 예쁜 노란 음표 추가 */
+        .history-list li::before { content: '♬'; color: #ffcc00; margin-right: 12px; font-weight: bold; }
+        .history-list li strong { display: inline-block; margin-right: 5px; white-space: nowrap; }
 
         footer { background: #333; color: #fff; padding: 30px; text-align: center; margin-top: 80px; font-size: 0.9rem; }
 
-        /* 모바일 최적화 코드 */
+        /* [모바일 최적화 - 하나로 통합] */
         @media (max-width: 768px) {
-            header { flex-direction: column; }
+            header { flex-direction: column; text-align: center; }
             nav { margin-top: 15px; }
+            nav a { margin: 0 10px; font-size: 0.9rem; }
             .sub-header { padding: 60px 5%; }
             .sub-header-surtitle { font-size: 1.1rem; }
             .sub-header h2 { font-size: 1.8rem; }
             .container { margin: 40px auto; }
             .intro-text { font-size: 1.05rem; text-align: left; }
             .history-box { padding: 25px; }
-            .history-list li { font-size: 0.95rem; }
+            .history-list li { font-size: 0.95rem; line-height: 1.6; }
         }
     </style>
 </head>
@@ -75,10 +69,11 @@
     <header>
         <div><h1>라파엘코러스</h1></div>
         <nav>
-    <a href="index.html">홈</a>
-    <a href="about.html">코러스 소개</a>
-    <a href="performance.html">공연 안내</a>
-    <a href="support.html">후원</a> </nav>
+            <a href="index.html">홈</a>
+            <a href="about.html">코러스 소개</a>
+            <a href="performance.html">공연 안내</a>
+            <a href="support.html">후원</a>
+        </nav>
     </header>
 
     <section class="sub-header">
@@ -106,14 +101,15 @@
                 <li><strong>현재</strong> : 하모니를 통해 삶을 노래하는 활발한 연주 활동 중</li>
             </ul>
         </div>
-        <div class="history-box" style="margin-top: 40px; border-left: 5px solid #ffcc00;">
-    <h3>단원 모집 안내</h3>
-    <p>라파엘코러스와 함께 빛나는 하모니를 만들어갈 노래를 사랑하는 시각장애인 가족을 기다립니다.</p>
-    <ul class="history-list">
-           <li><strong>연습 일정: </strong> 매주 정기 연습 진행</li>
-        <li><strong>문의: </strong> 010-8020-4413</li>
-    </ul>
-</div>
+
+        <div class="history-box" style="border-left: 5px solid #ffcc00;">
+            <h3>단원 모집 안내</h3>
+            <p>라파엘코러스와 함께 빛나는 하모니를 만들어갈 노래를 사랑하는 시각장애인 가족을 기다립니다.</p>
+            <ul class="history-list">
+                <li><strong>연습 일정</strong> : 매주 정기 연습 진행</li>
+                <li><strong>문의</strong> : 010-8020-4413</li>
+            </ul>
+        </div>
     </div>
 
     <footer>
