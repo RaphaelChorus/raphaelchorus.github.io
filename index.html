@@ -41,6 +41,44 @@
             word-break: keep-all; /* 한글 단어가 툭 끊기지 않게 함 */
         }
         footer { background: #333; color: #fff; padding: 20px; text-align: center; font-size: 0.8rem; }
+        /* 카드 전체 링크 설정 */
+        .news-link-wrapper {
+            text-decoration: none; /* 밑줄 없애기 */
+            color: inherit; /* 글자색이 파랗게 변하지 않게 함 */
+            display: block;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .news-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: left;
+            transition: all 0.3s ease; /* 부드러운 움직임 */
+        }
+
+        /* 마우스를 올렸을 때 효과 */
+        .news-card:hover {
+            transform: translateY(-10px); /* 위로 쓱 올라감 */
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* 그림자 진해짐 */
+            border-color: #ffcc00; /* 테두리가 노란색으로 변함 */
+        }
+
+        .news-text { padding: 30px; }
+        .news-tag { background: #ffcc00; color: #000; padding: 5px 12px; font-size: 0.8rem; font-weight: bold; border-radius: 50px; }
+        .news-card h4 { font-size: 1.4rem; margin: 20px 0 10px 0; color: #222; }
+        .news-card p { color: #555; font-size: 1rem; margin-bottom: 20px; line-height: 1.6; }
+        
+        /* '클릭해서 보기' 안내 문구 */
+        .click-info { 
+            font-size: 0.9rem; 
+            color: #ffcc00; 
+            font-weight: bold; 
+            text-align: right; 
+        }
         /* 휴대폰을 위한 특별 설정 (반응형 코드) */
 @media (max-width: 768px) {
     header { flex-direction: column; padding: 10px; } /* 메뉴를 세로로 나열 */
@@ -84,8 +122,18 @@
     </section>
 
     <section class="content">
-        <h3>최신 소식</h3>
-        <p>여기에 라파엘코러스의 최신 공연 소식이나 공지사항을 적어주세요.</p>
+        <h3 style="font-size: 1.8rem; margin-bottom: 30px;">최신 소식</h3>
+        
+        <a href="https://www.chosun.com/video_photo/2025/12/25/3ECK5GR63FHIVLIDLQ6CNZTTYQ/" target="_blank" class="news-link-wrapper">
+            <div class="news-card">
+                <div class="news-text">
+                    <span class="news-tag">언론보도</span>
+                    <h4>[조선일보] "어둠 속에 울려 퍼진 희망의 성가"</h4>
+                    <p>2025년 크리스마스, 라파엘코러스의 감동적인 무대 영상과 인터뷰 내용을 확인해 보세요.</p>
+                    <div class="click-info">클릭해서 기사 전문 보기 →</div>
+                </div>
+            </div>
+        </a>
     </section>
 
     <footer>
