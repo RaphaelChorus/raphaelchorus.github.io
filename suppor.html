@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>후원 안내 - 라파엘코러스</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Nanum+Myeongjo:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        /* 기본 스타일 및 배경 */
+        body { 
+            margin: 0; 
+            font-family: "Noto Sans KR", sans-serif; 
+            line-height: 1.7; 
+            color: #1f2937; 
+            background: #f9fafb;
+        }
+
+        /* 공통 헤더 (검은색 바) */
+        .site-header { 
+            background: #000; 
+            color: #fff; 
+            padding: 1rem 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        }
+        .site-header h1 { margin: 0; font-size: 1.5rem; }
+        .site-header nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
+
+        /* 후원용 특별 헤더 섹션 */
+        .donation-header {
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('H2_00635.jpg') center/cover no-repeat;
+            color: #fff;
+            text-align: center;
+            padding: 5rem 1rem;
+        }
+        .title-small { font-family: "Nanum Myeongjo", serif; font-size: 1.2rem; opacity: 0.9; }
+        .title-main { 
+            font-family: 'Great Vibes', cursive; 
+            font-size: 3.5rem; 
+            margin: 0.5rem 0; 
+            color: #ffcc00; /* 포인트 색상 */
+        }
+        .title-sub { font-family: "Nanum Myeongjo", serif; font-size: 1.5rem; font-weight: bold; }
+
+        /* 메인 콘텐츠 */
+        main {
+            max-width: 900px;
+            margin: -3rem auto 50px;
+            background: #fff;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        h2 {
+            font-size: 1.7rem;
+            margin-bottom: 1.5rem;
+            border-left: 6px solid #ffcc00;
+            padding-left: 15px;
+            color: #111;
+        }
+
+        .intro-text { font-size: 1.15rem; margin-bottom: 3rem; color: #4b5563; }
+
+        /* 후원 박스 디자인 */
+        .donation-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 3rem; }
+        .donation-box {
+            border: 1px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 2rem;
+            background: #fff;
+            transition: 0.3s;
+        }
+        .donation-box:hover { border-color: #ffcc00; transform: translateY(-5px); }
+        .donation-box h3 { margin-top: 0; color: #111; font-size: 1.3rem; }
+        
+        .btn {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+            background: #000;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .btn:hover { background: #ffcc00; color: #000; }
+
+        /* 계좌 안내 박스 */
+        .account-box {
+            background: #fefce8;
+            border: 1px dashed #ffcc00;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 15px;
+        }
+
+        /* 푸터 */
+        footer { background: #333; color: #fff; padding: 40px 20px; text-align: center; }
+        .footer-slogan { font-family: "Nanum Myeongjo", serif; font-size: 1.4rem; margin-bottom: 10px; color: #ffcc00; }
+
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            .site-header { flex-direction: column; text-align: center; }
+            .site-header nav { margin-top: 15px; }
+            .donation-grid { grid-template-columns: 1fr; }
+            .title-main { font-size: 2.5rem; }
+            main { margin: -2rem 15px 30px; padding: 2rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <h1>라파엘코러스</h1>
+        <nav>
+            <a href="index.html">홈</a>
+            <a href="about.html">코러스 소개</a>
+            <a href="performance.html">공연 안내</a>
+            <a href="support.html">후원</a>
+        </nav>
+    </header>
+
+    <section class="donation-header">
+        <div class="title-small">시각장애인합창단</div>
+        <div class="title-main">Raphael Chorus</div>
+        <div class="title-sub">후원 안내</div>
+    </section>
+
+    <main>
+        <section>
+            <h2>함께 노래하는 기적</h2>
+            <p class="intro-text">
+                라파엘코러스는 시각장애인 단원들로 구성된 전문 합창단으로, 음악을 통해 세상과 소통합니다. 
+                여러분의 후원은 단원들의 연습과 공연, 그리고 지속 가능한 예술 활동의 소중한 토대가 됩니다.
+            </p>
+        </section>
+
+        <section>
+            <h2>후원 방법</h2>
+            <div class="donation-grid">
+                <div class="donation-box">
+                    <h3>정기 후원</h3>
+                    <p>매월 일정 금액으로 라파엘코러스의 안정적인 활동을 지원합니다.</p>
+                    <a href="https://secure.donus.org/arko/pay/step1_direct?dontype=B01011&background=B01011" target="_blank" class="btn">정기후원 신청하기</a>
+                </div>
+                <div class="donation-box">
+                    <h3>비정기 후원</h3>
+                    <p>언제든 자유로운 금액으로 따뜻한 마음을 전하실 수 있습니다.</p>
+                    <div class="account-box">
+                        <strong>국민은행</strong><br>
+                        546937-01-006620<br>
+                        <small>예금주: 시각장애인합창단 라파엘코러스</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>후원금 사용 안내</h2>
+            <p>후원금은 합창 연습, 전문 음악 교육, 공연 대관 및 점자 악보 제작 등 라파엘코러스의 모든 예술 활동을 위해 투명하게 사용됩니다.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-slogan">노래로 찾은 빛, 노래로 밝히는 세상</div>
+        <p>© Raphael Chorus. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
