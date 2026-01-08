@@ -27,6 +27,19 @@
         .history-list li::before { content: '•'; color: #ffcc00; font-weight: bold; margin-right: 10px; }
 
         footer { background: #333; color: #fff; padding: 20px; text-align: center; margin-top: 50px; font-size: 0.9rem; }
+        /* 휴대폰을 위한 특별 설정 */
+@media (max-width: 768px) {
+    header { flex-direction: column; }
+    nav { margin-top: 10px; }
+    
+    .sub-header h2 { font-size: 1.8rem; } /* 제목 크기 줄임 */
+    
+    .container { padding: 0 15px; margin: 30px auto; }
+    .intro-text { font-size: 1rem; text-align: left; } /* 모바일은 왼쪽 정렬이 읽기 편함 */
+    
+    .history-box { padding: 20px; }
+    .history-list li { font-size: 0.9rem; }
+}
     </style>
 </head>
 <body>
