@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>공연 안내 - 라파엘코러스</title>
+    <style>
+        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; background-color: #f4f4f4; line-height: 1.6; }
+        header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
+        nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
+        
+        /* 상단 제목 섹션 */
+        .page-title { background: #fff; padding: 60px 20px; text-align: center; border-bottom: 1px solid #ddd; }
+        .page-title h2 { font-size: 2.5rem; color: #222; margin: 0; }
+        .page-title p { color: #666; margin-top: 10px; font-size: 1.1rem; }
+
+        /* 갤러리 레이아웃 (바둑판 모양) */
+        .gallery-container { 
+            max-width: 1200px; 
+            margin: 40px auto; 
+            padding: 0 20px;
+            display: grid;
+            /* 기본적으로 한 줄에 4개씩, 화면이 작아지면 자동으로 조절 */
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+            gap: 20px; 
+        }
+
+        .photo-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .photo-card:hover { transform: translateY(-5px); }
+        .photo-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover; /* 사진 비율 유지하며 꽉 채우기 */
+            display: block;
+        }
+
+        footer { background: #333; color: #fff; padding: 30px; text-align: center; margin-top: 60px; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; }
+            nav { margin-top: 15px; }
+            .page-title h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>라파엘코러스</h1>
+        <nav>
+            <a href="index.html">홈</a>
+            <a href="about.html">코러스 소개</a>
+            <a href="performance.html">공연 안내</a>
+            <a href="support.html">후원</a>
+        </nav>
+    </header>
+
+    <section class="page-title">
+        <h2>2025 라파엘코러스 힐링콘서트</h2>
+        <p>음악으로 마음을 치유했던 그날의 감동적인 순간들을 공유합니다.</p>
+    </section>
+
+    <div class="gallery-container">
+        <script>
+            const container = document.querySelector('.gallery-container');
+            for (let i = 1; i <= 40; i++) {
+                container.innerHTML += `
+                    <div class="photo-card">
+                        <img src="pf${i}.jpg" alt="공연 사진 ${i}" onerror="this.parentElement.style.display='none';">
+                    </div>
+                `;
+            }
+        </script>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
