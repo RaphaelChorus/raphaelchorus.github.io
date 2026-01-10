@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>후원 안내 - 라파엘코러스</title>
     <style>
+        /* 1. 기본 설정 */
         body { 
             font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
             margin: 0; padding: 0; line-height: 1.8; color: #333; 
@@ -14,57 +15,71 @@
         nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
         nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
 
+        /* 2. 상단 배너 (pf4.jpg 적용) */
         .sub-header { 
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('support-banner.jpg');
+            /* pf4.jpg를 배경으로 사용하고, 글씨 가독성을 위해 어두운 레이어를 추가했습니다. */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('pf4.jpg');
             background-size: cover; background-position: center;
-            padding: 80px 10%; text-align: center; color: white; 
+            padding: 100px 10%; text-align: center; color: white; 
             border-bottom: 5px solid #ffcc00; 
         }
-        .sub-header-surtitle { color: #ffcc00; font-size: 1.3rem; font-weight: bold; display: block; margin-bottom: 15px; }
-        .sub-header h2 { font-size: 2.8rem; margin: 0; }
+        .sub-header-surtitle { color: #ffcc00; font-size: 1.3rem; font-weight: bold; display: block; margin-bottom: 15px; letter-spacing: 1px; }
+        .sub-header h2 { font-size: 2.8rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
 
-        .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
-        
-        /* 후원 카드 공통 디자인 */
+        .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
+        .intro-text { text-align: center; margin-bottom: 50px; font-size: 1.15rem; }
+
+        /* 3. [핵심] 후원 박스 가로 배치 그리드 시스템 */
+        .donation-grid {
+            display: grid;
+            /* 화면 폭에 따라 자동으로 조절: 최소 350px 공간이 있으면 가로로 나열, 없으면 세로로 배치 */
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px; /* 박스 사이 간격 */
+            margin-bottom: 40px;
+        }
+
+        /* 후원 카드 공통 디자인 (동일한 모양) */
         .support-card { 
             background: #fff; border: 1px solid #eee; padding: 40px; 
             border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-            margin-bottom: 40px; text-align: center;
+            text-align: center;
+            /* 그리드 안에서 높이를 똑같이 맞추고 내부 요소 정렬 */
+            height: 100%; 
+            display: flex; flex-direction: column; justify-content: space-between;
         }
-        .support-card h3 { border-bottom: 2px solid #ffcc00; padding-bottom: 15px; margin-bottom: 30px; font-size: 1.5rem; color: #222;}
-        
-        /* 강조된 정기후원 버튼 디자인 */
-        .btn-donation {
-            display: inline-block;
-            background: #ffcc00;
-            color: #000;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
-            margin-top: 10px;
-        }
-        .btn-donation:hover {
-            transform: scale(1.05);
-            background: #e6b800;
-            box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
-        }
+        /* 그리드 밖에 있는 하단 문의 카드는 기존 마진 유지 */
+        .container > .support-card { margin-bottom: 40px; } 
 
-        .account-info { 
-            background: #f9f9f9; padding: 25px; border-radius: 10px; 
-            border-left: 5px solid #ffcc00; font-size: 1.2rem; 
-            margin: 20px 0;
+        .support-card h3 { border-bottom: 2px solid #ffcc00; padding-bottom: 15px; margin-bottom: 30px; font-size: 1.5rem; color: #222; margin-top: 0; }
+        .support-card p { flex-grow: 1; /* 내용이 적어도 박스 크기 유지 */ }
+
+        /* 정기후원 버튼 */
+        .btn-donation {
+            display: inline-block; background: #ffcc00; color: #000;
+            padding: 15px 30px; font-size: 1.1rem; font-weight: bold;
+            text-decoration: none; border-radius: 50px;
+            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+            margin-top: 20px; width: 80%; margin-left: auto; margin-right: auto;
         }
+        .btn-donation:hover { transform: translateY(-3px); background: #e6b800; box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4); }
+
+        /* 계좌 정보 박스 */
+        .account-info { 
+            background: #f9f9f9; padding: 20px; border-radius: 10px; 
+            border: 2px dashed #ffcc00; font-size: 1.1rem; 
+            margin-top: 20px; word-break: keep-all;
+        }
+        .account-info strong { color: #d32f2f; font-size: 1.2rem; display: block; margin-bottom: 5px; }
 
         footer { background: #333; color: #fff; padding: 30px; text-align: center; margin-top: 80px; font-size: 0.9rem; }
 
+        /* 모바일 대응 */
         @media (max-width: 768px) {
             header { flex-direction: column; text-align: center; }
             nav { margin-top: 15px; }
             .sub-header h2 { font-size: 1.8rem; }
+            .donation-grid { grid-template-columns: 1fr; } /* 모바일에서는 무조건 1줄로 */
+            .btn-donation { width: 100%; }
         }
     </style>
 </head>
@@ -88,33 +103,38 @@
         </section>
 
         <div class="container">
-            <section class="support-card" aria-labelledby="regular-title">
-                <h3 id="regular-title">정기 (매월 정액) 후원</h3>
-                <p>매월 일정 금액의 후원으로 라파엘코러스의 안정적인 활동을 지원합니다.</p>
-                <a class="btn-donation" 
-                   href="https://secure.donus.org/arko/pay/step1_direct?dontype=B01011&background=B01011" 
-                   target="_blank" 
-                   rel="noopener noreferrer"
-                   aria-label="정기후원 신청하기 (새 창에서 외부 신청 페이지가 열립니다)">
-                   정기후원 신청하기
-                </a>
-            </section>
+            <div class="intro-text">
+                <p>여러분의 소중한 후원은 시각장애인 단원들의 예술적 자립과<br>희망의 노래가 됩니다.</p>
+            </div>
 
-            <section class="support-card" aria-labelledby="bank-title">
-                <h3 id="bank-title">일시 후원 및 계좌 안내</h3>
-                <p>계좌 이체를 통해 직접 마음을 전하실 수 있습니다.</p>
-                <div class="account-info">
-                    <strong>우리은행 1005-401-443905</strong><br>
-                    (예금주: 라파엘코러스)
-                </div>
-            </section>
+            <div class="donation-grid">
+                <section class="support-card" aria-labelledby="regular-title">
+                    <h3 id="regular-title">정기 후원 (CMS)</h3>
+                    <p>매월 약정하신 금액으로 라파엘코러스의 안정적인 운영과 지속적인 활동을 지원합니다.</p>
+                    <a class="btn-donation" 
+                       href="https://secure.donus.org/arko/pay/step1_direct?dontype=B01011&background=B01011" 
+                       target="_blank" 
+                       rel="noopener noreferrer"
+                       aria-label="정기후원 신청하기 (새 창에서 외부 신청 페이지가 열립니다)">
+                       정기후원 신청하기
+                    </a>
+                </section>
 
-            <section class="support-card" style="border-left: 5px solid #ffcc00;" aria-labelledby="contact-title">
-                <h3 id="contact-title">후원 관련 문의</h3>
-                <p>기부금 영수증 발행 및 기타 문의사항은 아래로 연락주세요.</p>
-                <p style="font-size: 1.1rem; font-weight: bold;">
-                    📞 전화: 010-8020-4413<br>
-                    📧 이메일: raphaelchorus@naver.com
+                <section class="support-card" aria-labelledby="bank-title">
+                    <h3 id="bank-title">일시 후원 (계좌이체)</h3>
+                    <p>원하시는 때에 자유로운 금액으로 직접 마음을 전하실 수 있습니다.</p>
+                    <div class="account-info">
+                        <strong>우리은행 1005-401-443905</strong>
+                        (예금주: 라파엘코러스)
+                    </div>
+                </section>
+            </div>
+
+            <section class="support-card" style="border-left: 5px solid #ffcc00; margin-top: 40px;" aria-labelledby="contact-title">
+                <h3 id="contact-title" style="border-bottom: none; margin-bottom: 15px;">후원 관련 문의</h3>
+                <p>기부금 영수증 발행 및 기업 후원 문의</p>
+                <p style="font-size: 1.1rem; font-weight: bold; margin: 0;">
+                    📞 010-8020-4413 / 📧 raphaelchorus@naver.com
                 </p>
             </section>
         </div>
