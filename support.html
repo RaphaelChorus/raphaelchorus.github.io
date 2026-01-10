@@ -6,104 +6,119 @@
     <title>후원 안내 - 라파엘코러스</title>
     <style>
         body { 
-            font-family: 'Malgun Gothic', sans-serif; 
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
             margin: 0; padding: 0; line-height: 1.8; color: #333; 
-            background-color: #fffbe6; 
+            background-color: #fffdf2; 
         }
         header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
         nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
         nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
 
-        /* 상단 배너 */
         .sub-header { 
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('pf4.jpg');
             background-size: cover; background-position: center;
             padding: 100px 10%; text-align: center; color: white; 
             border-bottom: 5px solid #ffcc00; 
         }
-        .sub-header-surtitle { color: #ffcc00; font-size: 1.2rem; font-weight: bold; display: block; margin-bottom: 10px; }
-        .sub-header h2 { font-size: 2.5rem; margin: 0; }
+        .sub-header h2 { font-size: 2.8rem; margin: 0; word-break: keep-all; }
 
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-        .intro-text { text-align: center; margin-bottom: 40px; font-size: 1.1rem; word-break: keep-all; }
+        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
 
-        /* 후원 그리드 설정 - 모바일 겹침 방지 */
+        /* 후원 그리드 - 박스 겹침 방지를 위해 gap과 margin 강화 */
         .donation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px; /* 박스 사이 간격을 확실히 확보 */
-            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap; /* 폭이 좁아지면 자연스럽게 아래로 */
+            gap: 40px; 
+            justify-content: center;
+            margin-bottom: 50px;
         }
 
-        /* 후원 카드 디자인 개선 */
+        /* 후원 카드 디자인 - 더 선명한 영역 표시 */
         .support-card { 
+            flex: 1;
+            min-width: 320px; /* 모바일에서도 최소 폭 확보 */
             background: #fff; 
-            border: 1px solid #ddd; 
-            padding: 40px 30px; 
-            border-radius: 20px; 
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
+            border: 2px solid #eee; /* 기본 테두리 더 선명하게 */
+            padding: 50px 35px; 
+            border-radius: 25px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05); 
             text-align: center;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* 내부 요소가 위아래로 꽉 차게 */
-            transition: all 0.3s ease;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* 부드러운 반응 */
+            position: relative;
+            overflow: hidden;
         }
-        .support-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
+
+        /* [핵심] 마우스 오버 효과 - 영역이 변화하며 강조됨 */
+        .support-card:hover { 
+            transform: translateY(-15px); 
+            border-color: #ffcc00; /* 테두리가 황금색으로 변경 */
+            box-shadow: 0 25px 50px rgba(255, 204, 0, 0.15); 
+            background-color: #fff;
+        }
 
         .support-card h3 { 
-            font-size: 1.6rem; color: #222; margin-top: 0;
-            padding-bottom: 15px; border-bottom: 2px solid #ffcc00; 
-            display: inline-block; margin-bottom: 20px;
+            font-size: 1.8rem; color: #111; margin-top: 0;
+            padding-bottom: 20px; margin-bottom: 25px;
+            border-bottom: 3px solid #ffcc00;
+            display: inline-block;
         }
 
-        .card-content { margin-bottom: 25px; min-height: 80px; }
+        .card-content { font-size: 1.1rem; color: #555; margin-bottom: 30px; word-break: keep-all; }
 
-        /* 정기후원 버튼 */
+        /* 정기후원 버튼 디자인 */
         .btn-donation {
             display: block; 
             background: #ffcc00; color: #000;
-            padding: 18px 0; font-size: 1.15rem; font-weight: bold;
-            text-decoration: none; border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
-            transition: background 0.2s;
+            padding: 20px 0; font-size: 1.2rem; font-weight: bold;
+            text-decoration: none; border-radius: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
         }
-        .btn-donation:hover { background: #e6b800; }
+        .btn-donation:hover { 
+            background: #000; color: #ffcc00; /* 마우스 올리면 검은색으로 반전 */
+        }
 
-        /* 일시후원 계좌 박스 */
+        /* 일시후원 계좌 박스 디자인 */
         .account-info { 
             background: #fdfdfd; 
-            padding: 18px; 
-            border-radius: 12px; 
-            border: 2px solid #eee;
-            font-size: 1.05rem;
-            color: #444;
+            padding: 20px; 
+            border-radius: 15px; 
+            border: 2px dashed #ffcc00; /* 점선으로 특별하게 표시 */
+            font-size: 1.1rem;
+            color: #333;
+            transition: all 0.3s;
         }
+        .support-card:hover .account-info { background: #fffdeb; } /* 카드 호버 시 계좌박스 색상 변화 */
+
         .account-info strong { 
-            display: block; color: #d32f2f; font-size: 1.25rem; margin-bottom: 5px; 
+            display: block; color: #d32f2f; font-size: 1.3rem; margin-bottom: 8px; 
         }
 
         /* 하단 문의 바 */
         .contact-bar {
-            background: #333; color: #fff; padding: 25px; 
-            border-radius: 15px; text-align: center; margin-top: 20px;
+            background: #fff; border: 2px solid #ffcc00; color: #333; padding: 35px; 
+            border-radius: 25px; text-align: center; margin-top: 40px;
         }
-        .contact-bar p { margin: 5px 0; }
-        .contact-bar span { color: #ffcc00; font-weight: bold; }
+        .contact-bar span { color: #d32f2f; font-weight: bold; font-size: 1.2rem; }
 
-        footer { background: #222; color: #999; padding: 30px; text-align: center; margin-top: 60px; font-size: 0.85rem; }
+        footer { background: #111; color: #888; padding: 40px; text-align: center; margin-top: 80px; }
 
-        /* 모바일 최적화 미디어 쿼리 */
+        /* 모바일 최적화 */
         @media (max-width: 768px) {
-            .sub-header { padding: 60px 5%; }
-            .sub-header h2 { font-size: 1.8rem; }
             .donation-grid { 
-                grid-template-columns: 1fr; /* 무조건 세로 한 줄 */
-                gap: 20px; /* 세로로 나열될 때 박스 사이의 명확한 간격 */
+                flex-direction: column; /* 세로 정렬 강제 */
+                gap: 50px; /* 세로 정렬 시 박스 사이 여백 대폭 증가 */
             }
-            .support-card { padding: 30px 20px; }
-            header { text-align: center; flex-direction: column; }
+            .support-card { 
+                min-width: 100%; 
+                margin-bottom: 20px; /* 추가 마진 확보 */
+            }
+            .sub-header h2 { font-size: 2rem; }
+            header { flex-direction: column; padding: 15px; }
             nav { margin-top: 15px; }
-            nav a { margin: 0 10px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -121,22 +136,18 @@
     </header>
 
     <main id="main-content" role="main">
-        <section class="sub-header">
-            <span class="sub-header-surtitle">Support Raphael Chorus</span>
+        <section class="sub-header" aria-label="후원 페이지 상단">
+            <h2 style="color: #ffcc00; font-size: 1.2rem; margin-bottom: 10px;">Share the Hope</h2>
             <h2>아름다운 화음의 든든한 버팀목</h2>
         </section>
 
         <div class="container">
-            <div class="intro-text">
-                <p>여러분의 따뜻한 관심은 시각장애인 단원들이 세상과 소통하는 큰 힘이 됩니다.</p>
-            </div>
-
             <div class="donation-grid">
                 <section class="support-card" aria-labelledby="regular-title">
                     <div>
-                        <h3 id="regular-title">정기 후원 (CMS)</h3>
+                        <h3 id="regular-title">정기 후원</h3>
                         <div class="card-content">
-                            <p>매월 정기적인 후원을 통해 라파엘코러스의 안정적인 예술 활동을 응원해 주세요.</p>
+                            <p>매월 정기적인 나눔으로 시각장애인 단원들의 안정적인 연습과 연주 활동을 지켜주세요.</p>
                         </div>
                     </div>
                     <a class="btn-donation" 
@@ -150,9 +161,9 @@
 
                 <section class="support-card" aria-labelledby="once-title">
                     <div>
-                        <h3 id="once-title">일시 후원 (계좌)</h3>
+                        <h3 id="once-title">일시 후원</h3>
                         <div class="card-content">
-                            <p>언제든 자유로운 금액으로 라파엘코러스에 직접 마음을 전하실 수 있습니다.</p>
+                            <p>부담 없이 원하실 때 정성을 보내주시면 단원들의 악보 제작과 공연 준비에 소중히 사용됩니다.</p>
                         </div>
                     </div>
                     <div class="account-info">
@@ -162,10 +173,9 @@
                 </section>
             </div>
 
-            <section class="contact-bar" aria-labelledby="contact-title">
-                <p id="contact-title" style="font-weight: bold; font-size: 1.1rem; margin-bottom: 10px;">후원 및 기부 문의</p>
-                <p>전화: <span>010-8020-4413</span> &nbsp; | &nbsp; 이메일: <span>raphaelchorus@naver.com</span></p>
-                <p style="font-size: 0.9rem; color: #ccc; margin-top: 10px;">(라파엘코러스는 법정 기부금 단체로 세제 혜택을 받으실 수 있습니다.)</p>
+            <section class="contact-bar">
+                <p style="font-weight: bold; font-size: 1.3rem; margin-bottom: 15px;">후원자님의 따뜻한 동행을 기다립니다</p>
+                <p>후원문의: <span>010-8020-4413</span> &nbsp; | &nbsp; <span>raphaelchorus@naver.com</span></p>
             </section>
         </div>
     </main>
