@@ -103,41 +103,43 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" style="position:absolute; top:-100px; left:0; background:#ffcc00; color:#000; padding:10px; z-index:1000;" onfocus="this.style.top='0';" onblur="this.style.top='-100px';">본문 바로가기</a>
 
-    <header>
-        <div><h1>라파엘코러스</h1></div>
-       <nav>
-    <a href="index.html">홈</a>
-    <a href="about.html">코러스 소개</a>
-    <a href="performance.html">갤러리</a> <a href="support.html">후원</a>
-</nav>
+    <header role="banner">
+        <h1>라파엘코러스</h1>
+        <nav role="navigation" aria-label="메인 메뉴">
+            <a href="index.html" aria-current="page">홈</a>
+            <a href="about.html">코러스 소개</a>
+            <a href="performance.html">갤러리</a>
+            <a href="support.html">후원</a>
+        </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-text"> <h2>노래로 빛을 찾아</h2>
-            <p>노래로 세상을 밝힌다.</p>
-        </div>
-    </section>
-
-    <section class="content">
-        <h3 style="font-size: 1.8rem; margin-bottom: 30px;">최신 소식</h3>
-        
-        <a href="https://www.chosun.com/video_photo/2025/12/25/3ECK5GR63FHIVLIDLQ6CNZTTYQ/" target="_blank" class="news-link-wrapper">
-            <div class="news-card">
-                <div class="news-text">
-                    <span class="news-tag">언론보도</span>
-                    <h4>[조선일보] "어둠 속에 울려 퍼진 희망의 성가"</h4>
-                    <p>2025년 크리스마스, 라파엘코러스의 감동적인 무대 영상과 인터뷰 내용을 확인해 보세요.</p>
-                    <div class="click-info">클릭해서 기사 전문 보기 →</div>
-                </div>
+    <main id="main-content" role="main">
+        <section class="hero">
+            <div class="hero-text"> 
+                <h2>노래로 빛을 찾아</h2>
+                <p>노래로 세상을 밝힌다.</p>
             </div>
-        </a>
-    </section>
+        </section>
 
-    <footer>
+        <section class="content" aria-labelledby="news-title">
+            <h3 id="news-title" style="font-size: 1.8rem; margin-bottom: 30px;">최신 소식</h3>
+            
+            <a href="https://www.chosun.com/video_photo/2025/12/25/3ECK5GR63FHIVLIDLQ6CNZTTYQ/" target="_blank" class="news-link-wrapper" aria-label="[조선일보] 어둠 속에 울려 퍼진 희망의 성가, 기사 전문 보기">
+                <article class="news-card">
+                    <div class="news-text">
+                        <span class="news-tag">언론보도</span>
+                        <h4>[조선일보] "어둠 속에 울려 퍼진 희망의 성가"</h4>
+                        <p>2025년 크리스마스, 라파엘코러스의 감동적인 무대 영상과 인터뷰 내용을 확인해 보세요.</p>
+                        <div class="click-info" aria-hidden="true">클릭해서 기사 전문 보기 →</div>
+                    </div>
+                </article>
+            </a>
+        </section>
+    </main> <footer role="contentinfo">
         <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
         <p>이메일: raphaelchorus@naver.com | 전화: 010-8020-4413</p>
     </footer>
-
 </body>
 </html>
