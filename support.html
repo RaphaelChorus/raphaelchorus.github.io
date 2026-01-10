@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>후원 안내 - 라파엘코러스</title>
     <style>
-        /* 1. 기본 설정 */
         body { 
-            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
+            font-family: 'Malgun Gothic', sans-serif; 
             margin: 0; padding: 0; line-height: 1.8; color: #333; 
             background-color: #fffbe6; 
         }
@@ -15,71 +14,96 @@
         nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
         nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
 
-        /* 2. 상단 배너 (pf4.jpg 적용) */
+        /* 상단 배너 */
         .sub-header { 
-            /* pf4.jpg를 배경으로 사용하고, 글씨 가독성을 위해 어두운 레이어를 추가했습니다. */
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('pf4.jpg');
             background-size: cover; background-position: center;
             padding: 100px 10%; text-align: center; color: white; 
             border-bottom: 5px solid #ffcc00; 
         }
-        .sub-header-surtitle { color: #ffcc00; font-size: 1.3rem; font-weight: bold; display: block; margin-bottom: 15px; letter-spacing: 1px; }
-        .sub-header h2 { font-size: 2.8rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .sub-header-surtitle { color: #ffcc00; font-size: 1.2rem; font-weight: bold; display: block; margin-bottom: 10px; }
+        .sub-header h2 { font-size: 2.5rem; margin: 0; }
 
-        .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
-        .intro-text { text-align: center; margin-bottom: 50px; font-size: 1.15rem; }
+        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+        .intro-text { text-align: center; margin-bottom: 40px; font-size: 1.1rem; word-break: keep-all; }
 
-        /* 3. [핵심] 후원 박스 가로 배치 그리드 시스템 */
+        /* 후원 그리드 설정 - 모바일 겹침 방지 */
         .donation-grid {
             display: grid;
-            /* 화면 폭에 따라 자동으로 조절: 최소 350px 공간이 있으면 가로로 나열, 없으면 세로로 배치 */
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px; /* 박스 사이 간격 */
-            margin-bottom: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px; /* 박스 사이 간격을 확실히 확보 */
+            margin-bottom: 30px;
         }
 
-        /* 후원 카드 공통 디자인 (동일한 모양) */
+        /* 후원 카드 디자인 개선 */
         .support-card { 
-            background: #fff; border: 1px solid #eee; padding: 40px; 
-            border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            background: #fff; 
+            border: 1px solid #ddd; 
+            padding: 40px 30px; 
+            border-radius: 20px; 
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06); 
             text-align: center;
-            /* 그리드 안에서 높이를 똑같이 맞추고 내부 요소 정렬 */
-            height: 100%; 
-            display: flex; flex-direction: column; justify-content: space-between;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* 내부 요소가 위아래로 꽉 차게 */
+            transition: all 0.3s ease;
         }
-        /* 그리드 밖에 있는 하단 문의 카드는 기존 마진 유지 */
-        .container > .support-card { margin-bottom: 40px; } 
+        .support-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); }
 
-        .support-card h3 { border-bottom: 2px solid #ffcc00; padding-bottom: 15px; margin-bottom: 30px; font-size: 1.5rem; color: #222; margin-top: 0; }
-        .support-card p { flex-grow: 1; /* 내용이 적어도 박스 크기 유지 */ }
+        .support-card h3 { 
+            font-size: 1.6rem; color: #222; margin-top: 0;
+            padding-bottom: 15px; border-bottom: 2px solid #ffcc00; 
+            display: inline-block; margin-bottom: 20px;
+        }
+
+        .card-content { margin-bottom: 25px; min-height: 80px; }
 
         /* 정기후원 버튼 */
         .btn-donation {
-            display: inline-block; background: #ffcc00; color: #000;
-            padding: 15px 30px; font-size: 1.1rem; font-weight: bold;
-            text-decoration: none; border-radius: 50px;
-            transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
-            margin-top: 20px; width: 80%; margin-left: auto; margin-right: auto;
+            display: block; 
+            background: #ffcc00; color: #000;
+            padding: 18px 0; font-size: 1.15rem; font-weight: bold;
+            text-decoration: none; border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.3);
+            transition: background 0.2s;
         }
-        .btn-donation:hover { transform: translateY(-3px); background: #e6b800; box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4); }
+        .btn-donation:hover { background: #e6b800; }
 
-        /* 계좌 정보 박스 */
+        /* 일시후원 계좌 박스 */
         .account-info { 
-            background: #f9f9f9; padding: 20px; border-radius: 10px; 
-            border: 2px dashed #ffcc00; font-size: 1.1rem; 
-            margin-top: 20px; word-break: keep-all;
+            background: #fdfdfd; 
+            padding: 18px; 
+            border-radius: 12px; 
+            border: 2px solid #eee;
+            font-size: 1.05rem;
+            color: #444;
         }
-        .account-info strong { color: #d32f2f; font-size: 1.2rem; display: block; margin-bottom: 5px; }
+        .account-info strong { 
+            display: block; color: #d32f2f; font-size: 1.25rem; margin-bottom: 5px; 
+        }
 
-        footer { background: #333; color: #fff; padding: 30px; text-align: center; margin-top: 80px; font-size: 0.9rem; }
+        /* 하단 문의 바 */
+        .contact-bar {
+            background: #333; color: #fff; padding: 25px; 
+            border-radius: 15px; text-align: center; margin-top: 20px;
+        }
+        .contact-bar p { margin: 5px 0; }
+        .contact-bar span { color: #ffcc00; font-weight: bold; }
 
-        /* 모바일 대응 */
+        footer { background: #222; color: #999; padding: 30px; text-align: center; margin-top: 60px; font-size: 0.85rem; }
+
+        /* 모바일 최적화 미디어 쿼리 */
         @media (max-width: 768px) {
-            header { flex-direction: column; text-align: center; }
-            nav { margin-top: 15px; }
+            .sub-header { padding: 60px 5%; }
             .sub-header h2 { font-size: 1.8rem; }
-            .donation-grid { grid-template-columns: 1fr; } /* 모바일에서는 무조건 1줄로 */
-            .btn-donation { width: 100%; }
+            .donation-grid { 
+                grid-template-columns: 1fr; /* 무조건 세로 한 줄 */
+                gap: 20px; /* 세로로 나열될 때 박스 사이의 명확한 간격 */
+            }
+            .support-card { padding: 30px 20px; }
+            header { text-align: center; flex-direction: column; }
+            nav { margin-top: 15px; }
+            nav a { margin: 0 10px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -98,31 +122,39 @@
 
     <main id="main-content" role="main">
         <section class="sub-header">
-            <span class="sub-header-surtitle">Share your heart</span>
+            <span class="sub-header-surtitle">Support Raphael Chorus</span>
             <h2>아름다운 화음의 든든한 버팀목</h2>
         </section>
 
         <div class="container">
             <div class="intro-text">
-                <p>여러분의 소중한 후원은 시각장애인 단원들의 예술적 자립과<br>희망의 노래가 됩니다.</p>
+                <p>여러분의 따뜻한 관심은 시각장애인 단원들이 세상과 소통하는 큰 힘이 됩니다.</p>
             </div>
 
             <div class="donation-grid">
                 <section class="support-card" aria-labelledby="regular-title">
-                    <h3 id="regular-title">정기 후원 (CMS)</h3>
-                    <p>매월 약정하신 금액으로 라파엘코러스의 안정적인 운영과 지속적인 활동을 지원합니다.</p>
+                    <div>
+                        <h3 id="regular-title">정기 후원 (CMS)</h3>
+                        <div class="card-content">
+                            <p>매월 정기적인 후원을 통해 라파엘코러스의 안정적인 예술 활동을 응원해 주세요.</p>
+                        </div>
+                    </div>
                     <a class="btn-donation" 
                        href="https://secure.donus.org/arko/pay/step1_direct?dontype=B01011&background=B01011" 
                        target="_blank" 
                        rel="noopener noreferrer"
-                       aria-label="정기후원 신청하기 (새 창에서 외부 신청 페이지가 열립니다)">
+                       aria-label="정기후원 신청하기 (새 창 열림)">
                        정기후원 신청하기
                     </a>
                 </section>
 
-                <section class="support-card" aria-labelledby="bank-title">
-                    <h3 id="bank-title">일시 후원 (계좌이체)</h3>
-                    <p>원하시는 때에 자유로운 금액으로 직접 마음을 전하실 수 있습니다.</p>
+                <section class="support-card" aria-labelledby="once-title">
+                    <div>
+                        <h3 id="once-title">일시 후원 (계좌)</h3>
+                        <div class="card-content">
+                            <p>언제든 자유로운 금액으로 라파엘코러스에 직접 마음을 전하실 수 있습니다.</p>
+                        </div>
+                    </div>
                     <div class="account-info">
                         <strong>우리은행 1005-401-443905</strong>
                         (예금주: 라파엘코러스)
@@ -130,19 +162,16 @@
                 </section>
             </div>
 
-            <section class="support-card" style="border-left: 5px solid #ffcc00; margin-top: 40px;" aria-labelledby="contact-title">
-                <h3 id="contact-title" style="border-bottom: none; margin-bottom: 15px;">후원 관련 문의</h3>
-                <p>기부금 영수증 발행 및 기업 후원 문의</p>
-                <p style="font-size: 1.1rem; font-weight: bold; margin: 0;">
-                    📞 010-8020-4413 / 📧 raphaelchorus@naver.com
-                </p>
+            <section class="contact-bar" aria-labelledby="contact-title">
+                <p id="contact-title" style="font-weight: bold; font-size: 1.1rem; margin-bottom: 10px;">후원 및 기부 문의</p>
+                <p>전화: <span>010-8020-4413</span> &nbsp; | &nbsp; 이메일: <span>raphaelchorus@naver.com</span></p>
+                <p style="font-size: 0.9rem; color: #ccc; margin-top: 10px;">(라파엘코러스는 법정 기부금 단체로 세제 혜택을 받으실 수 있습니다.)</p>
             </section>
         </div>
     </main>
 
     <footer role="contentinfo">
         <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
-        <p>이메일: raphaelchorus@naver.com | 전화: 010-8020-4413</p>
     </footer>
 </body>
 </html>
