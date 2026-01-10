@@ -5,56 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>후원 안내 - 라파엘코러스</title>
     <style>
-        /* 전체적인 디자인 통일성 유지 */
         body { 
             font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
             margin: 0; padding: 0; line-height: 1.8; color: #333; 
-            background-color: #fffbe6; /* 따뜻한 크림색 배경 */
+            background-color: #fffbe6; 
         }
         header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
         nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
-        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; } /* 현재 페이지 표시 */
+        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
 
-        /* 상단 배너 디자인 */
         .sub-header { 
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('support-banner.jpg');
             background-size: cover; background-position: center;
             padding: 80px 10%; text-align: center; color: white; 
             border-bottom: 5px solid #ffcc00; 
         }
-        .sub-header-surtitle { color: #ffcc00; font-size: 1.3rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px; }
-        .sub-header h2 { font-size: 2.8rem; margin: 0; font-weight: bold; }
+        .sub-header-surtitle { color: #ffcc00; font-size: 1.3rem; font-weight: bold; display: block; margin-bottom: 15px; }
+        .sub-header h2 { font-size: 2.8rem; margin: 0; }
 
         .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
-        .intro-text { font-size: 1.2rem; margin-bottom: 50px; text-align: center; word-break: keep-all; }
         
-        /* 후원 정보 박스 */
+        /* 후원 카드 공통 디자인 */
         .support-card { 
             background: #fff; border: 1px solid #eee; padding: 40px; 
             border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-            margin-bottom: 40px;
+            margin-bottom: 40px; text-align: center;
         }
         .support-card h3 { border-bottom: 2px solid #ffcc00; padding-bottom: 15px; margin-bottom: 30px; font-size: 1.5rem; color: #222;}
         
+        /* 강조된 정기후원 버튼 디자인 */
+        .btn-donation {
+            display: inline-block;
+            background: #ffcc00;
+            color: #000;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 204, 0, 0.3);
+            margin-top: 10px;
+        }
+        .btn-donation:hover {
+            transform: scale(1.05);
+            background: #e6b800;
+            box-shadow: 0 6px 20px rgba(255, 204, 0, 0.4);
+        }
+
         .account-info { 
             background: #f9f9f9; padding: 25px; border-radius: 10px; 
             border-left: 5px solid #ffcc00; font-size: 1.2rem; 
-            margin: 20px 0; text-align: center;
+            margin: 20px 0;
         }
-        .account-info strong { color: #d32f2f; }
-
-        .benefit-list { list-style: none; padding: 0; }
-        .benefit-list li { margin-bottom: 15px; display: flex; align-items: flex-start; }
-        .benefit-list li::before { content: '♥'; color: #d32f2f; margin-right: 12px; font-weight: bold; }
 
         footer { background: #333; color: #fff; padding: 30px; text-align: center; margin-top: 80px; font-size: 0.9rem; }
 
-        /* 모바일 대응 */
         @media (max-width: 768px) {
             header { flex-direction: column; text-align: center; }
             nav { margin-top: 15px; }
             .sub-header h2 { font-size: 1.8rem; }
-            .account-info { font-size: 1.05rem; }
         }
     </style>
 </head>
@@ -65,48 +75,43 @@
         <h1>라파엘코러스</h1>
         <nav role="navigation" aria-label="메인 메뉴">
             <a href="index.html">홈</a>
-            <a href="about.html">라파엘 소개</a>
+            <a href="about.html">코러스 소개</a>
             <a href="performance.html">갤러리</a>
             <a href="support.html" aria-current="page">후원</a>
         </nav>
     </header>
 
     <main id="main-content" role="main">
-        <section class="sub-header" aria-label="후원 페이지 상단">
+        <section class="sub-header">
             <span class="sub-header-surtitle">Share your heart</span>
             <h2>아름다운 화음의 든든한 버팀목</h2>
         </section>
 
         <div class="container">
-            <article class="intro-text">
-                <p>여러분의 소중한 후원은 시각장애인 단원들의 <strong>예술적 자립</strong>과<br>
-                더 넓은 세상을 향한 <strong>희망의 노래</strong>가 됩니다.</p>
-                <p>라파엘코러스와 함께 따뜻한 기적을 만들어주세요.</p>
-            </article>
+            <section class="support-card" aria-labelledby="regular-title">
+                <h3 id="regular-title">정기 (매월 정액) 후원</h3>
+                <p>매월 일정 금액의 후원으로 라파엘코러스의 안정적인 활동을 지원합니다.</p>
+                <a class="btn-donation" 
+                   href="https://secure.donus.org/arko/pay/step1_direct?dontype=B01011&background=B01011" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   aria-label="정기후원 신청하기 (새 창에서 외부 신청 페이지가 열립니다)">
+                   정기후원 신청하기
+                </a>
+            </section>
 
             <section class="support-card" aria-labelledby="bank-title">
-                <h3 id="bank-title">후원 계좌 안내</h3>
-                <p>직접 송금을 통해 라파엘코러스를 후원하실 수 있습니다.</p>
+                <h3 id="bank-title">일시 후원 및 계좌 안내</h3>
+                <p>계좌 이체를 통해 직접 마음을 전하실 수 있습니다.</p>
                 <div class="account-info">
                     <strong>우리은행 1005-401-443905</strong><br>
                     (예금주: 라파엘코러스)
                 </div>
-                <p style="text-align: center; color: #666; font-size: 0.9rem;">* 보내주신 후원금은 단원들의 연습실 대관, 악보 제작, 공연 준비에 소중히 사용됩니다.</p>
-            </section>
-
-            <section class="support-card" aria-labelledby="benefit-title">
-                <h3 id="benefit-title">후원자님을 위한 감사</h3>
-                <ul class="benefit-list">
-                    <li>라파엘코러스 정기 연주회 우선 초대권 증정</li>
-                    <li>연말 기부금 영수증 발행 (법정 기부금 단체)</li>
-                    <li>정기 뉴스레터를 통한 활동 및 투명한 재정 보고</li>
-                    <li>라파엘코러스 홈페이지 내 후원자 명단 등재 (희망 시)</li>
-                </ul>
             </section>
 
             <section class="support-card" style="border-left: 5px solid #ffcc00;" aria-labelledby="contact-title">
-                <h3 id="contact-title">후원 및 기부 문의</h3>
-                <p>정기 후원 신청이나 기업 후원 등 자세한 문의는 아래 연락처로 언제든 연락 바랍니다.</p>
+                <h3 id="contact-title">후원 관련 문의</h3>
+                <p>기부금 영수증 발행 및 기타 문의사항은 아래로 연락주세요.</p>
                 <p style="font-size: 1.1rem; font-weight: bold;">
                     📞 전화: 010-8020-4413<br>
                     📧 이메일: raphaelchorus@naver.com
