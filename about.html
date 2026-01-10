@@ -5,115 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>코러스 소개 - 라파엘코러스</title>
     <style>
-        /* [공통 스타일] */
+        /* [기존 디자인 복구] */
         body { 
             font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
             margin: 0; padding: 0; line-height: 1.8; color: #333; 
-            background-color: #fffbe6; /* 화사한 크림색 배경 */
+            background-color: #fffbe6; /* 화사한 크림색 */
         }
-        header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; }
+        header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
         nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
-        
+        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; } /* 현재 페이지 강조 */
+
         .sub-header { 
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('about-banner.jpg');
             background-size: cover; background-position: center;
             padding: 80px 10%; text-align: center; color: white; 
             border-bottom: 5px solid #ffcc00; 
         }
-        
-        .sub-header-surtitle {
-            color: #ffcc00; font-size: 1.3rem; font-weight: bold; 
-            text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px;
-        }
+        .sub-header-surtitle { color: #ffcc00; font-size: 1.3rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px; }
         .sub-header h2 { font-size: 2.8rem; margin: 0; font-weight: bold; }
-        
+
         .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
         .highlight { color: #d32f2f; font-weight: bold; } 
         .intro-text { font-size: 1.2rem; margin-bottom: 50px; text-align: center; word-break: keep-all; }
         
-        .history-box { 
-            background: #fff; border: 1px solid #eee; padding: 40px; 
-            border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-            margin-bottom: 30px;
-        }
+        .history-box { background: #fff; border: 1px solid #eee; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 40px; }
         .history-box h3 { border-bottom: 2px solid #ffcc00; padding-bottom: 15px; margin-bottom: 30px; font-size: 1.5rem; color: #222;}
-        
         .history-list { list-style: none; padding: 0; }
-        .history-list li { 
-            margin-bottom: 18px; display: flex; align-items: flex-start; 
-            font-size: 1.05rem; word-break: keep-all; overflow-wrap: break-word; 
-        }
-        /* 각 항목 앞에 예쁜 노란 음표 추가 */
+        .history-list li { margin-bottom: 18px; display: flex; align-items: flex-start; font-size: 1.05rem; word-break: keep-all; }
         .history-list li::before { content: '♬'; color: #ffcc00; margin-right: 12px; font-weight: bold; }
-        .history-list li strong { display: inline-block; margin-right: 5px; white-space: nowrap; }
 
         footer { background: #333; color: #fff; padding: 30px; text-align: center; margin-top: 80px; font-size: 0.9rem; }
 
-        /* [모바일 최적화 - 하나로 통합] */
         @media (max-width: 768px) {
             header { flex-direction: column; text-align: center; }
             nav { margin-top: 15px; }
-            nav a { margin: 0 10px; font-size: 0.9rem; }
-            .sub-header { padding: 60px 5%; }
-            .sub-header-surtitle { font-size: 1.1rem; }
             .sub-header h2 { font-size: 1.8rem; }
-            .container { margin: 40px auto; }
-            .intro-text { font-size: 1.05rem; text-align: left; }
-            .history-box { padding: 25px; }
-            .history-list li { font-size: 0.95rem; line-height: 1.6; }
         }
     </style>
 </head>
 <body>
+    <a href="#main-content" style="position:absolute; top:-100px; left:0; background:#ffcc00; color:#000; padding:10px; z-index:1000;" onfocus="this.style.top='0';" onblur="this.style.top='-100px';">본문 바로가기</a>
 
-    <header>
-        <div><h1>라파엘코러스</h1></div>
-        <nav>
-    <a href="index.html">홈</a>
-    <a href="about.html">코러스 소개</a>
-    <a href="performance.html">갤러리</a> <a href="support.html">후원</a>
-</nav>
+    <header role="banner">
+        <h1>라파엘코러스</h1>
+        <nav role="navigation" aria-label="메인 메뉴">
+            <a href="index.html">홈</a>
+            <a href="about.html" aria-current="page">코러스 소개</a>
+            <a href="performance.html">갤러리</a>
+            <a href="support.html">후원</a>
+        </nav>
     </header>
 
-    <section class="sub-header">
-        <span class="sub-header-surtitle">Raphael is...</span>
-        <h2>마음의 눈으로 노래하는 하모니</h2>
-    </section>
+    <main id="main-content" role="main">
+        <section class="sub-header" aria-label="소개 페이지 상단">
+            <span class="sub-header-surtitle">Raphael is...</span>
+            <h2>마음의 눈으로 노래하는 하모니</h2>
+        </section>
 
-    <div class="container">
-        <div class="intro-text">
-            <p>비록 눈은 어둡게 되었으나, <span class="highlight">열린 마음의 눈</span>으로<br>
-            고결한 화음을 자아내는 시각장애인 합창단입니다.</p>
-            
-            <p><strong>국내 최초이자 유일한 민간 시각장애인 합창단</strong>인 라파엘코러스는<br>
-                2009년 2월 창단 이래<br>
-            노래를 통해 세상에 희망과 용기를 외치고 있습니다.</p>
+        <div class="container">
+            <article class="intro-text">
+                <p>비록 눈은 어둡게 되었으나, <span class="highlight">열린 마음의 눈</span>으로<br>
+                고결한 화음을 자아내는 시각장애인 합창단입니다.</p>
+                <p><strong>국내 최초이자 유일한 민간 시각장애인 합창단</strong>인 라파엘코러스는<br>
+                2009년 2월 창단 이래 노래를 통해 세상에 희망과 용기를 외치고 있습니다.</p>
+            </article>
+
+            <section class="history-box" aria-labelledby="history-title">
+                <h3 id="history-title">주요 발자취</h3>
+                <ul class="history-list">
+                    <li><strong>2009년 02월</strong> : 라파엘코러스 창단</li>
+                    <li><strong>국제 합창 대회</strong> : 당당히 1등 수상</li>
+                    <li><strong>KBS 합창 대회</strong> : 동상 수상</li>
+                    <li><strong>해외 연주 활동</strong> : 미국 초청 연주 및 다수의 국내외 공연</li>
+                    <li><strong>현재</strong> : 하모니를 통해 삶을 노래하는 활발한 연주 활동 중</li>
+                </ul>
+            </section>
+
+            <section class="history-box" style="border-left: 5px solid #ffcc00;" aria-labelledby="recruit-title">
+                <h3 id="recruit-title">단원 모집 안내</h3>
+                <p>라파엘코러스와 함께 빛나는 하모니를 만들어갈 노래를 사랑하는 시각장애인 가족을 기다립니다.</p>
+                <ul class="history-list">
+                    <li><strong>연습 일정</strong> : 매주 정기 연습 진행</li>
+                    <li><strong>문의</strong> : 010-8020-4413</li>
+                </ul>
+            </section>
         </div>
+    </main>
 
-        <div class="history-box">
-            <h3>주요 발자취</h3>
-            <ul class="history-list">
-                <li><strong>2009년 02월</strong> : 라파엘코러스 창단</li>
-                <li><strong>국제 합창 대회</strong> : 당당히 1등 수상</li>
-                <li><strong>KBS 합창 대회</strong> : 동상 수상</li>
-                <li><strong>해외 연주 활동</strong> : 미국 초청 연주 및 다수의 국내외 공연</li>
-                <li><strong>현재</strong> : 하모니를 통해 삶을 노래하는 활발한 연주 활동 중</li>
-            </ul>
-        </div>
-
-        <div class="history-box" style="border-left: 5px solid #ffcc00;">
-            <h3>단원 모집 안내</h3>
-            <p>라파엘코러스와 함께 빛나는 하모니를 만들어갈 노래를 사랑하는 시각장애인 가족을 기다립니다.</p>
-            <ul class="history-list">
-                <li><strong>연습 일정</strong> : 매주 정기 연습 진행</li>
-                <li><strong>문의</strong> : 010-8020-4413</li>
-            </ul>
-        </div>
-    </div>
-
-    <footer>
+    <footer role="contentinfo">
         <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
+        <p>이메일: raphaelchorus@naver.com | 전화: 010-8020-4413</p>
     </footer>
-
 </body>
 </html>
