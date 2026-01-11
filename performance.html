@@ -5,63 +5,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>갤러리 - 라파엘코러스</title>
     <style>
-        /* 디자인 통일성 및 갤러리 최적화 */
-        body { 
+        /* 기본 설정 및 떨림 방지 */
+        html, body { 
+            margin: 0; padding: 0; width: 100%; overflow-x: hidden;
             font-family: 'Malgun Gothic', sans-serif; 
-            margin: 0; padding: 0; line-height: 1.6; 
-            background-color: #111; /* 사진이 돋보이도록 어두운 배경 */
-            color: #fff; 
+            line-height: 1.8; color: #333; background-color: #fffbe6; 
         }
-        header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #333; }
+        
+        header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
         nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
         nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
 
-        /* 갤러리 헤더 */
-        .sub-header { padding: 60px 20px; text-align: center; background: #000; }
-        .sub-header h2 { font-size: 2.5rem; color: #ffcc00; margin: 0; }
-        .sub-header p { color: #ccc; margin-top: 10px; font-size: 1.1rem; }
-
-        /* 갤러리 그리드 */
-        .gallery-grid {
-            max-width: 1200px; margin: 40px auto; padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
+        /* 상단 배너 (요청하신 2011KBS1.jpg 적용) */
+        .sub-header { 
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('2011KBS1.jpg');
+            background-size: cover; 
+            background-position: center;
+            padding: 100px 10%; 
+            text-align: center; 
+            color: white; 
+            border-bottom: 5px solid #ffcc00; 
         }
+        .sub-header h2 { font-size: 2.8rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
 
-        /* 사진 카드 스타일 */
-        .photo-item {
-            background: #222; border-radius: 12px; overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+
+        /* 갤러리 그리드 디자인 */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .gallery-item {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #ddd;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
             transition: transform 0.3s ease;
         }
-        .photo-item:hover { transform: translateY(-10px); }
-        .photo-item img {
-            width: 100%; height: 250px; object-fit: cover; display: block;
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-desc {
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            background: #fff;
         }
 
-        /* 사진 아래 설명 텍스트 (시각장애인/일반인 모두를 위함) */
-        .photo-desc {
-            padding: 15px; font-size: 0.95rem; color: #eee;
-            border-top: 1px solid #333; min-height: 60px;
-            word-break: keep-all;
-        }
-
-        footer { background: #000; color: #777; padding: 40px; text-align: center; border-top: 1px solid #333; }
+        footer { background: #333; color: #fff; padding: 40px; text-align: center; margin-top: 100px; }
 
         @media (max-width: 768px) {
-            header { flex-direction: column; text-align: center; }
-            nav { margin-top: 15px; }
-            .sub-header h2 { font-size: 1.8rem; }
+            .sub-header h2 { font-size: 2rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <a href="#main-content" style="position:absolute; top:-100px; left:0; background:#ffcc00; color:#000; padding:10px; z-index:1000;" onfocus="this.style.top='0';" onblur="this.style.top='-100px';">본문 바로가기</a>
-
-    <header role="banner">
+    <header>
         <h1>라파엘코러스</h1>
-        <nav role="navigation" aria-label="메인 메뉴">
+        <nav>
             <a href="index.html">홈</a>
             <a href="about.html">라파엘 소개</a>
             <a href="performance.html" aria-current="page">갤러리</a>
@@ -69,55 +79,37 @@
         </nav>
     </header>
 
-    <main id="main-content" role="main">
-        <section class="sub-header">
-            <h2>2025 힐링콘서트 갤러리</h2>
-            <p>마음의 눈으로 그린 그날의 감동적인 순간들</p>
-        </section>
+    <section class="sub-header">
+        <h2>갤러리</h2>
+    </section>
 
-        <div class="gallery-grid" id="gallery-container">
+    <main class="container">
+        <div class="gallery-grid">
+            <article class="gallery-item">
+                <img src="pf1.jpg" alt="공연 사진 1">
+                <div class="gallery-desc">제19회 정기연주회</div>
+            </article>
+
+            <article class="gallery-item">
+                <img src="pf2.jpg" alt="공연 사진 2">
+                <div class="gallery-desc">찾아가는 음악회</div>
+            </article>
+
+            <article class="gallery-item">
+                <img src="pf3.jpg" alt="공연 사진 3">
+                <div class="gallery-desc">KBS 초청 공연</div>
+            </article>
+            
+            <article class="gallery-item">
+                <img src="pf4.jpg" alt="공연 사진 4">
+                <div class="gallery-desc">단원 야외 워크숍</div>
+            </article>
+            
             </div>
     </main>
 
-    <script>
-        // [수정 방법] 아래 리스트에 사진 번호(id)와 설명(desc)을 채워주세요.
-        const photos = [
-            { id: 1, desc: "힐링콘서트를 시작하며 멋지게 정렬을 마쳤습니다." },
-            { id: 2, desc: "이제 천사의 사랑을 담은 노래소리가 뿜어집니다." },
-            { id: 3, desc: "금호중앙교회의 스크린이 돋보이는 라파엘 전체의 모습" },
-            { id: 4, desc: "마치 마법의 손짓을 하고 계신 듯, 이돈응 감독님이 라바엘의 노래를 집중 이끄시네요" },
-            { id: 5, desc: "금호중앙교회의 고마운 분들과 함께한 사진" },
-            { id: 6, desc: "흰연주복의 소프라노 알토 빨간 보타이의 테너 베이스" },
-            { id: 7, desc: "여성분들의 혼신을 다해 노래하는 소리가 들리네요" },
-            { id: 8, desc: "라파엘의 표정이 모든 기쁨을 보여줍니다." },
-            // 40번까지 이런 식으로 계속 추가하세요...
-            { id: 9, desc: "아름다운 모습이 노래로 들리네요" },
-            { id: 10, desc: "여자대원들의 연주복이 은빛으로 빛나며 기뻐해요" },
-        ];
-
-        const container = document.getElementById('gallery-container');
-
-        // 사진 40장을 생성하는 로직
-        // 만약 리스트에 7번까지만 적었어도, 나머지 40번까지는 기본 문구로 채워지게 했습니다.
-        for (let i = 1; i <= 40; i++) {
-            const photoInfo = photos.find(p => p.id === i) || { id: i, desc: `라파엘코러스 힐링콘서트 공연 사진 ${i}번` };
-            
-            container.innerHTML += `
-                <article class="photo-item">
-                    <img src="pf${photoInfo.id}.jpg" 
-                         alt="${photoInfo.desc}" 
-                         onerror="this.parentElement.style.display='none';">
-                    <div class="photo-desc" aria-hidden="true">
-                        ${photoInfo.desc}
-                    </div>
-                </article>
-            `;
-        }
-    </script>
-
-    <footer role="contentinfo">
+    <footer>
         <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
-        <p>이메일: raphaelchorus@naver.com | 전화: 010-8020-4413</p>
     </footer>
 </body>
 </html>
