@@ -5,96 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>코러스 소개 - 라파엘코러스</title>
     <style>
-        /* [기존 디자인 복구] */
-        body { 
-            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
-            margin: 0; padding: 0; line-height: 1.8; color: #333; 
-            background-color: #fffbe6; /* 화사한 크림색 */
-        }
+        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; line-height: 1.8; color: #333; background-color: #fffbe6; }
         header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
         nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
-        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; } /* 현재 페이지 강조 */
+        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
+        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
+        .section-title { font-size: 1.8rem; margin: 80px 0 30px; padding-left: 15px; border-left: 6px solid #ffcc00; color: #111; }
 
-        .sub-header { 
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('about-banner.jpg');
-            background-size: cover; background-position: center;
-            padding: 80px 10%; text-align: center; color: white; 
-            border-bottom: 5px solid #ffcc00; 
-        }
-        .sub-header-surtitle { color: #ffcc00; font-size: 1.3rem; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; display: block; margin-bottom: 15px; }
-        .sub-header h2 { font-size: 2.8rem; margin: 0; font-weight: bold; }
-
-        .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
-        .highlight { color: #d32f2f; font-weight: bold; } 
-        .intro-text { font-size: 1.2rem; margin-bottom: 50px; text-align: center; word-break: keep-all; }
+        /* 단장 인사말 */
+        .greeting-box { display: flex; gap: 40px; background: #fff; padding: 40px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); align-items: center; margin-bottom: 60px; }
+        .greeting-img { width: 250px; height: 320px; object-fit: cover; border-radius: 15px; flex-shrink: 0; }
         
-        .history-box { background: #fff; border: 1px solid #eee; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); margin-bottom: 40px; }
-        .history-box h3 { border-bottom: 2px solid #ffcc00; padding-bottom: 15px; margin-bottom: 30px; font-size: 1.5rem; color: #222;}
-        .history-list { list-style: none; padding: 0; }
-        .history-list li { margin-bottom: 18px; display: flex; align-items: flex-start; font-size: 1.05rem; word-break: keep-all; }
-        .history-list li::before { content: '♬'; color: #ffcc00; margin-right: 12px; font-weight: bold; }
+        /* 인물 그리드 */
+        .people-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; margin-bottom: 50px; }
+        .card { background: #fff; padding: 20px; border-radius: 20px; text-align: center; border: 1px solid #eee; transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); border-color: #ffcc00; }
+        .card img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 3px solid #ffcc00; }
+        .role { display: block; font-size: 0.85rem; color: #d32f2f; font-weight: bold; }
 
-        footer { background: #333; color: #fff; padding: 30px; text-align: center; margin-top: 80px; font-size: 0.9rem; }
+        /* 성과(상장) 갤러리 */
+        .awards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
+        .award-card { background: #fff; padding: 15px; border-radius: 12px; border: 1px solid #ddd; text-align: center; transition: 0.3s; }
+        .award-card:hover { border-color: #ffcc00; box-shadow: 0 10px 20px rgba(255, 204, 0, 0.2); }
+        .award-card img { width: 100%; border-radius: 5px; margin-bottom: 10px; }
 
-        @media (max-width: 768px) {
-            header { flex-direction: column; text-align: center; }
-            nav { margin-top: 15px; }
-            .sub-header h2 { font-size: 1.8rem; }
-        }
+        footer { background: #333; color: #fff; padding: 40px; text-align: center; margin-top: 80px; }
+        @media (max-width: 768px) { .greeting-box { flex-direction: column; text-align: center; } .people-grid { grid-template-columns: repeat(2, 1fr); } }
     </style>
 </head>
 <body>
-    <a href="#main-content" style="position:absolute; top:-100px; left:0; background:#ffcc00; color:#000; padding:10px; z-index:1000;" onfocus="this.style.top='0';" onblur="this.style.top='-100px';">본문 바로가기</a>
-
-    <header role="banner">
+    <header>
         <h1>라파엘코러스</h1>
-        <nav role="navigation" aria-label="메인 메뉴">
-            <a href="index.html">홈</a>
-            <a href="about.html" aria-current="page">라파엘 소개</a>
-            <a href="performance.html">갤러리</a>
-            <a href="support.html">후원</a>
-        </nav>
+        <nav><a href="index.html">홈</a><a href="about.html" aria-current="page">소개</a><a href="performance.html">갤러리</a><a href="support.html">후원</a></nav>
     </header>
 
-    <main id="main-content" role="main">
-        <section class="sub-header" aria-label="소개 페이지 상단">
-            <span class="sub-header-surtitle">Raphael is...</span>
-            <h2>우리의 노래가 빛이 되어 세상을 밝힌다</h2>
+    <main class="container">
+        <h3 class="section-title">인사말</h3>
+        <section class="greeting-box">
+            <img src="leader.jpg" alt="정지선 단장" class="greeting-img">
+            <div>
+                <h3>단장 정지선</h3>
+                <p>"라파엘코러스는 노래를 통해 어둠 속에 빛을 밝히는 공동체입니다. 우리의 화음이 여러분에게 희망의 메시지가 되길 바랍니다."</p>
+            </div>
         </section>
 
-        <div class="container">
-            <article class="intro-text">
-                <p>비록 눈은 어둡게 되었으나, <span class="highlight">열린 마음의 눈</span>으로<br>
-                고결한 화음을 자아내는 시각장애인 합창단입니다.</p>
-                <p><strong>국내 최초이자 유일한 민간 시각장애인 합창단</strong>인 라파엘코러스는<br>
-                2009년 2월 창단 이래 노래를 통해 세상에 희망과 용기를 외치고 있습니다.</p>
-            </article>
+        <h3 class="section-title">운영진 및 전문가</h3>
+        <div class="people-grid">
+            <div class="card"><img src="staff1.jpg" alt="고문"><span class="role">고문</span><strong>홍길동</strong></div>
+            <div class="card"><img src="staff2.jpg" alt="고문"><span class="role">고문</span><strong>김철수</strong></div>
+            <div class="card"><img src="director.jpg" alt="감독"><span class="role">예술감독</span><strong>김사랑</strong></div>
+            <div class="card"><img src="piano.jpg" alt="반주"><span class="role">반주자</span><strong>이음악</strong></div>
+            <div class="card"><img src="trainer.jpg" alt="트레이너"><span class="role">트레이너</span><strong>박발성</strong></div>
+        </div>
 
-            <section class="history-box" aria-labelledby="history-title">
-                <h3 id="history-title">주요 발자취</h3>
-                <ul class="history-list">
-                    <li><strong>2009년 02월</strong> : 라파엘코러스 창단</li>
-                    <li><strong>국제 합창 대회</strong> : 당당히 1등 수상</li>
-                    <li><strong>KBS 합창 대회</strong> : 동상 수상</li>
-                    <li><strong>해외 연주 활동</strong> : 미국 초청 연주 및 다수의 국내외 공연</li>
-                    <li><strong>현재</strong> : 하모니를 통해 삶을 노래하는 활발한 연주 활동 중</li>
-                </ul>
-            </section>
+        <h3 class="section-title">라파엘코러스 단원</h3>
+        <div class="people-grid" id="member-grid"></div>
 
-            <section class="history-box" style="border-left: 5px solid #ffcc00;" aria-labelledby="recruit-title">
-                <h3 id="recruit-title">단원 모집 안내</h3>
-                <p>라파엘코러스와 함께 빛나는 하모니를 만들어갈 노래를 사랑하는 시각장애인 가족을 기다립니다.</p>
-                <ul class="history-list">
-                    <li><strong>연습 일정</strong> : 매주 정기 연습 진행</li>
-                    <li><strong>문의</strong> : 010-8020-4413</li>
-                </ul>
-            </section>
+        <h3 class="section-title">영광스러운 기록</h3>
+        <div class="awards-grid">
+            <div class="award-card"><img src="award1.jpg" alt="상장1"><p>2009년 12월 3일 국제장애인문화교류협회가 주최한 제1회 전국장애인합창대회의 금상 수상</p></div>
+            <div class="award-card"><img src="award2.jpg" alt="상장2"><p>2012년 9월 26일 "모두가 따뜻하고 행복한 복지 종로"에 기여한 공로로 표창받음</p></div>
+            <div class="award-card"><img src="award3.jpg" alt="상장3"><p>2012년 11월17일 부산 합창 경연대회에서 심사위원상 수상</p></div>
+            <div class="award-card"><img src="award4.jpg" alt="상장4"><p>2013년 6월 19일 대구시와 대구KBS방송국 주최 제16회 전국환경노래경연대회에서 대상 수상</p></div>
+            <div class="award-card"><img src="award5.jpg" alt="상장5"><p>2013년 10월 15일 제34회 흰지팡이 날 이돈응 음악감독 표창</p></div>
+            <div class="award-card"><img src="award6.jpg" alt="상장6"><p>2015년 12월 1일 서울도시철도공사 감사장</p></div>
+            <div class="award-card"><img src="award7.jpg" alt="상장7"><p>2017년 12월 1일 전국장애인합창대회 최고상 수상</p></div>
+            <div class="award-card"><img src="award8.jpg" alt="상장8"><p>2011년 7월 18일 대만 국제 오리엔탈 콘센투스 금상 수상</p></div>
+            <div class="award-card"><img src="award9.jpg" alt="상장9"><p>KBS 더 하모니 우수상 수상</p></div>
+            <div class="award-card"><img src="award10.jpg" alt="상장10"><p>2011년 9월 24일 KBS 전국민 합창 대축제 더 하모니 동상</p></div>
         </div>
     </main>
 
-    <footer role="contentinfo">
-        <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
-        <p>이메일: raphaelchorus@naver.com | 전화: 010-8020-4413</p>
-    </footer>
+    <script>
+        // 단원 30명 자동 생성
+        const members = ["강하늘", "김바다", "이햇살", "박구름", "최별빛", "정달빛", "윤새벽", "조노을", "임산들", "한송이", "오미소", "서기쁨", "유행복", "신사랑", "권평화", "황희망", "송믿음", "전소망", "배은혜", "양친절", "백지혜", "남용기", "심열정", "노인내", "문성실", "위겸손", "허나눔", "안배려", "고화합", "차하모니"];
+        const grid = document.getElementById('member-grid');
+        members.forEach((name, i) => {
+            grid.innerHTML += `<div class="card"><img src="member${i+1}.jpg" alt="${name}" onerror="this.src='default.jpg'"><span class="role">합창단원</span><strong>${name}</strong></div>`;
+        });
+    </script>
+
+    <footer><p>&copy; 2026 라파엘코러스</p></footer>
 </body>
 </html>
