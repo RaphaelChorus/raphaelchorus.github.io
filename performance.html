@@ -5,6 +5,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>갤러리 - 라파엘코러스</title>
     <style>
+        /* 1. 기본 설정 및 화면 떨림 방지 */
+        html, body { 
+            margin: 0; padding: 0; width: 100%; overflow-x: hidden;
+            font-family: 'Malgun Gothic', sans-serif; 
+            line-height: 1.8; color: #333; background-color: #fffbe6; 
+        }
+
+        /* 2. 헤더 및 메뉴 (모바일 대응 포함) */
+        header { 
+            background: #000; color: #fff; padding: 1rem 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; z-index: 100;
+        }
+        header h1 { margin: 0; font-size: 1.5rem; white-space: nowrap; }
+        nav { display: flex; gap: 15px; }
+        nav a { color: #fff; text-decoration: none; font-weight: bold; font-size: 0.95rem; white-space: nowrap; }
+        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
+
+        /* 3. 상단 배너 */
+        .sub-header { 
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('2011KBS1.jpg');
+            background-size: cover; background-position: center;
+            padding: 80px 10%; text-align: center; color: white; 
+            border-bottom: 5px solid #ffcc00; 
+        }
+        .sub-header h2 { font-size: 2.5rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+
+        /* 4. 갤러리 레이아웃 (사진 크기 복구의 핵심) */
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 사진 너비 자동 조절 */
+            gap: 25px;
+        }
+
+        .gallery-item {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 220px; /* 사진 높이 고정 (원본 크기 방지) */
+            object-fit: cover; /* 가로세로 비율 유지하며 꽉 채움 */
+            display: block;
+        }
+
+        .gallery-desc {
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.95rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            word-break: keep-all;
+        }
+
+        footer { background: #333; color: #fff; padding: 40px; text-align: center; margin-top: 80px; }
+
+        /* 5. 모바일 전용 스타일 (768px 이하) */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px 10px; }
+            header h1 { margin-bottom: 12px; font-size: 1.3rem; }
+            nav { width: 100%; justify-content: center; flex-wrap: wrap; gap: 8px 12px; }
+            nav a { font-size: 0.85rem; }
+            
+            .sub-header { padding: 60px 5%; }
+            .sub-header h2 { font-size: 1.8rem; }
+            
+            /* 모바일에서는 사진을 1열 혹은 2열로 보기 좋게 조절 */
+            .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>라파엘코러스</h1>
+        <nav>
+            <a href="index.html">홈</a>
+            <a href="about.html">라파엘 소개</a>
+            <a href="performance.html" aria-current="page">갤러리</a>
+            <a href="support.html">후원</a>
+        </nav>
+    </header>
+
+    <section class="sub-header">
+        <h2>갤러리</h2>
+    </section>
+
+    <main class="container">
+        <div class="gallery-grid" id="gallery-container"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const photos = [
+            { id: 1, desc: "힐링콘서트를 시작하며 멋지게 정렬을 마쳤습니다." },
+            { id: 2, desc: "이제 천사의 사랑을 담은 노래소리가 뿜어집니다." },
+            { id: 3, desc: "금호중앙교회의 스크린이 돋보이는 라파엘 전체의 모습" },
+            { id: 4, desc: "마치 마법의 손짓을 하고 계신 듯, 이돈응 감독님이 라바엘의 노래를 집중 이끄시네요" },
+            { id: 5, desc: "금호중앙교회의 고마운 분들과 함께한 사진" },
+            { id: 6, desc: "흰연주복의 소프라노 알토 빨간 보타이의 테너 베이스" },
+            { id: 7, desc: "여성분들의 혼신을 다해 노래하는 소리가 들리네요" },
+            { id: 8, desc: "라파엘의 표정이 모든 기쁨을 보여줍니다." },
+            { id: 9, desc: "아름다운 모습이 노래로 들리네요" },
+            { id: 10, desc: "여자대원들의 연주복이 은빛으로 빛나며 기뻐해요" }
+        ];
+
+        const container = document.getElementById('gallery-container');
+
+        for (let i = 1; i <= 40; i++) {
+            const photoInfo = photos.find(p => p.id === i) || { id: i, desc: `라파엘코러스 힐링콘서트 공연 사진 ${i}번` };
+            
+            container.innerHTML += `
+                <article class="gallery-item">
+                    <img src="pf${photoInfo.id}.jpg" 
+                         alt="${photoInfo.desc}" 
+                         onerror="this.src='default-gallery.jpg';">
+                    <div class="gallery-desc">${photoInfo.desc}</div>
+                </article>
+            `;
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>갤러리 - 라파엘코러스</title>
+    <style>
     /* [모바일 메뉴 깨짐 방지 및 레이아웃 최적화] */
 header { 
     background: #000; 
