@@ -5,71 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>라파엘 소개 - 라파엘코러스</title>
     <style>
-        /* 기본 설정 및 화면 떨림 방지 */
-        html, body { 
-            overflow-x: hidden; 
-            margin: 0; padding: 0; 
-            width: 100%;
-            font-family: 'Malgun Gothic', sans-serif; 
-            line-height: 1.8; color: #333; 
-            background-color: #fffbe6; 
-        }
-        
-        header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-        nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
-        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
+        /* [모바일 메뉴 깨짐 방지 및 레이아웃 최적화] */
+header { 
+    background: #000; 
+    color: #fff; 
+    padding: 1rem 5%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    position: sticky; 
+    top: 0; 
+    z-index: 100;
+}
 
-        /* 상단 배경 배너 (복구) */
-        .sub-header { 
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('about-banner.jpg');
-            background-size: cover; background-position: center;
-            padding: 100px 10%; text-align: center; color: white; 
-            border-bottom: 5px solid #ffcc00; 
-        }
-        .sub-header h2 { font-size: 2.8rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+header h1 { 
+    margin: 0; 
+    font-size: 1.5rem; 
+    white-space: nowrap; /* 제목 줄바꿈 방지 */
+}
 
-        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
-        
-        .section-title { 
-            font-size: 2rem; margin-bottom: 40px; text-align: center;
-            color: #111; position: relative; padding-bottom: 15px;
-        }
-        .section-title::after {
-            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 80px; height: 4px; background: #ffcc00;
-        }
+nav { 
+    display: flex; 
+    gap: 15px; 
+}
 
-        /* 성과(상장) 갤러리 디자인 고도화 */
-        .awards-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 35px; 
-            margin-top: 20px;
-        }
-        .award-card { 
-            background: #fff; padding: 20px; border-radius: 15px; 
-            border: 1px solid #ddd; text-align: center; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            /* 떨림 방지를 위해 transform 애니메이션 최소화 */
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        .award-card:hover { 
-            border-color: #ffcc00; 
-            box-shadow: 0 10px 25px rgba(255, 204, 0, 0.2); 
-        }
-        .award-card img { 
-            width: 100%; height: auto; border-radius: 5px; 
-            margin-bottom: 15px; border: 1px solid #eee;
-        }
-        .award-card p { font-weight: bold; font-size: 1.1rem; margin: 10px 0 5px; color: #222; }
-        .award-card span { font-size: 0.9rem; color: #777; }
+nav a { 
+    color: #fff; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 0.95rem;
+    white-space: nowrap; /* 메뉴 글자 줄바꿈 방지 */
+}
 
-        footer { background: #333; color: #fff; padding: 40px; text-align: center; margin-top: 100px; }
+nav a[aria-current="page"] { 
+    color: #ffcc00; 
+    border-bottom: 2px solid #ffcc00; 
+}
 
-        @media (max-width: 768px) {
-            .sub-header h2 { font-size: 2rem; }
-            .awards-grid { grid-template-columns: 1fr; }
-        }
+/* 모바일 전용 (폭 768px 이하) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* 세로로 쌓기 */
+        padding: 15px 10px;
+    }
+
+    header h1 {
+        margin-bottom: 15px; /* 제목과 메뉴 사이 간격 */
+        font-size: 1.4rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    nav {
+        width: 100%;
+        justify-content: center; /* 메뉴 중앙 정렬 */
+        flex-wrap: wrap; /* 폭이 아주 좁으면 자연스럽게 줄바꿈 */
+        gap: 10px 15px; /* 가로 세로 간격 조절 */
+    }
+
+    nav a {
+        font-size: 0.9rem; /* 글자 크기 살짝 줄임 */
+        padding: 5px 2px;
+    }
+}
     </style>
 </head>
 <body>
