@@ -8,11 +8,12 @@
     <meta name="keywords" content="라파엘코러스, 라파엘, 장애인, 장애인합창단, 시각장애인 합창단, 합창단, Raphael Chorus, Raphael, Disabled, Choir for the Disabled, Blind Choir, Choir, Performance">
     <meta name="author" content="라파엘코러스">
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="라파엘코러스 - 희망의 화음">
-<meta property="og:description" content="시각장애를 넘어 아름다운 노래를 선사하는 라파엘코러스입니다.">
-<meta property="og:image" content="https://raphaelchorus.github.io/H2_00635.jpg"> 
-<meta property="og:url" content="https://raphaelchorus.github.io">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="라파엘코러스 - 희망의 화음">
+    <meta property="og:description" content="시각장애를 넘어 아름다운 노래를 선사하는 라파엘코러스입니다.">
+    <meta property="og:image" content="https://raphaelchorus.github.io/H2_00635.jpg"> 
+    <meta property="og:url" content="https://raphaelchorus.github.io">
+
     <style>
         body { 
             font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
@@ -33,21 +34,19 @@
 
         .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
 
-        /* 후원 그리드 - 박스 겹침 방지를 위해 gap과 margin 강화 */
         .donation-grid {
             display: flex;
-            flex-wrap: wrap; /* 폭이 좁아지면 자연스럽게 아래로 */
+            flex-wrap: wrap;
             gap: 40px; 
             justify-content: center;
             margin-bottom: 50px;
         }
 
-        /* 후원 카드 디자인 - 더 선명한 영역 표시 */
         .support-card { 
             flex: 1;
-            min-width: 320px; /* 모바일에서도 최소 폭 확보 */
+            min-width: 320px;
             background: #fff; 
-            border: 2px solid #eee; /* 기본 테두리 더 선명하게 */
+            border: 2px solid #eee;
             padding: 50px 35px; 
             border-radius: 25px; 
             box-shadow: 0 15px 35px rgba(0,0,0,0.05); 
@@ -55,17 +54,15 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* 부드러운 반응 */
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             position: relative;
             overflow: hidden;
         }
 
-        /* [핵심] 마우스 오버 효과 - 영역이 변화하며 강조됨 */
         .support-card:hover { 
             transform: translateY(-15px); 
-            border-color: #ffcc00; /* 테두리가 황금색으로 변경 */
+            border-color: #ffcc00;
             box-shadow: 0 25px 50px rgba(255, 204, 0, 0.15); 
-            background-color: #fff;
         }
 
         .support-card h3 { 
@@ -77,7 +74,6 @@
 
         .card-content { font-size: 1.1rem; color: #555; margin-bottom: 30px; word-break: keep-all; }
 
-        /* 정기후원 버튼 디자인 */
         .btn-donation {
             display: block; 
             background: #ffcc00; color: #000;
@@ -86,53 +82,43 @@
             transition: all 0.3s;
             box-shadow: 0 5px 15px rgba(255, 204, 0, 0.3);
         }
-        .btn-donation:hover { 
-            background: #000; color: #ffcc00; /* 마우스 올리면 검은색으로 반전 */
-        }
+        .btn-donation:hover { background: #000; color: #ffcc00; }
 
-        /* 일시후원 계좌 박스 디자인 */
         .account-info { 
             background: #fdfdfd; 
             padding: 20px; 
             border-radius: 15px; 
-            border: 2px dashed #ffcc00; /* 점선으로 특별하게 표시 */
+            border: 2px dashed #ffcc00;
             font-size: 1.1rem;
             color: #333;
-            transition: all 0.3s;
-        }
-        .support-card:hover .account-info { background: #fffdeb; } /* 카드 호버 시 계좌박스 색상 변화 */
-
-        .account-info strong { 
-            display: block; color: #d32f2f; font-size: 1.3rem; margin-bottom: 8px; 
         }
 
-        /* 하단 문의 바 */
+        .benefit-list { text-align: left; display: inline-block; margin: 0 auto; padding: 0; list-style: none; }
+        .benefit-list li::before { content: "✔ "; color: #ffcc00; font-weight: bold; }
+
         .contact-bar {
             background: #fff; border: 2px solid #ffcc00; color: #333; padding: 35px; 
             border-radius: 25px; text-align: center; margin-top: 40px;
         }
-        .contact-bar span { color: #d32f2f; font-weight: bold; font-size: 1.2rem; }
+        .contact-bar span { color: #d32f2f; font-weight: bold; }
 
         footer { background: #111; color: #888; padding: 40px; text-align: center; margin-top: 80px; }
 
         /* 모바일 최적화 */
         @media (max-width: 768px) {
-            .donation-grid { 
-                flex-direction: column; /* 세로 정렬 강제 */
-                gap: 50px; /* 세로 정렬 시 박스 사이 여백 대폭 증가 */
-            }
-            .support-card { 
-                min-width: 100%; 
-                margin-bottom: 20px; /* 추가 마진 확보 */
-            }
-            .sub-header h2 { font-size: 2rem; }
+            .donation-grid { flex-direction: column; gap: 50px; }
+            .support-card { min-width: 100%; }
+            .sub-header h2 { font-size: 1.8rem; }
             header { flex-direction: column; padding: 15px; }
             nav { margin-top: 15px; }
         }
     </style>
 </head>
 <body>
-    <a href="#main-content" style="position:absolute; top:-100px; left:0; background:#ffcc00; color:#000; padding:10px; z-index:1000;" onfocus="this.style.top='0';" onblur="this.style.top='-100px';">본문 바로가기</a>
+    <audio id="bgMusic" loop autoplay>
+        <source src="hislight.mp3" type="audio/mpeg">
+        브라우저가 오디오 기능을 지원하지 않습니다.
+    </audio>
 
     <header role="banner">
         <h1>라파엘코러스</h1>
@@ -145,67 +131,73 @@
     </header>
 
     <main id="main-content" role="main">
-        <section class="sub-header" aria-label="후원 페이지 상단">
+        <section class="sub-header">
             <h2 style="color: #ffcc00; font-size: 1.2rem; margin-bottom: 10px;">Share the Hope</h2>
             <h2>아름다운 화음의 든든한 버팀목</h2>
         </section>
 
         <div class="container">
             <div class="donation-grid">
-                <section class="support-card" aria-labelledby="regular-title">
+                <section class="support-card">
                     <div>
-                        <h3 id="regular-title">정기 후원</h3>
+                        <h3>정기 후원</h3>
                         <div class="card-content">
                             <p>매월 정기적인 지원으로 라파엘의 안정적인 연습과 연주 활동을 지지해 주세요.</p>
                         </div>
                     </div>
-                    <a class="btn-donation" 
-                       href="https://secure.donus.org/arko/pay/step1_direct?dontype=B01011&background=B01011" 
-                       target="_blank" 
-                       rel="noopener noreferrer"
-                       aria-label="정기후원 신청하기 (새 창 열림)">
-                       정기후원 신청하기
+                    <a class="btn-donation" href="https://secure.donus.org/arko/pay/step1_direct?dontype=B01011&background=B01011" target="_blank">
+                        정기후원 신청하기
                     </a>
                 </section>
 
-                <section class="support-card" aria-labelledby="once-title">
+                <section class="support-card">
                     <div>
-                        <h3 id="once-title">일시 후원</h3>
+                        <h3>일시 후원</h3>
                         <div class="card-content">
                             <p>언제든 자유로운 금액으로 따뜻한 마음을 전하실 수 있습니다.</p>
                         </div>
                     </div>
                     <div class="account-info">
-                        <strong>국민은행</strong><br>
+                        <strong style="display: block; color: #d32f2f; font-size: 1.3rem;">국민은행</strong>
                         546937-01-006620<br>
                         <small>예금주: 시각장애인합창단 라파엘코러스</small>
                     </div>
                 </section>
             </div>
 
-           <section class="support-card" aria-labelledby="benefit-title">
-                <h3 id="benefit-title">후원자님을 위한 감사</h3>
+            <section class="support-card" style="margin-top: 40px; min-width: auto;">
+                <h3>후원자님을 위한 감사</h3>
                 <ul class="benefit-list">
                     <li>라파엘코러스 연주회 초청</li>
                     <li>연말 기부금 영수증 발행 (법정 기부금 단체)</li>
-                    <li>라파엘코러스 홈페이지 내 후원자 명단 등재 예정 (희망 시)</li>
+                    <li>홈페이지 내 후원자 명단 등재 예정 (희망 시)</li>
                 </ul>
             </section>
+
             <section class="contact-bar">
-                <p style="font-weight: bold; font-size: 1.3rem; margin-bottom: 15px;">후원자님의 따뜻한 동행을 기다립니다</p>
-                <p>후원 관련 문의: <span>010-8020-4413</span> &nbsp; | &nbsp; <span>raphaelchorus@naver.com</span></p>
+                <p style="font-weight: bold; font-size: 1.3rem;">후원자님의 따뜻한 동행을 기다립니다</p>
+                <p>문의: <span>010-8020-4413</span> &nbsp; | &nbsp; <span>raphaelchorus@naver.com</span></p>
             </section> 
-            <section>
-            <h2>후원금 사용 안내</h2>
-            <p>후원금은 합창 연습, 전문 음악 교육, 공연 대관 및 점자 악보 제작 등 라파엘코러스의 모든 예술 활동을 위해 투명하게 사용됩니다.</p>
-        </section>
+
+            <section style="margin-top: 50px; text-align: center;">
+                <h2>후원금 사용 안내</h2>
+                <p>후원금은 합창 연습, 전문 음악 교육, 공연 대관 및 점자 악보 제작 등 라파엘코러스의 모든 예술 활동을 위해 투명하게 사용됩니다.</p>
+            </section>
         </div>
-       
     </main>
 
-    <footer role="contentinfo">
-        <div class="footer-slogan">노래로 찾은 빛, 노래로 밝히는 세상</div>
+    <footer>
         <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
     </footer>
+
+    <script>
+        // 브라우저 자동 재생 정책으로 인해 사용자의 첫 클릭 시 음악이 재생되도록 보완
+        window.addEventListener('click', function() {
+            const audio = document.getElementById('bgMusic');
+            if (audio.paused) {
+                audio.play();
+            }
+        }, { once: true }); // 한 번만 실행
+    </script>
 </body>
 </html>
