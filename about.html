@@ -8,11 +8,11 @@
     <meta name="keywords" content="라파엘코러스, 라파엘, 장애인, 장애인합창단, 시각장애인 합창단, 합창단, Raphael Chorus, Raphael, Disabled, Choir for the Disabled, Blind Choir, Choir, Performance">
     <meta name="author" content="라파엘코러스">
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="라파엘코러스 - 희망의 화음">
-<meta property="og:description" content="시각장애를 넘어 아름다운 노래를 선사하는 라파엘코러스입니다.">
-<meta property="og:image" content="https://raphaelchorus.github.io/H2_00635.jpg"> 
-<meta property="og:url" content="https://raphaelchorus.github.io">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="라파엘코러스 - 희망의 화음">
+    <meta property="og:description" content="시각장애를 넘어 아름다운 노래를 선사하는 라파엘코러스입니다.">
+    <meta property="og:image" content="https://raphaelchorus.github.io/H2_00635.jpg"> 
+    <meta property="og:url" content="https://raphaelchorus.github.io">
     <style>
         /* 1. 기본 설정 및 화면 떨림 방지 */
         html, body { 
@@ -32,7 +32,7 @@
         nav a { color: #fff; text-decoration: none; font-weight: bold; font-size: 0.95rem; white-space: nowrap; }
         nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
 
-        /* 3. 상단 배경 배너 (복구) */
+        /* 3. 상단 배경 배너 */
         .sub-header { 
             background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('about-banner.jpg');
             background-size: cover; background-position: center;
@@ -52,7 +52,7 @@
             width: 80px; height: 4px; background: #ffcc00;
         }
 
-        /* 5. 상장(성과) 그리드 디자인 (사진 크기 복구 핵심) */
+        /* 5. 상장(성과) 그리드 디자인 */
         .awards-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
@@ -82,11 +82,15 @@
             
             .sub-header { padding: 60px 5%; }
             .sub-header h2 { font-size: 1.8rem; }
-            .awards-grid { grid-template-columns: 1fr; } /* 모바일은 1열로 */
+            .awards-grid { grid-template-columns: 1fr; } 
         }
     </style>
 </head>
 <body>
+    <audio id="introMusic">
+        <source src="aboutraphael.mp3" type="audio/mpeg">
+    </audio>
+
     <header>
         <h1>라파엘코러스</h1>
         <nav>
@@ -173,5 +177,23 @@
     <footer>
         <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
     </footer>
+
+    <script>
+        // 페이지 입장 후 '클릭' 이벤트가 발생하면 5초 뒤에 음악을 1회 재생합니다.
+        window.addEventListener('click', function() {
+            const audio = document.getElementById('introMusic');
+            
+            // 한 번만 실행되도록 하기 위해 이미 재생 시작했다면 리턴
+            if (audio.dataset.started === "true") return;
+            audio.dataset.started = "true";
+
+            // 5000밀리초(5초) 후에 재생 시작
+            setTimeout(function() {
+                audio.play().catch(function(error) {
+                    console.log("자동 재생이 브라우저에 의해 차단되었습니다.");
+                });
+            }, 5000);
+        }, { once: true }); // 이 이벤트 리스너 자체를 한 번만 실행
+    </script>
 </body>
 </html>
