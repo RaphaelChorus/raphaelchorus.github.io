@@ -1,199 +1,44 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>라파엘 소개 - 라파엘코러스</title>
-    <meta name="description" content="라파엘코러스 - 시각장애인으로 구성된 천상의 화음, 희망을 노래하는 합창단입니다.">
-    <meta name="keywords" content="라파엘코러스, 라파엘, 장애인, 장애인합창단, 시각장애인 합창단, 합창단, Raphael Chorus, Raphael, Disabled, Choir for the Disabled, Blind Choir, Choir, Performance">
-    <meta name="author" content="라파엘코러스">
+<script>
+    /**
+     * 배경음악 자동 재생 및 클릭 시 정지 로직
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+        const audio = document.getElementById('introMusic');
+        let isPlaying = false;
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="라파엘코러스 - 희망의 화음">
-    <meta property="og:description" content="시각장애를 넘어 아름다운 노래를 선사하는 라파엘코러스입니다.">
-    <meta property="og:image" content="https://raphaelchorus.github.io/H2_00635.jpg"> 
-    <meta property="og:url" content="https://raphaelchorus.github.io">
-    <style>
-        /* 1. 기본 설정 및 화면 떨림 방지 */
-        html, body { 
-            margin: 0; padding: 0; width: 100%; overflow-x: hidden;
-            font-family: 'Malgun Gothic', sans-serif; 
-            line-height: 1.8; color: #333; background-color: #fffbe6; 
-        }
-        
-        /* 2. 헤더 및 메뉴 (모바일 대응) */
-        header { 
-            background: #000; color: #fff; padding: 1rem 5%; 
-            display: flex; justify-content: space-between; align-items: center; 
-            position: sticky; top: 0; z-index: 100;
-        }
-        header h1 { margin: 0; font-size: 1.5rem; white-space: nowrap; }
-        nav { display: flex; gap: 15px; }
-        nav a { color: #fff; text-decoration: none; font-weight: bold; font-size: 0.95rem; white-space: nowrap; }
-        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
-
-        /* 3. 상단 배경 배너 */
-        .sub-header { 
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('about-banner.jpg');
-            background-size: cover; background-position: center;
-            padding: 80px 10%; text-align: center; color: white; 
-            border-bottom: 5px solid #ffcc00; 
-        }
-        .sub-header h2 { font-size: 2.5rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
-
-        /* 4. 본문 컨테이너 및 섹션 타이틀 */
-        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
-        .section-title { 
-            font-size: 2rem; margin-bottom: 40px; text-align: center;
-            color: #111; position: relative; padding-bottom: 15px;
-        }
-        .section-title::after {
-            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-            width: 80px; height: 4px; background: #ffcc00;
-        }
-
-        /* 5. 상장(성과) 그리드 디자인 */
-        .awards-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-            gap: 30px; 
-        }
-        .award-card { 
-            background: #fff; padding: 20px; border-radius: 15px; 
-            border: 1px solid #ddd; text-align: center; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-        }
-        .award-card img { 
-            width: 100%; height: auto; border-radius: 5px; 
-            margin-bottom: 15px; border: 1px solid #eee;
-        }
-        .award-card p { font-weight: bold; font-size: 1.1rem; margin: 10px 0 5px; color: #222; }
-        .award-card span { font-size: 0.9rem; color: #777; }
-
-        footer { background: #333; color: #fff; padding: 40px; text-align: center; margin-top: 100px; }
-
-        /* 6. 모바일 전용 스타일 (768px 이하) */
-        @media (max-width: 768px) {
-            header { flex-direction: column; padding: 15px 10px; }
-            header h1 { margin-bottom: 12px; font-size: 1.3rem; text-align: center; width: 100%; }
-            nav { width: 100%; justify-content: center; flex-wrap: wrap; gap: 8px 15px; }
-            nav a { font-size: 0.9rem; }
-            
-            .sub-header { padding: 60px 5%; }
-            .sub-header h2 { font-size: 1.8rem; }
-            .awards-grid { grid-template-columns: 1fr; } 
-        }
-    </style>
-</head>
-<body>
-    <audio id="introMusic">
-        <source src="aboutraphael.mp3" type="audio/mpeg">
-    </audio>
-
-    <header>
-        <h1>라파엘코러스</h1>
-        <nav>
-            <a href="index.html">홈</a>
-            <a href="about.html" aria-current="page">라파엘 소개</a>
-            <a href="performance.html">갤러리</a>
-            <a href="support.html">후원</a>
-        </nav>
-    </header>
-
-    <section class="sub-header">
-        <h2>Glorious Records</h2>
-    </section>
-
-    <main class="container">
-        <section>
-            <h3 class="section-title">라파엘의 발자취</h3>
-            <p style="text-align:center; color:#666; margin-bottom:50px;">라파엘코러스의 땀과 꿈으로 남긴 소중한 발자취입니다.</p>
-            
-            <div class="awards-grid">
-                <article class="award-card">
-                    <img src="award1.jpg" alt="상장1">
-                    <p>전국 장애인 합창대회 대상</p>
-                    <span>국제장애인문화교류협회</span>
-                </article>
-
-                <article class="award-card">
-                    <img src="award2.jpg" alt="상장2">
-                    <p>사회복지 유공자 표창</p>
-                    <span>종로구사회복지협의</span>
-                </article>
-
-                <article class="award-card">
-                    <img src="award3.jpg" alt="상장3">
-                    <p>부산국제합창대회 심사위원상</p>
-                    <span>부산국제합창축제</span>
-                </article>
-
-                <article class="award-card">
-                    <img src="award4.jpg" alt="상장4">
-                    <p>제16회 전국환경노래경연대회 대상(일반부문)</p>
-                    <span>KBS대구/대구시</span>
-                </article>
-                
-                <article class="award-card">
-                    <img src="award5.jpg" alt="상장5">
-                    <p>표창장</p>
-                    <span>문화체육관광부</span>
-                </article>
-
-                <article class="award-card">
-                    <img src="award6.jpg" alt="상장6">
-                    <p>감사장</p>
-                    <span>서울특별시도시철도공사</span>
-                </article>    
-                
-                <article class="award-card">
-                    <img src="award7.jpg" alt="상장7">
-                    <p>전국장애인합창대회 최고상</p>
-                    <span>국무총리</span>
-                </article>
-                    
-                <article class="award-card">
-                    <img src="award8.jpg" alt="상장8">
-                    <p>Orientale Concentus IV 세계합창대회 실내합창부분 우승</p>
-                    <span>대만 국제합창제</span>
-                </article>
-
-                <article class="award-card">
-                    <img src="award9.jpg" alt="상장9">
-                    <p>2014 KBS 더 하모니 전국민 합창 대회 우수상</p>
-                    <span>KBS</span>
-                </article>
-
-                <article class="award-card">
-                    <img src="award10.jpg" alt="상장10">
-                    <p>2011 KBS 더 하모니 전국민 합창 대회 동상</p>
-                    <span>KBS</span>
-                </article>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
-    </footer>
-
-    <script>
-        // 페이지 입장 후 '클릭' 이벤트가 발생하면 5초 뒤에 음악을 1회 재생합니다.
-        window.addEventListener('click', function() {
-            const audio = document.getElementById('introMusic');
-            
-            // 한 번만 실행되도록 하기 위해 이미 재생 시작했다면 리턴
-            if (audio.dataset.started === "true") return;
-            audio.dataset.started = "true";
-
-            // 5000밀리초(5초) 후에 재생 시작
-            setTimeout(function() {
-                audio.play().catch(function(error) {
-                    console.log("자동 재생이 브라우저에 의해 차단되었습니다.");
+        // 1. 5초 뒤 자동 재생 시도 함수
+        const startMusicTimer = () => {
+            setTimeout(() => {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    console.log("음악 재생 시작");
+                }).catch(() => {
+                    console.log("브라우저 정책으로 대기 중... 상호작용 시 재생됩니다.");
                 });
             }, 5000);
-        }, { once: true }); // 이 이벤트 리스너 자체를 한 번만 실행
-    </script>
-</body>
-</html>
+        };
+
+        // 2. 사용자가 화면을 건드리면(클릭, 터치 등) 재생 조건 충족 및 정지 기능 부여
+        const handleInteraction = (e) => {
+            // 아직 재생 전이라면 재생 예약
+            if (!isPlaying && !audio.dataset.ready) {
+                audio.dataset.ready = "true";
+                startMusicTimer();
+            } 
+            // 이미 음악이 나오고 있다면 클릭 시 정지 (스크롤 등에는 반응하지 않음)
+            else if (isPlaying && e.type === 'click') {
+                audio.pause();
+                isPlaying = false;
+                console.log("사용자 클릭으로 음악 정지");
+                // 정지 후에는 다시 클릭해도 재생되지 않도록 리스너 제거 가능
+            }
+        };
+
+        // 모든 상호작용에 대해 재생 준비를 하되, '클릭'시에만 정지하도록 설정
+        document.addEventListener('click', handleInteraction);
+        document.addEventListener('touchstart', handleInteraction);
+        
+        // 페이지 로드 즉시 타이머 시작 (브라우저가 허용하는 경우 바로 실행)
+        startMusicTimer();
+    });
+</script>
