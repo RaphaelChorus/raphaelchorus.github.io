@@ -1,56 +1,133 @@
-<section class="container" style="margin-top: 80px; text-align: center;">
-    <h2 style="font-size: 2rem; margin-bottom: 40px;">최신 소식</h2>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>라파엘코러스 - 희망을 노래하는 시각장애인 합창단</title>
+    <meta name="description" content="시각장애인으로 구성된 천상의 화음, 라파엘코러스 홈페이지입니다.">
+    <meta name="keywords" content="라파엘코러스, 시각장애인합창단, 합창단, 장애인합창단">
     
-    <div id="news-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-        </div>
-</section>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="라파엘코러스">
+    <meta property="og:description" content="희망의 화음을 선사하는 라파엘코러스입니다.">
+    <meta property="og:image" content="https://raphaelchorus.github.io/H2_00635.jpg">
 
-<script>
-    /**
-     * 1. 업데이트 방법: 아래 newsData 배열에 새로운 소식을 맨 위에 추가하면 됩니다.
-     * - title: 제목
-     * - date: 날짜
-     * - link: 클릭 시 이동할 주소 (없으면 '#' 유지)
-     */
-    const newsData = [
-        { title: "2026년 정기 연주회 연습 시작", date: "2026.02.01", link: "#" },
-        { title: "새로운 단원 모집 안내 (테너, 베이스)", date: "2026.01.20", link: "#" },
-        { title: "라파엘코러스 홈페이지 리뉴얼 오픈", date: "2026.01.15", link: "#" },
-        { title: "지난 공연 다시보기: 희망의 화음", date: "2025.12.25", link: "#" },
-        { title: "후원자 감사의 밤 행사 안내", date: "2025.12.10", link: "#" },
-        // 여기에 추가해도 5개까지만 노출됩니다.
-    ];
+    <style>
+        body { 
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
+            margin: 0; padding: 0; line-height: 1.8; color: #333; 
+            background-color: #fffdf2; 
+        }
+        header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        header h1 { margin: 0; font-size: 1.5rem; }
+        nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
+        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
 
-    /**
-     * 2. 뉴스 렌더링 함수
-     */
-    function renderNews() {
-        const container = document.getElementById('news-container');
+        /* 메인 비주얼 (Hero) */
+        .hero { 
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('H2_00635.jpg');
+            background-size: cover; background-position: center;
+            height: 60vh; display: flex; flex-direction: column; 
+            justify-content: center; align-items: center; color: white; text-align: center;
+        }
+        .hero h2 { font-size: 3rem; margin: 0; word-break: keep-all; }
+        .hero p { font-size: 1.2rem; margin-top: 20px; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+
+        /* 소식 카드 스타일 */
+        #news-container {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+        }
+        .news-card {
+            flex: 1; min-width: 250px; max-width: 320px;
+            background: #fff; padding: 30px; border-radius: 20px;
+            border: 1px solid #eee; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, border-color 0.3s;
+            text-align: left; cursor: pointer; text-decoration: none; color: inherit;
+        }
+        .news-card:hover { transform: translateY(-10px); border-color: #ffcc00; }
+        .news-card .date { color: #d32f2f; font-size: 0.9rem; font-weight: bold; }
+        .news-card h4 { margin: 15px 0 0; font-size: 1.2rem; line-height: 1.4; color: #111; word-break: keep-all; }
+
+        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 50px; color: #111; }
+
+        /* 하단 배너 */
+        .bottom-banner { background: #ffcc00; padding: 60px 20px; text-align: center; margin-top: 50px; }
+        .btn-more { display: inline-block; background: #000; color: #ffcc00; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-top: 20px; }
+
+        footer { background: #111; color: #888; padding: 40px; text-align: center; }
+
+        @media (max-width: 768px) {
+            .hero h2 { font-size: 2rem; }
+            header { flex-direction: column; padding: 15px; }
+            nav { margin-top: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgMusic" loop>
+        <source src="hislight.mp3" type="audio/mpeg">
+    </audio>
+
+    <header>
+        <h1>라파엘코러스</h1>
+        <nav>
+            <a href="index.html" aria-current="page">홈</a>
+            <a href="about.html">코러스 소개</a>
+            <a href="performance.html">갤러리</a>
+            <a href="support.html">후원</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>보이지 않아도 들리는 희망</h2>
+        <p>천상의 화음으로 세상에 빛을 전합니다</p>
+    </section>
+
+    <main class="container">
+        <h3 class="section-title">최신 소식</h3>
         
-        // 최신순으로 5개만 자르기
-        const latestNews = newsData.slice(0, 5);
+        <div id="news-container"></div>
 
-        // HTML 생성
-        container.innerHTML = latestNews.map(news => `
-            <div class="news-card" style="
-                flex: 1; 
-                min-width: 250px; 
-                max-width: 300px; 
-                background: #fff; 
-                padding: 25px; 
-                border-radius: 15px; 
-                border: 1px solid #eee; 
-                box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-                transition: transform 0.3s;
-                text-align: left;
-                cursor: pointer;"
-                onclick="location.href='${news.link}'">
-                <span style="color: #d32f2f; font-size: 0.85rem; font-weight: bold;">${news.date}</span>
-                <h4 style="margin: 10px 0 0; font-size: 1.1rem; line-height: 1.4; color: #333;">${news.title}</h4>
-            </div>
-        `).join('');
-    }
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="color: #666;">라파엘코러스의 더 많은 활동 소식을 만나보세요.</p>
+        </div>
+    </main>
 
-    // 페이지 로드 시 실행
-    window.onload = renderNews;
-</script>
+    <section class="bottom-banner">
+        <h3>라파엘코러스와 함께하는 따뜻한 동행</h3>
+        <p>후원자님의 정성이 단원들의 소중한 꿈을 키워갑니다.</p>
+        <a href="support.html" class="btn-more">후원 안내 바로가기</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
+        <p style="font-size: 0.8rem;">문의: 010-8020-4413 | raphaelchorus@naver.com</p>
+    </footer>
+
+    <script>
+        /**
+         * 1. 최신 소식 데이터 관리 (업데이트는 여기서 하세요!)
+         * 새로운 소식을 맨 위에 추가하면 자동으로 최신순 5개까지 노출됩니다.
+         */
+        const newsData = [
+            { title: "2026년 상반기 정기 연습 시작 안내", date: "2026.02.01", link: "#" },
+            { title: "신규 단원(테너/베이스) 모집 공고", date: "2026.01.20", link: "#" },
+            { title: "라파엘코러스 홈페이지 공식 오픈", date: "2026.01.15", link: "#" },
+            { title: "지난 공연 돌아보기: 따뜻한 위로의 밤", date: "2025.12.25", link: "#" },
+            { title: "후원자님들을 위한 연말 감사 편지", date: "2025.12.10", link: "#" }
+            // 여기에 더 추가해도 화면에는 최신 5개만 보입니다.
+        ];
+
+        // 소식 렌더링 함수
+        function renderNews() {
+            const container = document.getElementById('news-container');
+            const latestNews = newsData.slice(0, 5); // 5개만 선택
+
+            if (latestNews.length === 0) {
+                container.innerHTML = "<p>등록된 소식이 없습니다.</p>";
+                return;
+            }
+
+            container.innerHTML = latestNews.map(news =>
