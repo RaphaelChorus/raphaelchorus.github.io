@@ -6,25 +6,74 @@
     <title>라파엘 소개 - 라파엘코러스</title>
     <meta name="description" content="라파엘코러스 - 시각장애인으로 구성된 천상의 화음, 희망을 노래하는 합창단입니다.">
     <style>
-        /* 기존 CSS 스타일 동일 */
-        html, body { margin: 0; padding: 0; width: 100%; overflow-x: hidden; font-family: 'Malgun Gothic', sans-serif; line-height: 1.8; color: #333; background-color: #fffbe6; }
-        header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        /* 기본 설정 및 화면 떨림 방지 */
+        html, body { 
+            margin: 0; padding: 0; width: 100%; overflow-x: hidden;
+            font-family: 'Malgun Gothic', sans-serif; 
+            line-height: 1.8; color: #333; background-color: #fffbe6; 
+        }
+        
+        /* 헤더 및 메뉴 */
+        header { 
+            background: #000; color: #fff; padding: 1rem 5%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            position: sticky; top: 0; z-index: 100;
+        }
         header h1 { margin: 0; font-size: 1.5rem; white-space: nowrap; }
         nav { display: flex; gap: 15px; }
         nav a { color: #fff; text-decoration: none; font-weight: bold; font-size: 0.95rem; white-space: nowrap; }
         nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
-        .sub-header { background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('about-banner.jpg'); background-size: cover; background-position: center; padding: 80px 10%; text-align: center; color: white; border-bottom: 5px solid #ffcc00; }
+
+        /* 상단 배경 배너 */
+        .sub-header { 
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('about-banner.jpg');
+            background-size: cover; background-position: center;
+            padding: 80px 10%; text-align: center; color: white; 
+            border-bottom: 5px solid #ffcc00; 
+        }
         .sub-header h2 { font-size: 2.5rem; margin: 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+
+        /* 본문 컨테이너 및 섹션 타이틀 */
         .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
-        .section-title { font-size: 2rem; margin-bottom: 40px; text-align: center; color: #111; position: relative; padding-bottom: 15px; }
-        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: #ffcc00; }
-        .awards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
-        .award-card { background: #fff; padding: 20px; border-radius: 15px; border: 1px solid #ddd; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
-        .award-card img { width: 100%; height: auto; border-radius: 5px; margin-bottom: 15px; border: 1px solid #eee; }
+        .section-title { 
+            font-size: 2rem; margin-bottom: 40px; text-align: center;
+            color: #111; position: relative; padding-bottom: 15px;
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            width: 80px; height: 4px; background: #ffcc00;
+        }
+
+        /* 상장(성과) 그리드 디자인 */
+        .awards-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+            gap: 30px; 
+        }
+        .award-card { 
+            background: #fff; padding: 20px; border-radius: 15px; 
+            border: 1px solid #ddd; text-align: center; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .award-card img { 
+            width: 100%; height: auto; border-radius: 5px; 
+            margin-bottom: 15px; border: 1px solid #eee;
+        }
         .award-card p { font-weight: bold; font-size: 1.1rem; margin: 10px 0 5px; color: #222; }
         .award-card span { font-size: 0.9rem; color: #777; }
+
         footer { background: #333; color: #fff; padding: 40px; text-align: center; margin-top: 100px; }
-        @media (max-width: 768px) { header { flex-direction: column; padding: 15px 10px; } header h1 { margin-bottom: 12px; font-size: 1.3rem; text-align: center; width: 100%; } nav { width: 100%; justify-content: center; flex-wrap: wrap; gap: 8px 15px; } .sub-header h2 { font-size: 1.8rem; } .awards-grid { grid-template-columns: 1fr; } }
+
+        /* 모바일 대응 */
+        @media (max-width: 768px) {
+            header { flex-direction: column; padding: 15px 10px; }
+            header h1 { margin-bottom: 12px; font-size: 1.3rem; text-align: center; width: 100%; }
+            nav { width: 100%; justify-content: center; flex-wrap: wrap; gap: 8px 15px; }
+            nav a { font-size: 0.9rem; }
+            .sub-header h2 { font-size: 1.8rem; }
+            .awards-grid { grid-template-columns: 1fr; } 
+        }
     </style>
 </head>
 <body>
@@ -70,37 +119,47 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const audio = document.getElementById('introMusic');let hasInteracted = false;
+            const audio = document.getElementById('introMusic');
+            let isPlaying = false; // 현재 재생 중인지 확인
+            let autoPlayStarted = false; // 타이머가 실행되었는지 확인
 
-            // 5초 지연 후 재생 시도 함수
-            const tryPlayAfterDelay = () => {
+            // 5초 뒤 재생 시도 함수
+            const startMusic = () => {
+                if(autoPlayStarted) return;
+                autoPlayStarted = true;
+                
                 setTimeout(() => {
-                    audio.play().catch(() => {
-                        console.log("자동 재생 차단됨: 상호작용 대기 중...");
-                        // 5초가 지났는데 자동 재생이 차단된 경우, 다음 클릭 시 즉시 재생하도록 설정
-                        const playNow = () => {
-                            audio.play();
-                            document.removeEventListener('click', playNow);
-                            document.removeEventListener('touchstart', playNow);
-                        };
-                        document.addEventListener('click', playNow);
-                        document.addEventListener('touchstart', playNow);
+                    audio.play().then(() => {
+                        isPlaying = true;
+                    }).catch(e => {
+                        console.log("자동재생 대기 중...");
+                        autoPlayStarted = false; // 실패 시 다시 시도 가능하게 초기화
                     });
                 }, 5000);
             };
 
-            // 브라우저 정책을 위해 첫 클릭 시 '오디오 컨텍스트'를 활성화해두는 습관
-            const unlockAudio = () => {
-                hasInteracted = true;
-                // 이미 타이머가 돌고 있으므로 여기서는 상태만 체크
-                document.removeEventListener('click', unlockAudio);
-                document.removeEventListener('touchstart', unlockAudio);
+            // 화면을 클릭하거나 건드렸을 때 처리
+            const handleInteraction = (e) => {
+                // 1. 만약 음악이 이미 나오고 있다면 클릭 시 정지 (스크롤 제외)
+                if (isPlaying && e.type === 'click') {
+                    audio.pause();
+                    isPlaying = false;
+                    console.log("음악 정지됨");
+                    return;
+                }
+
+                // 2. 음악이 아직 안 나오고 있다면 (첫 상호작용) 재생 준비
+                if (!isPlaying) {
+                    startMusic();
+                }
             };
 
-            document.addEventListener('click', unlockAudio);
-            document.addEventListener('touchstart', unlockAudio);
-
-            tryPlayAfterDelay();
+            // 클릭과 터치에 반응 (스크롤 휠은 소리 끄기에 영향을 주지 않음)
+            document.addEventListener('click', handleInteraction);
+            document.addEventListener('touchstart', handleInteraction);
+            
+            // 페이지 로드 시 일단 타이머 시작 시도
+            startMusic();
         });
     </script>
 </body>
