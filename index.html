@@ -2,132 +2,178 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <title>라파엘코러스 - 희망을 노래하다</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>라파엘코러스 - 희망을 노래하는 시각장애인 합창단</title>
-    <meta name="description" content="시각장애인으로 구성된 천상의 화음, 라파엘코러스 홈페이지입니다.">
-    <meta name="keywords" content="라파엘코러스, 시각장애인합창단, 합창단, 장애인합창단">
     
+    <meta name="description" content="라파엘코러스 - 시각장애인으로 구성된 천상의 화음, 희망을 노래하는 합창단입니다.">
+    <meta name="keywords" content="라파엘코러스, 라파엘, 장애인, 장애인합창단, 시각장애인 합창단, 합창단, Raphael Chorus, Raphael, Disabled, Choir for the Disabled, Blind Choir, Choir, Performance">
+    <meta name="author" content="라파엘코러스">
+
     <meta property="og:type" content="website">
-    <meta property="og:title" content="라파엘코러스">
-    <meta property="og:description" content="희망의 화음을 선사하는 라파엘코러스입니다.">
-    <meta property="og:image" content="https://raphaelchorus.github.io/H2_00635.jpg">
+    <meta property="og:title" content="라파엘코러스 - 천사의 합창">
+    <meta property="og:description" content="시각장애를 넘어 노래로 얻은 빛으로 세상을 밝히는 합창단">
+    <meta property="og:image" content="https://raphaelchorus.github.io/H2_00635.jpg"> 
+    <meta property="og:url" content="https://raphaelchorus.github.io">
+
+    <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&display=swap" rel="stylesheet">
 
     <style>
-        body { 
-            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
-            margin: 0; padding: 0; line-height: 1.8; color: #333; 
-            background-color: #fffdf2; 
+        body { font-family: 'Malgun Gothic', 'Arial', sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #fffbe6; }
+        
+        header { 
+            position: absolute; top: 0; left: 0; width: 100%; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 20px 5%; z-index: 100; box-sizing: border-box;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
         }
-        header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-        header h1 { margin: 0; font-size: 1.5rem; }
-        nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
-        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
 
-        /* 메인 비주얼 (Hero) */
+        .logo-svg { width: 280px; height: auto; }
+
+        nav a { 
+            color: #fff; text-decoration: none; margin-left: 25px; 
+            font-weight: bold; font-size: 1.1rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            transition: color 0.3s ease;
+        }
+        nav a:hover { color: #ffcc00; }
+        nav a[aria-current="page"] { color: #ffcc00; }
+
         .hero { 
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('H2_00635.jpg');
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('main.jpg');
             background-size: cover; background-position: center;
-            height: 60vh; display: flex; flex-direction: column; 
-            justify-content: center; align-items: center; color: white; text-align: center;
+            color: white; height: 650px; display: flex; 
+            align-items: center; justify-content: center; 
         }
-        .hero h2 { font-size: 3rem; margin: 0; word-break: keep-all; }
-        .hero p { font-size: 1.2rem; margin-top: 20px; }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
+        .hero-text { width: 50%; margin-left: 45%; text-align: right; padding-right: 5%; }
+        .hero h2 { font-size: 3rem; font-weight: bold; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero p { font-size: 1.6rem; margin: 15px 0; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
 
-        /* 소식 카드 스타일 */
+        /* 최신 소식 섹션 디자인 */
+        .content { padding: 80px 5%; text-align: center; }
+        
         #news-container {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+            display: flex; flex-direction: column; align-items: center; gap: 30px;
+            max-width: 800px; margin: 0 auto;
         }
+
+        .news-link-wrapper { text-decoration: none; color: inherit; display: block; width: 100%; }
+
         .news-card {
-            flex: 1; min-width: 250px; max-width: 320px;
-            background: #fff; padding: 30px; border-radius: 20px;
-            border: 1px solid #eee; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s, border-color 0.3s;
-            text-align: left; cursor: pointer; text-decoration: none; color: inherit;
+            background: #fff; border: 1px solid #ddd; border-radius: 20px;
+            overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: left; transition: all 0.4s ease;
         }
-        .news-card:hover { transform: translateY(-10px); border-color: #ffcc00; }
-        .news-card .date { color: #d32f2f; font-size: 0.9rem; font-weight: bold; }
-        .news-card h4 { margin: 15px 0 0; font-size: 1.2rem; line-height: 1.4; color: #111; word-break: keep-all; }
 
-        .section-title { text-align: center; font-size: 2.2rem; margin-bottom: 50px; color: #111; }
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+            border-color: #ffcc00;
+        }
 
-        /* 하단 배너 */
-        .bottom-banner { background: #ffcc00; padding: 60px 20px; text-align: center; margin-top: 50px; }
-        .btn-more { display: inline-block; background: #000; color: #ffcc00; padding: 15px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; margin-top: 20px; }
+        .news-text { padding: 35px; }
+        .news-tag { background: #ffcc00; color: #000; padding: 6px 15px; font-size: 0.85rem; font-weight: bold; border-radius: 50px; }
+        .news-tag.support { background: #d32f2f; color: #fff; } /* 지원선정 태그 강조 */
 
-        footer { background: #111; color: #888; padding: 40px; text-align: center; }
+        .news-card h4 { font-size: 1.5rem; margin: 15px 0 10px 0; color: #222; }
+        .news-card p { color: #666; font-size: 1.05rem; line-height: 1.7; margin-bottom: 0; }
+        .click-info { font-size: 0.95rem; color: #e6b800; font-weight: bold; text-align: right; margin-top: 15px; }
+
+        footer { background: #222; color: #bbb; padding: 50px 20px; text-align: center; font-size: 0.9rem; }
 
         @media (max-width: 768px) {
-            .hero h2 { font-size: 2rem; }
-            header { flex-direction: column; padding: 15px; }
+            header { flex-direction: column; background: rgba(0,0,0,0.8); position: relative; padding: 20px 10px; } 
+            .logo-svg { width: 200px; }
             nav { margin-top: 15px; }
+            nav a { margin: 0 10px; font-size: 0.95rem; }
+            .hero { height: 400px; }
+            .hero-text { width: 90%; margin-left: 0; padding-right: 0; text-align: center; }
+            .hero h2 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
-    <audio id="bgMusic" loop>
-        <source src="hislight.mp3" type="audio/mpeg">
-    </audio>
-
-    <header>
-        <h1>라파엘코러스</h1>
-        <nav>
+    <header role="banner">
+        <div class="logo-area">
+            <svg class="logo-svg" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+                <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" 
+                      font-family="'Princess Sofia', cursive" font-size="55" fill="#ffcc00">
+                  Raphael Chorus
+                </text>
+            </svg>
+        </div>
+        <nav role="navigation" aria-label="메인 메뉴">
             <a href="index.html" aria-current="page">홈</a>
-            <a href="about.html">코러스 소개</a>
+            <a href="about.html">라파엘 소개</a>
             <a href="performance.html">갤러리</a>
             <a href="support.html">후원</a>
         </nav>
     </header>
 
-    <section class="hero">
-        <h2>보이지 않아도 들리는 희망</h2>
-        <p>천상의 화음으로 세상에 빛을 전합니다</p>
-    </section>
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-text"> 
+                <h2>노래로 품은 빛</h2>
+                <p>세상을 환히 밝힌다.</p>
+            </div>
+        </section>
 
-    <main class="container">
-        <h3 class="section-title">최신 소식</h3>
-        
-        <div id="news-container"></div>
-
-        <div style="text-align: center; margin-top: 40px;">
-            <p style="color: #666;">라파엘코러스의 더 많은 활동 소식을 만나보세요.</p>
-        </div>
+        <section class="content">
+            <h3 style="font-size: 2.2rem; margin-bottom: 50px; color: #333;">최신 소식</h3>
+            
+            <div id="news-container"></div>
+        </section>
     </main>
-
-    <section class="bottom-banner">
-        <h3>라파엘코러스와 함께하는 따뜻한 동행</h3>
-        <p>후원자님의 정성이 단원들의 소중한 꿈을 키워갑니다.</p>
-        <a href="support.html" class="btn-more">후원 안내 바로가기</a>
-    </section>
 
     <footer>
         <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
-        <p style="font-size: 0.8rem;">문의: 010-8020-4413 | raphaelchorus@naver.com</p>
+        <p>이메일: raphaelchorus@naver.com | 전화: 010-8020-4413</p>
     </footer>
 
     <script>
         /**
-         * 1. 최신 소식 데이터 관리 (업데이트는 여기서 하세요!)
-         * 새로운 소식을 맨 위에 추가하면 자동으로 최신순 5개까지 노출됩니다.
+         * 소식 업데이트 데이터
+         * 새로운 소식을 가장 위에 추가하세요. (최대 5개 노출)
          */
         const newsData = [
-            { title: "2026년 상반기 정기 연습 시작 안내", date: "2026.02.01", link: "#" },
-            { title: "신규 단원(테너/베이스) 모집 공고", date: "2026.01.20", link: "#" },
-            { title: "라파엘코러스 홈페이지 공식 오픈", date: "2026.01.15", link: "#" },
-            { title: "지난 공연 돌아보기: 따뜻한 위로의 밤", date: "2025.12.25", link: "#" },
-            { title: "후원자님들을 위한 연말 감사 편지", date: "2025.12.10", link: "#" }
-            // 여기에 더 추가해도 화면에는 최신 5개만 보입니다.
+            {
+                tag: "지원선정",
+                tagClass: "support",
+                title: "2026년 사업 지원 선정",
+                desc: "한국장애인문화예술원은 2026 지원사업에 라파엘코러스를 선정하였음을 공표하였습니다.",
+                link: "#", // 링크가 없을 경우 # 유지
+                linkText: "자세히 보기 →"
+            },
+            {
+                tag: "언론보도",
+                tagClass: "",
+                title: "[조선일보] \"어둠 속에 울려 퍼진 희망의 성가\"",
+                desc: "2025년 크리스마스, 라파엘코러스의 감동적인 무대 영상과 인터뷰 내용을 확인해 보세요.",
+                link: "https://www.chosun.com/video_photo/2025/12/25/3ECK5GR63FHIVLIDLQ6CNZTTYQ/",
+                linkText: "기사 전문 보기 →"
+            }
         ];
 
-        // 소식 렌더링 함수
         function renderNews() {
             const container = document.getElementById('news-container');
-            const latestNews = newsData.slice(0, 5); // 5개만 선택
+            // 최신순으로 최대 5개만 가져옴
+            const displayNews = newsData.slice(0, 5);
 
-            if (latestNews.length === 0) {
-                container.innerHTML = "<p>등록된 소식이 없습니다.</p>";
-                return;
-            }
+            container.innerHTML = displayNews.map(news => `
+                <a href="${news.link}" ${news.link !== '#' ? 'target="_blank"' : ''} class="news-link-wrapper">
+                    <article class="news-card">
+                        <div class="news-text">
+                            <span class="news-tag ${news.tagClass}">${news.tag}</span>
+                            <h4>${news.title}</h4>
+                            <p>${news.desc}</p>
+                            <div class="click-info">${news.linkText}</div>
+                        </div>
+                    </article>
+                </a>
+            `).join('');
+        }
 
-            container.innerHTML = latestNews.map(news =>
+        window.onload = renderNews;
+    </script>
+</body>
+</html>
