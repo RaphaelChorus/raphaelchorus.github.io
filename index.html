@@ -1,307 +1,56 @@
-<!DOCTYPE html>
-
-<html lang="ko">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <title>라파엘코러스 - 노래로 찾은 희망을 외친다</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description" content="라파엘코러스 - 시각장애인으로 구성된 천상의 화음, 희망을 노래하는 합창단입니다.">
-
-    <meta name="keywords" content="라파엘코러스, 라파엘, 장애인, 장애인합창단, 시각장애인 합창단, 합창단, Raphael Chorus, Raphael, Disabled, Choir for the Disabled, Blind Choir, Choir, Performance">
-
-    <meta name="author" content="라파엘코러스">
-
-
-
-<meta property="og:type" content="website">
-
-<meta property="og:title" content="라파엘코러스 - 희망의 화음">
-
-<meta property="og:description" content="시각장애를 넘어 아름다운 노래를 선사하는 라파엘코러스입니다.">
-
-<meta property="og:image" content="https://raphaelchorus.github.io/H2_00635.jpg"> 
-
-<meta property="og:url" content="https://raphaelchorus.github.io">
-
-    <style>
-
-        /* 이 부분은 홈페이지의 '옷'인 디자인(CSS)입니다. 나중에 따로 뺄 수도 있어요. */
-
-        body { font-family: 'Arial', sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-
-        header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
-
-        nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
-
-      .hero { 
-
-            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('main.jpg');
-
-            background-size: cover; 
-
-            background-position: center;
-
-            color: white;
-
-            height: 500px; 
-
-            display: flex; 
-
-            align-items: center; 
-
-            /* 화면 전체에서 중앙을 기준으로 정렬하기 위한 준비 */
-
-            justify-content: center; 
-
-        }
-
-
-
-        .hero-text { 
-
-            /* 1. 글자 뭉치의 폭을 전체의 절반(50%) 정도로 제한합니다 */
-
-            width: 50%; 
-
-            /* 2. 글자 뭉치 자체를 오른쪽으로 밀어서 화면 절반 지점(중앙)에 위치시킵니다 */
-
-            margin-left: 45%; 
-
-            /* 3. 그 안에서 글자들은 오른쪽으로 정렬합니다 */
-
-            text-align: right; 
-
-            padding-right: 5%;
-
-        }
-
-
-
-        .hero h2, .hero p {
-
-            /* 처음 윗줄 글씨 정도의 적당한 크기(1.5rem)로 조정했습니다 */
-
-            font-size: 1.5rem; 
-
-            font-weight: bold;
-
-            margin: 8px 0;
-
-            line-height: 1.5;
-
-            word-break: keep-all; /* 한글 단어가 툭 끊기지 않게 함 */
-
-        }
-
-        footer { background: #333; color: #fff; padding: 20px; text-align: center; font-size: 0.8rem; }
-
-        /* 카드 전체 링크 설정 */
-
-        .news-link-wrapper {
-
-            text-decoration: none; /* 밑줄 없애기 */
-
-            color: inherit; /* 글자색이 파랗게 변하지 않게 함 */
-
-            display: block;
-
-            max-width: 600px;
-
-            margin: 0 auto;
-
-        }
-
-
-
-        .news-card {
-
-            background: #fff;
-
-            border: 1px solid #ddd;
-
-            border-radius: 15px;
-
-            overflow: hidden;
-
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-
-            text-align: left;
-
-            transition: all 0.3s ease; /* 부드러운 움직임 */
-
-        }
-
-
-
-        /* 마우스를 올렸을 때 효과 */
-
-        .news-card:hover {
-
-            transform: translateY(-10px); /* 위로 쓱 올라감 */
-
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* 그림자 진해짐 */
-
-            border-color: #ffcc00; /* 테두리가 노란색으로 변함 */
-
-        }
-
-
-
-        .news-text { padding: 30px; }
-
-        .news-tag { background: #ffcc00; color: #000; padding: 5px 12px; font-size: 0.8rem; font-weight: bold; border-radius: 50px; }
-
-        .news-card h4 { font-size: 1.4rem; margin: 20px 0 10px 0; color: #222; }
-
-        .news-card p { color: #555; font-size: 1rem; margin-bottom: 20px; line-height: 1.6; }
-
+<section class="container" style="margin-top: 80px; text-align: center;">
+    <h2 style="font-size: 2rem; margin-bottom: 40px;">최신 소식</h2>
+    
+    <div id="news-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+        </div>
+</section>
+
+<script>
+    /**
+     * 1. 업데이트 방법: 아래 newsData 배열에 새로운 소식을 맨 위에 추가하면 됩니다.
+     * - title: 제목
+     * - date: 날짜
+     * - link: 클릭 시 이동할 주소 (없으면 '#' 유지)
+     */
+    const newsData = [
+        { title: "2026년 정기 연주회 연습 시작", date: "2026.02.01", link: "#" },
+        { title: "새로운 단원 모집 안내 (테너, 베이스)", date: "2026.01.20", link: "#" },
+        { title: "라파엘코러스 홈페이지 리뉴얼 오픈", date: "2026.01.15", link: "#" },
+        { title: "지난 공연 다시보기: 희망의 화음", date: "2025.12.25", link: "#" },
+        { title: "후원자 감사의 밤 행사 안내", date: "2025.12.10", link: "#" },
+        // 여기에 추가해도 5개까지만 노출됩니다.
+    ];
+
+    /**
+     * 2. 뉴스 렌더링 함수
+     */
+    function renderNews() {
+        const container = document.getElementById('news-container');
         
+        // 최신순으로 5개만 자르기
+        const latestNews = newsData.slice(0, 5);
 
-        /* '클릭해서 보기' 안내 문구 */
-
-        .click-info { 
-
-            font-size: 0.9rem; 
-
-            color: #ffcc00; 
-
-            font-weight: bold; 
-
-            text-align: right; 
-
-        }
-
-        /* 휴대폰을 위한 특별 설정 (반응형 코드) */
-
-@media (max-width: 768px) {
-
-    header { flex-direction: column; padding: 10px; } /* 메뉴를 세로로 나열 */
-
-    nav { margin-top: 10px; }
-
-    nav a { margin: 0 10px; font-size: 0.9rem; }
-
-
-
-    .hero { 
-
-        height: 300px; 
-
-        justify-content: center; /* 모바일에서는 글자를 가운데로 */
-
-        text-align: center; 
-
-    }
-
-
-
-    .hero-text { 
-
-        width: 90%; /* 글자 박스를 넓게 사용 */
-
-        margin-left: 0; /* 중앙 정렬을 위해 마진 제거 */
-
-        padding-right: 0; 
-
-    }
-
-
-
-    .hero h2, .hero p {
-
-        font-size: 1.3rem; /* 휴대폰 화면에 맞게 글씨 크기 조절 */
-
-    }
-
-}
-
-    </style>
-
-</head>
-
-<body>
-
-    <a href="#main-content" style="position:absolute; top:-100px; left:0; background:#ffcc00; color:#000; padding:10px; z-index:1000;" onfocus="this.style.top='0';" onblur="this.style.top='-100px';">본문 바로가기</a>
-
-
-
-    <header role="banner">
-
-        <h1>라파엘코러스</h1>
-
-        <nav role="navigation" aria-label="메인 메뉴">
-
-            <a href="index.html" aria-current="page">홈</a>
-
-            <a href="about.html">라파엘 소개</a>
-
-            <a href="performance.html">갤러리</a>
-
-            <a href="support.html">후원</a>
-
-        </nav>
-
-    </header>
-
-
-
-    <main id="main-content" role="main">
-
-        <section class="hero">
-
-            <div class="hero-text"> 
-
-                <h2>노래로 품은 빛</h2>
-
-                <p>세상을 환히 밝힌다.</p>
-
+        // HTML 생성
+        container.innerHTML = latestNews.map(news => `
+            <div class="news-card" style="
+                flex: 1; 
+                min-width: 250px; 
+                max-width: 300px; 
+                background: #fff; 
+                padding: 25px; 
+                border-radius: 15px; 
+                border: 1px solid #eee; 
+                box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+                transition: transform 0.3s;
+                text-align: left;
+                cursor: pointer;"
+                onclick="location.href='${news.link}'">
+                <span style="color: #d32f2f; font-size: 0.85rem; font-weight: bold;">${news.date}</span>
+                <h4 style="margin: 10px 0 0; font-size: 1.1rem; line-height: 1.4; color: #333;">${news.title}</h4>
             </div>
+        `).join('');
+    }
 
-        </section>
-
-
-
-        <section class="content" aria-labelledby="news-title">
-
-            <h3 id="news-title" style="font-size: 1.8rem; margin-bottom: 30px;">최신 소식</h3>
-
-            
-
-            <a href="https://www.chosun.com/video_photo/2025/12/25/3ECK5GR63FHIVLIDLQ6CNZTTYQ/" target="_blank" class="news-link-wrapper" aria-label="[조선일보] 어둠 속에 울려 퍼진 희망의 성가, 기사 전문 보기">
-
-                <article class="news-card">
-
-                    <div class="news-text">
-
-                        <span class="news-tag">언론보도</span>
-
-                        <h4>[조선일보] "어둠 속에 울려 퍼진 희망의 성가"</h4>
-
-                        <p>2025년 크리스마스, 라파엘코러스의 감동적인 무대 영상과 인터뷰 내용을 확인해 보세요.</p>
-
-                        <div class="click-info" aria-hidden="true">클릭해서 기사 전문 보기 →</div>
-
-                    </div>
-
-                </article>
-
-            </a>
-
-        </section>
-
-    </main> <footer role="contentinfo">
-
-        <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
-
-        <p>이메일: raphaelchorus@naver.com | 전화: 010-8020-4413</p>
-
-    </footer>
-
-</body>
-
-</html>
+    // 페이지 로드 시 실행
+    window.onload = renderNews;
+</script>
