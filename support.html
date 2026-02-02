@@ -35,7 +35,6 @@
 
         .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
 
-        /* 후원 카드 섹션 */
         .donation-grid {
             display: flex; flex-wrap: wrap; gap: 30px; 
             justify-content: center; margin-bottom: 60px;
@@ -62,7 +61,6 @@
             border: 1px dashed #ccc; margin-top: 20px; font-size: 1rem;
         }
 
-        /* FAQ 섹션 스타일 */
         .faq-section { margin-top: 80px; }
         .faq-title { text-align: center; font-size: 2rem; margin-bottom: 40px; color: #111; }
         .faq-item { background: #fff; border: 1px solid #eee; border-radius: 15px; margin-bottom: 20px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
@@ -81,7 +79,7 @@
     </style>
 </head>
 <body>
-    <audio id="bgMusic" loop>
+    <audio id="bgMusic">
         <source src="hislight.mp3" type="audio/mpeg">
     </audio>
 
@@ -129,7 +127,7 @@
                 <div class="faq-q">후원금은 구체적으로 어떻게 사용되나요?</div>
                 <div class="faq-a">
                     후원금은 시각장애인 단원들의 예술적 자립을 위해 투명하게 사용됩니다. 
-                    주요 사용처는 <strong>점자 악보 제작, 전문 음악 강사 초빙 및 교육, 연주회 대관료, 시각장애 단원 이동 지원</strong> 등 합창단 운영과 공연 제작 전반에 쓰입니다. 
+                    주요 사용처는 <strong>점자 악보 제작, 전문 음악 강사 초빙 및 교육, 정기 연주회 대관료, 시각장애 단원 이동 지원</strong> 등 합창단 운영과 공연 제작 전반에 쓰입니다. 
                     매년 연말 결산 보고를 통해 투명하게 내역을 공개하고 있습니다.
                 </div>
             </div>
@@ -139,21 +137,14 @@
                 <div class="faq-a">
                     기탁 방식에 따라 차이가 있습니다.<br>
                     <strong>1) [정기후원 신청하기] 이용 시:</strong> 공공기관인 '한국문화예술위원회'를 통해 기부되므로, <strong>100% 법정 기부금 세액공제</strong>를 받으실 수 있으며 국세청 간소화 서비스에 자동 반영됩니다.<br>
-                    <strong>2) [일시후원(계좌이체)] 이용 시:</strong> 라파엘코러스 명의의 <strong>'후원 확인서'</strong>를 발급해 드립니다.
+                    <strong>2) [일시후원(계좌이체)] 이용 시:</strong> 라파엘코러스 명의의 <strong>'후원 확인서'</strong>를 발급해 드립니다. 현재 단체 자체의 공익법인 승인 절차 중으로, 직접 입금분에 대해서는 국세청의 법적 세액공제 혜택이 제한될 수 있습니다.
                 </div>
             </div>
 
             <div class="faq-item">
                 <div class="faq-q">후원 신청이나 정보 변경은 어떻게 하나요?</div>
                 <div class="faq-a">
-                    정기후원은 한국문화예술위원회 시스템에서 직접 관리하실 수 있습니다. 일시후원 후 후원확인서 발급이 필요하시거나, 후원 정보를 변경하고 싶으신 경우에는 사무국(010-8020-4413)이나 이메일(raphaelchorus@naver.com)로 연락 주시면 즉시 처리해 드립니다.
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <div class="faq-q">기업이나 단체 명의로도 후원이 가능한가요?</div>
-                <div class="faq-a">
-                    네, 가능합니다. 기업 후원 역시 일시후원을 통한 계좌이체로 가능하며, 한국문화예술위원회를 통해 진행하시면 법인세 감면 혜택을 받으실 수 있도록 행정적인 지원을 해드리고 있습니다. 별도의 파트너십이나 후원 제안은 사무국으로 문의해 주세요.
+                    정기후원은 한국문화예술위원회 시스템에서 직접 관리하실 수 있습니다. 일시후원 후 확인서 발급이 필요하시거나, 후원 정보를 변경하고 싶으신 경우에는 사무국(010-8020-4413)이나 이메일(raphaelchorus@naver.com)로 연락 주시면 즉시 처리해 드립니다.
                 </div>
             </div>
         </section>
@@ -169,12 +160,46 @@
     </footer>
 
     <script>
-        window.addEventListener('click', function() {
+        /**
+         * 배경음악 지연 재생 스크립트 (개선판)
+         * 1. 페이지 로드 즉시 5초 타이머 시작
+         * 2. 5초 뒤에 음악 재생 시도
+         * 3. 브라우저가 차단할 경우, 사용자가 '화면 아무 곳이나' 클릭/터치하는 순간 즉시 재생
+         */
+        document.addEventListener('DOMContentLoaded', () => {
             const audio = document.getElementById('bgMusic');
-            if (audio.paused) {
-                audio.play();
-            }
-        }, { once: true });
+            let hasInteracted = false;
+
+            // 5초 지연 후 재생 시도 함수
+            const tryPlayAfterDelay = () => {
+                setTimeout(() => {
+                    audio.play().catch(() => {
+                        console.log("자동 재생 차단됨: 상호작용 대기 중...");
+                        // 5초가 지났는데 자동 재생이 차단된 경우, 다음 클릭 시 즉시 재생하도록 설정
+                        const playNow = () => {
+                            audio.play();
+                            document.removeEventListener('click', playNow);
+                            document.removeEventListener('touchstart', playNow);
+                        };
+                        document.addEventListener('click', playNow);
+                        document.addEventListener('touchstart', playNow);
+                    });
+                }, 5000);
+            };
+
+            // 브라우저 정책을 위해 첫 클릭 시 '오디오 컨텍스트'를 활성화해두는 습관
+            const unlockAudio = () => {
+                hasInteracted = true;
+                // 이미 타이머가 돌고 있으므로 여기서는 상태만 체크
+                document.removeEventListener('click', unlockAudio);
+                document.removeEventListener('touchstart', unlockAudio);
+            };
+
+            document.addEventListener('click', unlockAudio);
+            document.addEventListener('touchstart', unlockAudio);
+
+            tryPlayAfterDelay();
+        });
     </script>
 </body>
 </html>
