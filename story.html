@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story - Raphael Chorus</title>
+    <style>
+        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; line-height: 1.8; background-color: #fffbe6; color: #333; }
+        header { background: #000; color: #fff; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo-svg { width: 220px; height: auto; }
+        nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
+        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
 
+        .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
+        .page-header { text-align: center; margin-bottom: 60px; }
+        .page-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
+
+        /* 블로그 리스트 스타일 */
+        #blog-list { list-style: none; padding: 0; }
+        .blog-item { 
+            background: #fff; margin-bottom: 25px; border-radius: 15px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow: hidden;
+            transition: 0.3s;
+        }
+        .blog-item:hover { transform: translateY(-5px); border: 1px solid #ffcc00; }
+        .blog-item a { text-decoration: none; color: inherit; display: block; padding: 30px; }
+        .blog-item h3 { margin: 0 0 10px 0; font-size: 1.4rem; color: #111; }
+        .blog-item p { margin: 0; color: #666; font-size: 1rem; }
+        .blog-item .date { font-size: 0.85rem; color: #aaa; display: block; margin-bottom: 10px; }
+
+        footer { background: #222; color: #bbb; padding: 40px; text-align: center; margin-top: 100px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-area">
+        <svg class="logo-svg" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="'Princess Sofia', cursive" font-size="55" fill="#ffcc00">Raphael Chorus</text>
+        </svg>
+    </div>
+    <nav>
+        <a href="index.html">Raphael</a>
+        <a href="about.html">About</a>
+        <a href="story.html" aria-current="page">Story</a>
+        <a href="performance.html">Gallery</a>
+        <a href="support.html">Support</a>
+    </nav>
+</header>
+
+<main class="container">
+    <div class="page-header">
+        <h2>Story</h2>
+        <p>단원들의 소중한 목소리를 담은 블로그 소식입니다.</p>
+    </div>
+
+    <div id="blog-list">
+        <p style="text-align: center;">소식을 불러오는 중입니다...</p>
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Raphael Chorus. All rights reserved.</p>
+</footer>
+
+<script>
+    // 네이버 블로그 ID와 카테고리명을 입력하세요 (카테고리명은 정확해야 합니다)
+    const NAVER_ID = '여러분의_네이버_아이디'; 
+    const RSS_URL = `https://rss.blog.naver.com/${NAVER_ID}.xml`;
+
+    // RSS 데이터를 가져와서 화면에 뿌려주는 함수 (간단한 버전)
+    async function fetchBlog() {
+        try {
+            // 구글에서 제공하는 RSS to JSON 변환 API를 활용합니다
+            const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`);
+            const data = await response.json();
+            const listContainer = document.getElementById('blog-list');
+
+            if (data.status === 'ok') {
+                listContainer.innerHTML = data.items.map(item => `
+                    <article class="blog-item">
+                        <a href="${item.link}" target="_blank">
+                            <span class="date">${item.pubDate.split(' ')[0]}</span>
+                            <h3>${item.title}</h3>
+                            <p>${item.description.replace(/<[^>]*>?/gm, '').substring(0, 100)}...</p>
+                        </a>
+                    </article>
+                `).join('');
+            } else {
+                listContainer.innerHTML = '<p style="text-align:center;">블로그 글을 불러올 수 없습니다. 링크를 직접 확인해주세요.</p>';
+            }
+        } catch (error) {
+            console.error('Error fetching blog:', error);
+        }
+    }
+
+    fetchBlog();
+</script>
+</body>
+</html>
