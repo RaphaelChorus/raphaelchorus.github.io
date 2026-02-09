@@ -7,7 +7,11 @@
     <style>
         body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; line-height: 1.8; background-color: #fffbe6; color: #333; }
         header { background: #000; color: #fff; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-        .logo-svg { width: 220px; height: auto; }
+        .logo-svg { 
+    width: 280px; /* 크기를 220에서 280으로 약간 키움 */
+    height: auto; 
+    overflow: visible; /* 글자가 상자 밖으로 나가도 잘리지 않게 설정 */
+}
         nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
         nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
 
