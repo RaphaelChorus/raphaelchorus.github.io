@@ -83,15 +83,23 @@
         <source src="hislight.mp3" type="audio/mpeg">
     </audio>
 
-    <header>
-        <h1>라파엘코러스</h1>
-        <nav>
-            <a href="index.html">홈</a>
-            <a href="about.html">코러스 소개</a>
-            <a href="performance.html">갤러리</a>
-            <a href="support.html" aria-current="page">후원</a>
-        </nav>
-    </header>
+    <header role="banner">
+    <div class="logo-area">
+        <svg class="logo-svg" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" 
+                  font-family="'Princess Sofia', cursive" font-size="55" fill="#ffcc00">
+                Raphael Chorus
+            </text>
+        </svg>
+    </div>
+    <nav role="navigation" aria-label="Main Menu">
+        <a href="index.html" aria-label="홈">Raphael</a>
+        <a href="about.html" aria-label="라파엘 및 구성원 소개">About</a>
+        <a href="story.html" aria-label="단원들의 이야기">Story</a>
+        <a href="performance.html" aria-label="갤러리">Gallery</a>
+        <a href="support.html" aria-label="후원 안내">Support</a>
+    </nav>
+</header>
 
     <main class="container">
         <section class="sub-header" style="border-radius: 20px; margin-bottom: 60px;">
