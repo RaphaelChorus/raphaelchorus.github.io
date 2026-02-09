@@ -27,7 +27,11 @@
             background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
         }
 
-        .logo-svg { width: 280px; height: auto; }
+        .logo-svg { 
+    width: 280px; /* 크기를 220에서 280으로 약간 키움 */
+    height: auto; 
+    overflow: visible; /* 글자가 상자 밖으로 나가도 잘리지 않게 설정 */
+}
 
         nav a { 
             color: #fff; text-decoration: none; margin-left: 25px; 
