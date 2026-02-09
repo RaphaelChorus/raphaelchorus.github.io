@@ -33,18 +33,21 @@
 </head>
 <body>
 
-<header>
+<header role="banner">
     <div class="logo-area">
         <svg class="logo-svg" viewBox="0 0 400 100" xmlns="http://www.w3.org/2000/svg">
-            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="'Princess Sofia', cursive" font-size="55" fill="#ffcc00">Raphael Chorus</text>
+            <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" 
+                  font-family="'Princess Sofia', cursive" font-size="55" fill="#ffcc00">
+                Raphael Chorus
+            </text>
         </svg>
     </div>
-    <nav>
-        <a href="index.html">Raphael</a>
-        <a href="about.html">About</a>
+    <nav role="navigation" aria-label="Main Menu">
+        <a href="index.html" aria-label="홈">Raphael</a>
+        <a href="about.html" aria-label="라파엘 및 구성원 소개">About</a>
         <a href="story.html" aria-current="page">Story</a>
-        <a href="performance.html">Gallery</a>
-        <a href="support.html">Support</a>
+        <a href="performance.html" aria-label="갤러리">Gallery</a>
+        <a href="support.html" aria-label="후원 안내">Support</a>
     </nav>
 </header>
 
