@@ -15,102 +15,112 @@
     <meta property="og:url" content="https://raphaelchorus.github.io">
 
     <style>
-    /* 1. 기본 베이스 */
-    body { font-family: 'Malgun Gothic', 'Arial', sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #fffbe6; }
-
-    /* 2. 통합 헤더 - 배경상자 없이 로고만 깔끔하게 */
-    header {
-        background-color: #121212; /* 고급스러운 블랙 배경 */
-        padding: 0 5%;
-        height: 100px; /* 로고가 넉넉히 들어갈 높이 */
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    /* 1. 기본 설정 및 배경 */
+    body { 
+        font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
+        margin: 0; padding: 0; line-height: 1.8; color: #333; 
+        background-color: #fffbe6; /* 타 페이지와 통일된 배경색 */
     }
 
-    .logo-container {
-        display: flex;
-        align-items: center;
-        text-decoration: none;
-        background: none !important; /* 배경색 강제 제거 */
-        padding: 0 !important;       /* 여백 강제 제거 */
-        box-shadow: none !important; /* 그림자 강제 제거 */
+    /* 2. [업데이트] 통합 헤더 디자인 - 전 페이지 100% 통일 */
+    header { 
+        position: fixed; /* 상단 고정 */
+        top: 0; left: 0; width: 100%; 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 0 5%; 
+        height: 80px; /* 헤더 높이 통일 */
+        z-index: 1000; box-sizing: border-box;
+        background: rgba(18, 18, 18, 0.95); /* 반투명 블랙 */
+        box-shadow: 0 2px 15px rgba(0,0,0,0.3);
     }
 
-    .logo-img {
-        height: 60px; /* 메뉴 글자보다 확실히 큰 크기 */
-        width: auto;
+    .logo-container { display: flex; align-items: center; }
+
+    /* 금빛 로고 필터 적용 */
+    .logo-img { 
+        height: 50px; 
+        width: auto; 
         display: block;
+        filter: invert(85%) sepia(20%) saturate(800%) hue-rotate(350%) brightness(105%) contrast(105%);
         transition: transform 0.3s ease;
     }
+    .logo-img:hover { transform: scale(1.05); }
 
-    .logo-img:hover {
-        transform: scale(1.05);
-    }
+    /* 3. 네비게이션 스타일 */
+    nav { display: flex; gap: 25px; }
 
-    /* 3. 네비게이션 */
-    nav { display: flex; gap: 30px; }
-    nav a {
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 1.1rem;
-        font-weight: 500;
-        transition: color 0.3s;
+    nav a { 
+        color: #fff; text-decoration: none; 
+        font-weight: bold; font-size: 1.05rem;
+        transition: color 0.3s ease;
     }
-    nav a:hover, nav a[aria-current="page"] {
-        color: #ffcc00; /* 황금색 강조 */
-    }
+    nav a:hover { color: #ffcc00; }
+    nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
 
-    /* 4. 히어로 섹션 */
-    .hero { 
-        background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('main.jpg');
+    /* 4. 상단 배너 (헤더 고정으로 인한 여백 추가) */
+    .sub-header { 
+        margin-top: 80px;
+        background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('pf4.jpg');
         background-size: cover; background-position: center;
-        color: white; height: 650px; display: flex; 
-        align-items: center; justify-content: center; 
+        padding: 100px 10%; text-align: center; color: white; 
+        border-bottom: 5px solid #ffcc00; 
     }
-    .hero-text { width: 50%; margin-left: 45%; text-align: right; padding-right: 5%; }
-    .hero h2 { font-size: 3rem; font-weight: bold; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-    .hero p { font-size: 1.6rem; margin: 15px 0; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+    .sub-header h2 { font-size: 2.8rem; margin: 0; word-break: keep-all; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
 
-    /* 5. 컨텐츠 및 소식 (생략 - 기존과 동일) */
-    .content { padding: 80px 5%; text-align: center; }
-    #news-container { display: flex; flex-direction: column; align-items: center; gap: 30px; max-width: 800px; margin: 0 auto; }
-    .news-link-wrapper { text-decoration: none; color: inherit; display: block; width: 100%; }
-    .news-card { background: #fff; border: 1px solid #ddd; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left; transition: all 0.4s ease; }
-    .news-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); border-color: #ffcc00; }
-    .news-text { padding: 35px; }
-    .news-tag { background: #ffcc00; color: #000; padding: 6px 15px; font-size: 0.85rem; font-weight: bold; border-radius: 50px; }
-    .news-tag.support { background: #d32f2f; color: #fff; }
-    .news-card h4 { font-size: 1.5rem; margin: 15px 0 10px 0; color: #222; }
-    .news-card p { color: #666; font-size: 1.05rem; line-height: 1.7; margin-bottom: 0; }
-    .click-info { font-size: 0.95rem; color: #e6b800; font-weight: bold; text-align: right; margin-top: 15px; }
+    /* 5. 후원 섹션 레이아웃 */
+    .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
 
-    footer { background: #222; color: #bbb; padding: 50px 20px; text-align: center; font-size: 0.9rem; }
+    .donation-grid {
+        display: flex; flex-wrap: wrap; gap: 30px; 
+        justify-content: center; margin-bottom: 60px;
+    }
+    .support-card { 
+        flex: 1; min-width: 300px; background: #fff; 
+        border: 1px solid #eee; padding: 40px 30px; 
+        border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+        text-align: center; transition: all 0.3s ease;
+    }
+    .support-card:hover { transform: translateY(-10px); border-color: #ffcc00; }
+    .support-card h3 { font-size: 1.6rem; margin-bottom: 20px; color: #111; border-bottom: 3px solid #ffcc00; display: inline-block; padding-bottom: 5px; }
 
-    /* 6. 모바일 반응형 (회색 상자 잔재 완전 제거) */
+    .btn-donation {
+        display: block; background: #ffcc00; color: #000;
+        padding: 15px 0; font-size: 1.1rem; font-weight: bold;
+        text-decoration: none; border-radius: 12px; margin-top: 20px;
+        transition: 0.3s;
+    }
+    .btn-donation:hover { background: #000; color: #ffcc00; }
+
+    .account-info { 
+        background: #fdfdfd; padding: 20px; border-radius: 12px; 
+        border: 1px dashed #ccc; margin-top: 20px; font-size: 1.05rem;
+    }
+
+    /* 6. FAQ 섹션 */
+    .faq-section { margin-top: 80px; }
+    .faq-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; color: #111; }
+    .faq-item { background: #fff; border: 1px solid #eee; border-radius: 15px; margin-bottom: 20px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+    .faq-q { font-weight: bold; color: #d32f2f; font-size: 1.2rem; margin-bottom: 12px; display: flex; align-items: flex-start; }
+    .faq-q::before { content: "Q."; margin-right: 12px; font-size: 1.4rem; color: #ffcc00; }
+    .faq-a { color: #555; padding-left: 35px; line-height: 1.8; position: relative; font-size: 1.05rem; }
+    .faq-a::before { content: "A."; position: absolute; left: 0; font-weight: bold; color: #333; }
+
+    footer { background: #1a1a1a; color: #888; padding: 50px; text-align: center; margin-top: 100px; }
+
+    /* 7. [모바일 업데이트] 예술적 비율 대응 */
     @media (max-width: 768px) {
         header { 
-            flex-direction: column; 
-            height: auto;
-            padding: 20px 10px;
-            background: #121212; 
+            flex-direction: column; height: auto; padding: 15px 10px;
+            background: rgba(18, 18, 18, 0.98);
         }
-        .logo-container {
-            background: none !important; /* 모바일에서도 배경 제거 */
-        }
-        .logo-img { 
-            height: 50px; /* 모바일 로고 크기 */
-        }
-        nav { margin-top: 15px; gap: 15px; }
-        nav a { font-size: 0.95rem; }
+        .logo-img { height: 40px; }
+        nav { margin-top: 15px; gap: 15px; width: 100%; justify-content: center; }
+        nav a { font-size: 0.9rem; }
         
-        .hero { height: 400px; }
-        .hero-text { width: 90%; margin-left: 0; padding-right: 0; text-align: center; }
-        .hero h2 { font-size: 2.2rem; }
+        .sub-header { margin-top: 110px; padding: 60px 5%; }
+        .sub-header h2 { font-size: 1.8rem; }
+        .support-card { padding: 30px 20px; }
+        .faq-title { font-size: 1.7rem; }
     }
 </style>
 </head>
@@ -120,15 +130,17 @@
     </audio>
 
     <header role="banner">
-    <a href="index.html" class="logo-container">
-        <img src="RaphaelsvgLogo.png" alt="라파엘코러스" class="logo-img">
-    </a>
-    <nav role="navigation">
+    <div class="logo-container">
+        <a href="index.html">
+            <img src="RaphaelsvgLogo.png" alt="라파엘코러스" class="logo-img">
+        </a>
+    </div>
+    <nav role="navigation" aria-label="메인 메뉴">
         <a href="index.html">Raphael</a>
         <a href="about.html">About</a>
         <a href="story.html">Story</a>
         <a href="performance.html">Gallery</a>
-        <a href="support.html">Support</a>
+        <a href="support.html" aria-current="page">Support</a>
     </nav>
 </header>
 
