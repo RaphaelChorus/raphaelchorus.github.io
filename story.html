@@ -5,50 +5,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Story - Raphael Chorus</title>
     <style>
-        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; line-height: 1.8; background-color: #fffbe6; color: #333; }
-        header { background: #000; color: #fff; padding: 1.5rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-        .logo-svg { 
-    width: 280px; /* 크기를 220에서 280으로 약간 키움 */
-    height: auto; 
-    overflow: visible; /* 글자가 상자 밖으로 나가도 잘리지 않게 설정 */
-}
-        nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
-        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
+    /* 1. 기본 설정 */
+    body { 
+        font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
+        margin: 0; padding: 0; line-height: 1.8; 
+        background-color: #fffbe6; color: #333; 
+    }
 
-        .container { max-width: 800px; margin: 60px auto; padding: 0 20px; }
-        .page-header { text-align: center; margin-bottom: 60px; }
-        .page-header h2 { font-size: 2.5rem; margin-bottom: 10px; }
+    /* 2. [업데이트] 통합 헤더 디자인 - index, about과 100% 일치 */
+    header { 
+        position: fixed; /* 페이지 상단 고정 */
+        top: 0; left: 0; width: 100%; 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 0 5%; 
+        height: 80px; /* 헤더 높이 통일 */
+        z-index: 1000; box-sizing: border-box;
+        background: rgba(18, 18, 18, 0.95); /* 고급스러운 진회색 반투명 */
+        box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+    }
 
-        /* 블로그 리스트 스타일 */
-        #blog-list { list-style: none; padding: 0; }
-        .blog-item { 
-            background: #fff; margin-bottom: 25px; border-radius: 15px; 
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); overflow: hidden;
-            transition: 0.3s;
+    .logo-container { display: flex; align-items: center; }
+
+    /* [핵심] 금빛 로고 필터 적용 */
+    .logo-img { 
+        height: 50px; 
+        width: auto; 
+        display: block;
+        /* 검은 로고를 샴페인 골드로 변환하는 마법 */
+        filter: invert(85%) sepia(20%) saturate(800%) hue-rotate(350%) brightness(105%) contrast(105%);
+        transition: transform 0.3s ease;
+    }
+    .logo-img:hover { transform: scale(1.05); }
+
+    /* 3. 네비게이션 스타일 */
+    nav { display: flex; gap: 25px; }
+
+    nav a { 
+        color: #fff; text-decoration: none; 
+        font-weight: bold; font-size: 1.05rem;
+        transition: color 0.3s ease;
+    }
+    nav a:hover { color: #ffcc00; }
+    nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
+
+    /* 4. 컨테이너 및 페이지 헤더 (헤더 고정으로 인한 여백 추가) */
+    .container { max-width: 850px; margin: 140px auto 60px; padding: 0 20px; }
+    .page-header { text-align: center; margin-bottom: 60px; }
+    .page-header h2 { font-size: 2.8rem; margin-bottom: 15px; color: #111; letter-spacing: -1px; }
+    .page-header p { font-size: 1.2rem; color: #666; }
+
+    /* 5. 블로그 리스트 스타일 */
+    #blog-list { list-style: none; padding: 0; }
+    .blog-item { 
+        background: #fff; margin-bottom: 30px; border-radius: 20px; 
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05); overflow: hidden;
+        border: 1px solid #eee;
+        transition: all 0.4s ease;
+    }
+    .blog-item:hover { 
+        transform: translateY(-8px); 
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        border-color: #ffcc00; 
+    }
+    .blog-item a { text-decoration: none; color: inherit; display: block; padding: 35px; }
+    .blog-item h3 { margin: 0 0 12px 0; font-size: 1.5rem; color: #111; line-height: 1.4; }
+    .blog-item p { margin: 0; color: #555; font-size: 1.05rem; line-height: 1.7; }
+    .blog-item .date { 
+        font-size: 0.9rem; color: #ffcc00; font-weight: bold; 
+        display: block; margin-bottom: 12px; text-transform: uppercase;
+    }
+
+    footer { background: #1a1a1a; color: #888; padding: 50px; text-align: center; margin-top: 100px; }
+
+    /* 6. [모바일 업데이트] 예술적 비율 대응 */
+    @media (max-width: 768px) {
+        header { 
+            flex-direction: column; height: auto; padding: 15px 10px;
+            background: rgba(18, 18, 18, 0.98);
         }
-        .blog-item:hover { transform: translateY(-5px); border: 1px solid #ffcc00; }
-        .blog-item a { text-decoration: none; color: inherit; display: block; padding: 30px; }
-        .blog-item h3 { margin: 0 0 10px 0; font-size: 1.4rem; color: #111; }
-        .blog-item p { margin: 0; color: #666; font-size: 1rem; }
-        .blog-item .date { font-size: 0.85rem; color: #aaa; display: block; margin-bottom: 10px; }
-
-        footer { background: #222; color: #bbb; padding: 40px; text-align: center; margin-top: 100px; }
-    </style>
+        .logo-img { height: 40px; }
+        nav { margin-top: 15px; gap: 15px; width: 100%; justify-content: center; }
+        nav a { font-size: 0.9rem; }
+        
+        .container { margin-top: 130px; }
+        .page-header h2 { font-size: 2rem; }
+        .blog-item a { padding: 25px; }
+        .blog-item h3 { font-size: 1.3rem; }
+    }
+</style>
 </head>
 <body>
 
 <header role="banner">
-    <div class="logo-area">
+    <div class="logo-container">
         <a href="index.html">
-            <img src="RaphaelsvgLogo.png" alt="라파엘코러스 로고" class="logo-img">
+            <img src="RaphaelsvgLogo.png" alt="라파엘코러스" class="logo-img">
         </a>
     </div>
-    <nav role="navigation" aria-label="Main Menu">
-        <a href="index.html" id="nav-home">Raphael</a>
-        <a href="about.html" id="nav-about">About</a>
-        <a href="story.html" id="nav-story" aria-current="page">Story</a>
-        <a href="performance.html" id="nav-gallery">Gallery</a>
-        <a href="support.html" id="nav-support">Support</a>
+    <nav role="navigation" aria-label="메인 메뉴">
+        <a href="index.html">Raphael</a>
+        <a href="about.html">About</a>
+        <a href="story.html" aria-current="page">Story</a>
+        <a href="performance.html">Gallery</a>
+        <a href="support.html">Support</a>
     </nav>
 </header>
 
