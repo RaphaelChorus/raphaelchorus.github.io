@@ -15,68 +15,114 @@
     <meta property="og:url" content="https://raphaelchorus.github.io">
 
     <style>
-        body { 
-            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
-            margin: 0; padding: 0; line-height: 1.8; color: #333; 
-            background-color: #fffdf2; 
+    /* 1. 기본 설정 및 배경 */
+    body { 
+        font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
+        margin: 0; padding: 0; line-height: 1.8; color: #333; 
+        background-color: #fffbe6; /* 타 페이지와 통일된 배경색 */
+    }
+
+    /* 2. [업데이트] 통합 헤더 디자인 - 전 페이지 100% 통일 */
+    header { 
+        position: fixed; /* 상단 고정 */
+        top: 0; left: 0; width: 100%; 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 0 5%; 
+        height: 80px; /* 헤더 높이 통일 */
+        z-index: 1000; box-sizing: border-box;
+        background: rgba(18, 18, 18, 0.95); /* 반투명 블랙 */
+        box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+    }
+
+    .logo-container { display: flex; align-items: center; }
+
+    /* 금빛 로고 필터 적용 */
+    .logo-img { 
+        height: 50px; 
+        width: auto; 
+        display: block;
+        filter: invert(85%) sepia(20%) saturate(800%) hue-rotate(350%) brightness(105%) contrast(105%);
+        transition: transform 0.3s ease;
+    }
+    .logo-img:hover { transform: scale(1.05); }
+
+    /* 3. 네비게이션 스타일 */
+    nav { display: flex; gap: 25px; }
+
+    nav a { 
+        color: #fff; text-decoration: none; 
+        font-weight: bold; font-size: 1.05rem;
+        transition: color 0.3s ease;
+    }
+    nav a:hover { color: #ffcc00; }
+    nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
+
+    /* 4. 상단 배너 (헤더 고정으로 인한 여백 추가) */
+    .sub-header { 
+        margin-top: 80px;
+        background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('pf4.jpg');
+        background-size: cover; background-position: center;
+        padding: 100px 10%; text-align: center; color: white; 
+        border-bottom: 5px solid #ffcc00; 
+    }
+    .sub-header h2 { font-size: 2.8rem; margin: 0; word-break: keep-all; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+
+    /* 5. 후원 섹션 레이아웃 */
+    .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
+
+    .donation-grid {
+        display: flex; flex-wrap: wrap; gap: 30px; 
+        justify-content: center; margin-bottom: 60px;
+    }
+    .support-card { 
+        flex: 1; min-width: 300px; background: #fff; 
+        border: 1px solid #eee; padding: 40px 30px; 
+        border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+        text-align: center; transition: all 0.3s ease;
+    }
+    .support-card:hover { transform: translateY(-10px); border-color: #ffcc00; }
+    .support-card h3 { font-size: 1.6rem; margin-bottom: 20px; color: #111; border-bottom: 3px solid #ffcc00; display: inline-block; padding-bottom: 5px; }
+
+    .btn-donation {
+        display: block; background: #ffcc00; color: #000;
+        padding: 15px 0; font-size: 1.1rem; font-weight: bold;
+        text-decoration: none; border-radius: 12px; margin-top: 20px;
+        transition: 0.3s;
+    }
+    .btn-donation:hover { background: #000; color: #ffcc00; }
+
+    .account-info { 
+        background: #fdfdfd; padding: 20px; border-radius: 12px; 
+        border: 1px dashed #ccc; margin-top: 20px; font-size: 1.05rem;
+    }
+
+    /* 6. FAQ 섹션 */
+    .faq-section { margin-top: 80px; }
+    .faq-title { text-align: center; font-size: 2.2rem; margin-bottom: 40px; color: #111; }
+    .faq-item { background: #fff; border: 1px solid #eee; border-radius: 15px; margin-bottom: 20px; padding: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+    .faq-q { font-weight: bold; color: #d32f2f; font-size: 1.2rem; margin-bottom: 12px; display: flex; align-items: flex-start; }
+    .faq-q::before { content: "Q."; margin-right: 12px; font-size: 1.4rem; color: #ffcc00; }
+    .faq-a { color: #555; padding-left: 35px; line-height: 1.8; position: relative; font-size: 1.05rem; }
+    .faq-a::before { content: "A."; position: absolute; left: 0; font-weight: bold; color: #333; }
+
+    footer { background: #1a1a1a; color: #888; padding: 50px; text-align: center; margin-top: 100px; }
+
+    /* 7. [모바일 업데이트] 예술적 비율 대응 */
+    @media (max-width: 768px) {
+        header { 
+            flex-direction: column; height: auto; padding: 15px 10px;
+            background: rgba(18, 18, 18, 0.98);
         }
-        header { background: #000; color: #fff; padding: 1rem 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
-        header h1 { margin: 0; font-size: 1.5rem; }
-        nav a { color: #fff; text-decoration: none; margin-left: 20px; font-weight: bold; }
-        nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
-
-        .sub-header { 
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('pf4.jpg');
-            background-size: cover; background-position: center;
-            padding: 100px 10%; text-align: center; color: white; 
-            border-bottom: 5px solid #ffcc00; 
-        }
-        .sub-header h2 { font-size: 2.8rem; margin: 0; word-break: keep-all; }
-
-        .container { max-width: 1000px; margin: 60px auto; padding: 0 20px; }
-
-        .donation-grid {
-            display: flex; flex-wrap: wrap; gap: 30px; 
-            justify-content: center; margin-bottom: 60px;
-        }
-        .support-card { 
-            flex: 1; min-width: 300px; background: #fff; 
-            border: 1px solid #eee; padding: 40px 30px; 
-            border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
-            text-align: center; transition: transform 0.3s;
-        }
-        .support-card:hover { transform: translateY(-10px); }
-        .support-card h3 { font-size: 1.5rem; margin-bottom: 20px; color: #111; border-bottom: 2px solid #ffcc00; display: inline-block; padding-bottom: 5px; }
-
-        .btn-donation {
-            display: block; background: #ffcc00; color: #000;
-            padding: 15px 0; font-size: 1.1rem; font-weight: bold;
-            text-decoration: none; border-radius: 12px; margin-top: 20px;
-            transition: 0.3s;
-        }
-        .btn-donation:hover { background: #000; color: #ffcc00; }
-
-        .account-info { 
-            background: #f9f9f9; padding: 15px; border-radius: 12px; 
-            border: 1px dashed #ccc; margin-top: 20px; font-size: 1rem;
-        }
-
-        .faq-section { margin-top: 80px; }
-        .faq-title { text-align: center; font-size: 2rem; margin-bottom: 40px; color: #111; }
-        .faq-item { background: #fff; border: 1px solid #eee; border-radius: 15px; margin-bottom: 20px; padding: 25px; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
-        .faq-q { font-weight: bold; color: #d32f2f; font-size: 1.15rem; margin-bottom: 12px; display: flex; align-items: flex-start; }
-        .faq-q::before { content: "Q."; margin-right: 10px; font-size: 1.3rem; }
-        .faq-a { color: #555; padding-left: 30px; line-height: 1.8; position: relative; }
-        .faq-a::before { content: "A."; position: absolute; left: 0; font-weight: bold; color: #333; }
-
-        footer { background: #111; color: #888; padding: 40px; text-align: center; margin-top: 100px; }
-
-        @media (max-width: 768px) {
-            .sub-header h2 { font-size: 1.8rem; }
-            header { flex-direction: column; padding: 15px; }
-            nav { margin-top: 15px; }
-        }
-    </style>
+        .logo-img { height: 40px; }
+        nav { margin-top: 15px; gap: 15px; width: 100%; justify-content: center; }
+        nav a { font-size: 0.9rem; }
+        
+        .sub-header { margin-top: 110px; padding: 60px 5%; }
+        .sub-header h2 { font-size: 1.8rem; }
+        .support-card { padding: 30px 20px; }
+        .faq-title { font-size: 1.7rem; }
+    }
+</style>
 </head>
 <body>
     <audio id="bgMusic">
@@ -84,17 +130,17 @@
     </audio>
 
     <header role="banner">
-    <div class="logo-area">
+    <div class="logo-container">
         <a href="index.html">
-            <img src="RaphaelsvgLogo.png" alt="라파엘코러스 로고" class="logo-img">
+            <img src="RaphaelsvgLogo.png" alt="라파엘코러스" class="logo-img">
         </a>
     </div>
-    <nav role="navigation" aria-label="Main Menu">
-        <a href="index.html" id="nav-home">Raphael</a>
-        <a href="about.html" id="nav-about">About</a>
-        <a href="story.html" id="nav-story">Story</a>
-        <a href="performance.html" id="nav-gallery">Gallery</a>
-        <a href="support.html" id="nav-support" aria-current="page">Support</a>
+    <nav role="navigation" aria-label="메인 메뉴">
+        <a href="index.html">Raphael</a>
+        <a href="about.html">About</a>
+        <a href="story.html">Story</a>
+        <a href="performance.html">Gallery</a>
+        <a href="support.html" aria-current="page">Support</a>
     </nav>
 </header>
 
