@@ -33,41 +33,18 @@
         box-shadow: 0 2px 15px rgba(0,0,0,0.3);
     }
 
-    /* 로고를 감싸는 실리콘 튜브 느낌의 사각 영역 */
-.logo-container {
-    display: flex;
-    align-items: center;
-    background-color: #d1d1d1; /* 회색 실리콘 튜브 색상 */
-    padding: 8px 18px;         /* 로고 주변 여백 (사각형 크기) */
-    border-radius: 8px;        /* 모서리를 둥글게 */
-    /* 입체감을 주는 그림자: 안쪽으로 어두운 그림자 + 바깥쪽 미세한 밝은 선 */
-    box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1), 1px 1px 0px rgba(255,255,255,0.3);
-    transition: all 0.3s ease;
-}
+.logo-container { display: flex; align-items: center; }
 
-.logo-container:hover {
-    background-color: #cdcdcd; /* 호버 시 약간 더 진해짐 */
-    transform: translateY(-2px); /* 살짝 떠오르는 효과 */
-}
-
-.logo-img { 
-    height: 80px;              /* 사각형 안에서 얌전하게 존재하도록 크기 조절 */
-    width: auto; 
-    display: block;
-    filter: none !important;    /* 이제 필터는 사용하지 않음 */
-    -webkit-filter: none !important;
-}
-
-/* 모바일에서도 깜찍하게 유지 */
-@media (max-width: 768px) {
-    .logo-container {
-        padding: 5px 12px;
-        margin-bottom: 5px;
+    /* [핵심] 금빛 로고 필터 적용 */
+    .logo-img { 
+        height: 50px; 
+        width: auto; 
+        display: block;
+        /* 검은 로고를 샴페인 골드로 변환 */
+        filter: invert(85%) sepia(20%) saturate(800%) hue-rotate(350%) brightness(105%) contrast(105%);
+        transition: transform 0.3s ease;
     }
-    .logo-img {
-        height: 50px;          /* 모바일에서는 더 작게 */
-    }
-}
+    .logo-img:hover { transform: scale(1.05); }
 
     /* 3. [업데이트] 네비게이션 - 로고와 나란히 배치 */
     nav { display: flex; gap: 25px; }
