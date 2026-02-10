@@ -18,97 +18,121 @@
     <link href="https://fonts.googleapis.com/css2?family=Princess+Sofia&display=swap" rel="stylesheet">
 
     <style>
-        body { font-family: 'Malgun Gothic', 'Arial', sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #fffbe6; }
-        
+    /* 1. 기본 베이스 */
+    body { font-family: 'Malgun Gothic', 'Arial', sans-serif; margin: 0; padding: 0; line-height: 1.6; background-color: #fffbe6; }
+
+    /* 2. [업데이트] 통합 헤더 디자인 - 로고를 좌상단에 얌전하게 고정 */
+    header { 
+        position: fixed; /* absolute에서 fixed로 변경하여 스크롤 시에도 따라오게 함 (선택사항) */
+        top: 0; left: 0; width: 100%; 
+        display: flex; justify-content: space-between; align-items: center; 
+        padding: 0 5%; 
+        height: 80px; /* 헤더 높이 고정 */
+        z-index: 1000; box-sizing: border-box;
+        background: rgba(18, 18, 18, 0.9); /* 깊이 있는 블랙 배경 (반투명) */
+        box-shadow: 0 2px 15px rgba(0,0,0,0.3);
+    }
+
+    .logo-container { display: flex; align-items: center; }
+
+    /* [핵심] 금빛 로고 필터 적용 */
+    .logo-img { 
+        height: 50px; /* 로고 크기 고정 */
+        width: auto; 
+        display: block;
+        /* 검은 로고를 우아한 금색으로 변환하는 필터 */
+        filter: invert(85%) sepia(20%) saturate(800%) hue-rotate(350%) brightness(105%) contrast(105%);
+        transition: transform 0.3s ease;
+    }
+    .logo-img:hover { transform: scale(1.05); }
+
+    /* 3. [업데이트] 네비게이션 - 로고와 나란히 배치 */
+    nav { display: flex; gap: 25px; }
+
+    nav a { 
+        color: #fff; text-decoration: none; 
+        font-weight: bold; font-size: 1.05rem;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        transition: color 0.3s ease;
+    }
+    nav a:hover { color: #ffcc00; }
+    nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
+
+    /* 4. 히어로 섹션 (기본 유지하되 헤더 높이만큼 여백 고려) */
+    .hero { 
+        background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('main.jpg');
+        background-size: cover; background-position: center;
+        color: white; height: 650px; display: flex; 
+        align-items: center; justify-content: center; 
+    }
+
+    .hero-text { width: 50%; margin-left: 45%; text-align: right; padding-right: 5%; }
+    .hero h2 { font-size: 3rem; font-weight: bold; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+    .hero p { font-size: 1.6rem; margin: 15px 0; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+
+    /* 5. 최신 소식 섹션 디자인 (기본 유지) */
+    .content { padding: 80px 5%; text-align: center; }
+    
+    #news-container {
+        display: flex; flex-direction: column; align-items: center; gap: 30px;
+        max-width: 800px; margin: 0 auto;
+    }
+
+    .news-link-wrapper { text-decoration: none; color: inherit; display: block; width: 100%; }
+
+    .news-card {
+        background: #fff; border: 1px solid #ddd; border-radius: 20px;
+        overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        text-align: left; transition: all 0.4s ease;
+    }
+
+    .news-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        border-color: #ffcc00;
+    }
+
+    .news-text { padding: 35px; }
+    .news-tag { background: #ffcc00; color: #000; padding: 6px 15px; font-size: 0.85rem; font-weight: bold; border-radius: 50px; }
+    .news-tag.support { background: #d32f2f; color: #fff; }
+
+    .news-card h4 { font-size: 1.5rem; margin: 15px 0 10px 0; color: #222; }
+    .news-card p { color: #666; font-size: 1.05rem; line-height: 1.7; margin-bottom: 0; }
+    .click-info { font-size: 0.95rem; color: #e6b800; font-weight: bold; text-align: right; margin-top: 15px; }
+
+    footer { background: #222; color: #bbb; padding: 50px 20px; text-align: center; font-size: 0.9rem; }
+
+    /* 6. [업데이트] 모바일 반응형 - 예술적 비율 및 정렬 */
+    @media (max-width: 768px) {
         header { 
-            position: absolute; top: 0; left: 0; width: 100%; 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 5%; z-index: 100; box-sizing: border-box;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+            flex-direction: column; /* 로고와 메뉴를 위아래로 배치 */
+            height: auto;
+            padding: 15px 10px;
+            background: rgba(18, 18, 18, 0.95);
         }
-
-        .logo-svg { 
-    width: 280px; /* 크기를 220에서 280으로 약간 키움 */
-    height: auto; 
-    overflow: visible; /* 글자가 상자 밖으로 나가도 잘리지 않게 설정 */
-}
-
-        nav a { 
-            color: #fff; text-decoration: none; margin-left: 25px; 
-            font-weight: bold; font-size: 1.1rem;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-            transition: color 0.3s ease;
-        }
-        nav a:hover { color: #ffcc00; }
-        nav a[aria-current="page"] { color: #ffcc00; }
-
-        .hero { 
-            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('main.jpg');
-            background-size: cover; background-position: center;
-            color: white; height: 650px; display: flex; 
-            align-items: center; justify-content: center; 
-        }
-
-        .hero-text { width: 50%; margin-left: 45%; text-align: right; padding-right: 5%; }
-        .hero h2 { font-size: 3rem; font-weight: bold; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero p { font-size: 1.6rem; margin: 15px 0; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-
-        /* 최신 소식 섹션 디자인 */
-        .content { padding: 80px 5%; text-align: center; }
+        .logo-img { height: 40px; } /* 모바일 로고 크기 살짝 축소 */
+        nav { margin-top: 15px; gap: 12px; }
+        nav a { margin: 0; font-size: 0.9rem; }
         
-        #news-container {
-            display: flex; flex-direction: column; align-items: center; gap: 30px;
-            max-width: 800px; margin: 0 auto;
-        }
-
-        .news-link-wrapper { text-decoration: none; color: inherit; display: block; width: 100%; }
-
-        .news-card {
-            background: #fff; border: 1px solid #ddd; border-radius: 20px;
-            overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: left; transition: all 0.4s ease;
-        }
-
-        .news-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-            border-color: #ffcc00;
-        }
-
-        .news-text { padding: 35px; }
-        .news-tag { background: #ffcc00; color: #000; padding: 6px 15px; font-size: 0.85rem; font-weight: bold; border-radius: 50px; }
-        .news-tag.support { background: #d32f2f; color: #fff; } /* 지원선정 태그 강조 */
-
-        .news-card h4 { font-size: 1.5rem; margin: 15px 0 10px 0; color: #222; }
-        .news-card p { color: #666; font-size: 1.05rem; line-height: 1.7; margin-bottom: 0; }
-        .click-info { font-size: 0.95rem; color: #e6b800; font-weight: bold; text-align: right; margin-top: 15px; }
-
-        footer { background: #222; color: #bbb; padding: 50px 20px; text-align: center; font-size: 0.9rem; }
-
-        @media (max-width: 768px) {
-            header { flex-direction: column; background: rgba(0,0,0,0.8); position: relative; padding: 20px 10px; } 
-            .logo-svg { width: 200px; }
-            nav { margin-top: 15px; }
-            nav a { margin: 0 10px; font-size: 0.95rem; }
-            .hero { height: 400px; }
-            .hero-text { width: 90%; margin-left: 0; padding-right: 0; text-align: center; }
-            .hero h2 { font-size: 2.2rem; }
-        }
-    </style>
+        .hero { height: 400px; }
+        .hero-text { width: 90%; margin-left: 0; padding-right: 0; text-align: center; }
+        .hero h2 { font-size: 2.2rem; }
+    }
+</style>
 </head>
 <body>
     <header role="banner">
-    <div class="logo-area">
+    <div class="logo-container">
         <a href="index.html">
-            <img src="RaphaelsvgLogo.png" alt="라파엘코러스 로고" class="logo-img">
+            <img src="RaphaelsvgLogo.png" alt="라파엘코러스" class="logo-img">
         </a>
     </div>
-    <nav role="navigation" aria-label="Main Menu" aria-current="page">
-        <a href="index.html" id="nav-home">Raphael</a>
-        <a href="about.html" id="nav-about">About</a>
-        <a href="story.html" id="nav-story">Story</a>
-        <a href="performance.html" id="nav-gallery">Gallery</a>
-        <a href="support.html" id="nav-support">Support</a>
+    <nav role="navigation" aria-label="메인 메뉴">
+        <a href="index.html">Raphael aria-current="page"</a>
+        <a href="about.html">About</a>
+        <a href="story.html">Story</a>
+        <a href="performance.html">Gallery</a>
+        <a href="support.html">Support</a>
     </nav>
 </header>
 
