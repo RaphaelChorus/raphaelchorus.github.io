@@ -78,39 +78,52 @@
     .hero-text { width: 50%; margin-left: 45%; text-align: right; padding-right: 5%; }
     .hero h2 { font-size: 3rem; font-weight: bold; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
     .hero p { font-size: 1.6rem; margin: 15px 0; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-
-    /* 5. 컨텐츠 및 소식 (생략 - 기존과 동일) */
+/* 5. 소식 섹션 디자인 */
     .content { padding: 80px 5%; text-align: center; }
-    #news-container { display: flex; flex-direction: column; align-items: center; gap: 30px; max-width: 800px; margin: 0 auto; }
-    .news-link-wrapper { text-decoration: none; color: inherit; display: block; width: 100%; }
-    .news-card { background: #fff; border: 1px solid #ddd; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left; transition: all 0.4s ease; }
-    .news-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(0,0,0,0.12); border-color: #ffcc00; }
+    #news-container {
+        display: flex; flex-direction: column; align-items: center; gap: 30px;
+        max-width: 800px; margin: 0 auto;
+    }
+
+    .news-card {
+        background: #fff; border: 1px solid #ddd; border-radius: 20px;
+        overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        text-align: left; transition: all 0.4s ease;
+        width: 100%; cursor: pointer;
+    }
+
+    .news-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+        border-color: #ffcc00;
+    }
+
     .news-text { padding: 35px; }
     .news-tag { background: #ffcc00; color: #000; padding: 6px 15px; font-size: 0.85rem; font-weight: bold; border-radius: 50px; }
     .news-tag.support { background: #d32f2f; color: #fff; }
+
     .news-card h4 { font-size: 1.5rem; margin: 15px 0 10px 0; color: #222; }
     .news-card p { color: #666; font-size: 1.05rem; line-height: 1.7; margin-bottom: 0; }
+    
+    /* 펼쳐지는 상세내용 박스 */
+    .news-details {
+        display: none;
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px dashed #ddd;
+        color: #444;
+    }
+
     .click-info { font-size: 0.95rem; color: #e6b800; font-weight: bold; text-align: right; margin-top: 15px; }
 
     footer { background: #222; color: #bbb; padding: 50px 20px; text-align: center; font-size: 0.9rem; }
 
-    /* 6. 모바일 반응형 (회색 상자 잔재 완전 제거) */
-    @media (max-width: 768px) {
-        header { 
-            flex-direction: column; 
-            height: auto;
-            padding: 20px 10px;
-            background: #121212; 
-        }
-        .logo-container {
-            background: none !important; /* 모바일에서도 배경 제거 */
-        }
-        .logo-img { 
-            height: 50px; /* 모바일 로고 크기 */
-        }
+    /* 6. 모바일 반응형 */
+@media (max-width: 768px) {
+        header { flex-direction: column; height: auto; padding: 20px 10px; }
+        .logo-img { height: 45px; }
         nav { margin-top: 15px; gap: 15px; }
-        nav a { font-size: 0.95rem; }
-        
+        nav a { font-size: 0.9rem; }
         .hero { height: 400px; }
         .hero-text { width: 90%; margin-left: 0; padding-right: 0; text-align: center; }
         .hero h2 { font-size: 2.2rem; }
@@ -154,44 +167,79 @@
     <script>
         /**
          * 소식 업데이트 데이터
-         * 새로운 소식을 가장 위에 추가하세요. (최대 5개 노출)
+         * details 항목에 원하는 이미지와 긴 글을 넣으세요.
          */
         const newsData = [
+            {
+                tag: "라파엘워십",
+                tagClass: "",
+                title: "라파엘코러스의 진정한 예배",
+                desc: "이번 워십은... (클릭)",
+                details: `
+                    <img src="RaphaelWorship260308.png" style="width:100%; border-radius:15px; margin-bottom:15px;">
+                    <p>라파엘코러스에서는 2026년 3월 8일 주일 오후5시에 금호중앙교회에서</p>
+                    <p>심령을 울리는 뜨거운 영혼의 전도자이신 최주일 목사님과 함께</p>
+                    <p>라파엘코러스 단원들을 위해 드리는 귀한 예배를 올리게 되었습니다.</p>
+                    <p>최초로 드리는 이 '라파엘워십'에서는 하나님을 향해 올리는 진정한 예배를 드립니다.</p>
+                    <p>이 귀한 워십을 라파엘코러스는 준비하고 연습하여 온마음과 정성을 다해 드립니다.</p>
+                    <p>이 예배를 통하여 오직 하나님 홀로 영광 돌려 받으시고</p> 
+                    <p>라파엘코러스 단원 여러분 모두 하나님께 귀한 예배를 통한 소통이 이루어지기 마음다해 소원합니다.</p>
+                `
+            },
             {
                 tag: "지원선정",
                 tagClass: "support",
                 title: "2026년 사업 지원 선정",
-                desc: "한국장애인문화예술원은 2026 지원사업에 라파엘코러스를 선정하였음을 공표하였습니다.",
-                link: "https://www.kdac.or.kr/board/read?boardManagementNo=25&boardNo=4208&searchCategory=&page=1&searchType=&searchWord=&level=2&menuNo=46", // 링크가 없을 경우 # 유지 link: "#"
-                linkText: "자세히 보기 →"
+                desc: "한국장애인문화예술원 지원사업 선정 관련 소식입니다.",
+                details: `
+                    <p>한국장애인문화예술원은 2026 지원사업에 라파엘코러스를 선정하였음을 공표하였습니다.</p>
+                    <p>단원들의 열정이 빛을 발하는 순간이었습니다. 더 멋진 무대로 보답하겠습니다.</p>
+                    <p><a href="https://www.kdac.or.kr/board/read?boardManagementNo=25&boardNo=4208&menuNo=46" target="_blank" style="color:#e6b800; font-weight:bold;">[원문 기사 확인하기]</a></p>
+                `
             },
             {
                 tag: "언론보도",
                 tagClass: "",
                 title: "[조선일보] \"어둠 속에 울려 퍼진 희망의 성가\"",
-                desc: "2025년 크리스마스, 라파엘코러스의 감동적인 무대 영상과 인터뷰 내용을 확인해 보세요.",
-                link: "https://www.chosun.com/video_photo/2025/12/25/3ECK5GR63FHIVLIDLQ6CNZTTYQ/",
-                linkText: "기사 전문 보기 →"
+                desc: "라파엘코러스의 감동적인 무대 영상과 인터뷰를 만나보세요.",
+                details: `
+                    <p>2025년 크리스마스, 라파엘코러스의 인터뷰 내용이 조선일보에 보도되었습니다.</p>
+                    <p>어둠 속에서도 굴하지 않고 화음을 맞추는 단원들의 삶의 이야기를 확인하실 수 있습니다.</p>
+                    <p><a href="https://www.chosun.com/video_photo/2025/12/25/3ECK5GR63FHIVLIDLQ6CNZTTYQ/" target="_blank" style="color:#e6b800; font-weight:bold;">[조선일보 기사 전문 보기]</a></p>
+                `
             }
         ];
 
         function renderNews() {
             const container = document.getElementById('news-container');
-            // 최신순으로 최대 5개만 가져옴
-            const displayNews = newsData.slice(0, 5);
-
-            container.innerHTML = displayNews.map(news => `
-                <a href="${news.link}" ${news.link !== '#' ? 'target="_blank"' : ''} class="news-link-wrapper">
-                    <article class="news-card">
-                        <div class="news-text">
-                            <span class="news-tag ${news.tagClass}">${news.tag}</span>
-                            <h4>${news.title}</h4>
-                            <p>${news.desc}</p>
-                            <div class="click-info">${news.linkText}</div>
+            container.innerHTML = newsData.map((news, index) => `
+                <article class="news-card" onclick="toggleDetails(${index})">
+                    <div class="news-text">
+                        <span class="news-tag ${news.tagClass}">${news.tag}</span>
+                        <h4>${news.title}</h4>
+                        <p>${news.desc}</p>
+                        
+                        <div id="details-${index}" class="news-details">
+                            ${news.details}
                         </div>
-                    </article>
-                </a>
+                        
+                        <div class="click-info" id="btn-${index}">상세 내용 보기 ↓</div>
+                    </div>
+                </article>
             `).join('');
+        }
+
+        function toggleDetails(index) {
+            const detailBox = document.getElementById(`details-${index}`);
+            const btnText = document.getElementById(`btn-${index}`);
+            
+            if (detailBox.style.display === "none" || detailBox.style.display === "") {
+                detailBox.style.display = "block";
+                btnText.innerText = "닫기 ↑";
+            } else {
+                detailBox.style.display = "none";
+                btnText.innerText = "상세 내용 보기 ↓";
+            }
         }
 
         window.onload = renderNews;
