@@ -115,35 +115,52 @@
 </footer>
 
 <script>
-    const NAVER_ID = 'raphaelchorus'; 
-    // RSS API 호출 시 캐시 방지를 위해 랜덤 파라미터를 추가하여 안정성을 높입니다
-    const RSS_URL = `https://rss.blog.naver.com/${NAVER_ID}.xml?t=${new Date().getTime()}`;
+    const NAVER_ID = 'raphaelchorus';
+    const RSS_URL = `https://rss.blog.naver.com/${NAVER_ID}.xml`;
 
     async function fetchBlog() {
         const listContainer = document.getElementById('blog-list');
         try {
-            // rss2json API 사용 (안정성을 위해 api_key 생략 시 요청 제한이 있을 수 있으나 소규모는 문제없음)
-            const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`);
+            // AllOrigins 서비스를 사용하여 네이버 RSS를 직접 긁어옵니다 (가장 안정적)
+            const response = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(RSS_URL)}`);
             const data = await response.json();
+            
+            // XML 텍스트를 데이터화함
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(data.contents, "text/xml");
+            const items = xmlDoc.querySelectorAll("item");
 
-            if (data.status === 'ok') {
-                listContainer.innerHTML = data.items.map(item => `
-                    <article class="blog-item">
-                        <a href="${item.link}" target="_blank">
-                            <span class="date">${item.pubDate.split(' ')[0]}</span>
-                            <h3>${item.title}</h3>
-                            <p>${item.description.replace(/<[^>]*>?/gm, '').substring(0, 120)}...</p>
-                        </a>
-                    </article>
-                `).join('');
+            if (items.length > 0) {
+                let htmlContent = '';
+                items.forEach(item => {
+                    const title = item.querySelector("title").textContent;
+                    const link = item.querySelector("link").textContent;
+                    const pubDate = item.querySelector("pubDate").textContent;
+                    const description = item.querySelector("description").textContent;
+                    
+                    // 날짜 포맷 깔끔하게 정리
+                    const dateObj = new Date(pubDate);
+                    const formattedDate = `${dateObj.getFullYear()}-${(dateObj.getMonth()+1).toString().padStart(2,'0')}-${dateObj.getDate().toString().padStart(2,'0')}`;
+
+                    htmlContent += `
+                        <article class="blog-item">
+                            <a href="${link}" target="_blank">
+                                <span class="date">${formattedDate}</span>
+                                <h3>${title}</h3>
+                                <p>${description.replace(/<[^>]*>?/gm, '').substring(0, 120)}...</p>
+                            </a>
+                        </article>
+                    `;
+                });
+                listContainer.innerHTML = htmlContent;
             } else {
-                throw new Error('API 응답 실패');
+                throw new Error('데이터 없음');
             }
         } catch (error) {
             console.error('Error fetching blog:', error);
             listContainer.innerHTML = `
                 <div style="text-align:center; padding: 40px; background:#fff; border-radius:20px; border:1px dashed #ccc;">
-                    <p>네이버 블로그 소식을 일시적으로 가져올 수 없습니다.</p>
+                    <p>네이버 블로그 소식을 불러오는 중입니다. 잠시만 기다려주시거나,<br>아래 링크를 통해 직접 확인하실 수 있습니다.</p>
                     <a href="https://blog.naver.com/${NAVER_ID}" target="_blank" style="color:#ffcc00; font-weight:bold; text-decoration:none;">
                         라파엘코러스 공식 블로그 바로가기 →
                     </a>
