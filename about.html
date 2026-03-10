@@ -3,125 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>라파엘 소개 - 라파엘코러스</title>
-    <meta name="description" content="라파엘코러스 - 시각장애인으로 구성된 천상의 화음, 희망을 노래하는 합창단입니다.">
+    <title>About - Raphael Chorus</title>
     <style>
-    /* 1. 기본 설정 및 화면 떨림 방지 */
-    html, body { 
-        margin: 0; padding: 0; width: 100%; overflow-x: hidden;
-        font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
-        line-height: 1.8; color: #333; background-color: #fffbe6; 
-    }
-    
-    /* 2. [업데이트] 통합 헤더 디자인 - index와 100% 일치 */
-    header { 
-        position: fixed; /* 페이지 상단에 고정 */
-        top: 0; left: 0; width: 100%; 
-        display: flex; justify-content: space-between; align-items: center; 
-        padding: 0 5%; 
-        height: 80px; /* 헤더 높이 통일 */
-        z-index: 1000; box-sizing: border-box;
-        background: rgba(18, 18, 18, 0.95); /* 고급스러운 진회색 반투명 */
-        box-shadow: 0 2px 15px rgba(0,0,0,0.3);
-    }
+        /* 기본 베이스 */
+        body { font-family: 'Malgun Gothic', sans-serif; margin: 0; padding: 0; background-color: #fffbe6; line-height: 1.8; }
 
-    .logo-container { display: flex; align-items: center; }
-
-    /* [핵심] 금빛 로고 필터 적용 */
-    .logo-img { 
-        height: 50px; 
-        width: auto; 
-        display: block;
-        /* 검은 로고를 샴페인 골드로 변환 */
-        filter: invert(85%) sepia(20%) saturate(800%) hue-rotate(350%) brightness(105%) contrast(105%);
-        transition: transform 0.3s ease;
-    }
-    .logo-img:hover { transform: scale(1.05); }
-
-    /* 3. 네비게이션 스타일 */
-    nav { display: flex; gap: 25px; }
-
-    nav a { 
-        color: #fff; text-decoration: none; 
-        font-weight: bold; font-size: 1.05rem;
-        transition: color 0.3s ease;
-    }
-    nav a:hover { color: #ffcc00; }
-    nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
-
-    /* 4. 상단 배경 배너 (헤더 높이만큼 여백 추가) */
-    .sub-header { 
-        margin-top: 80px; /* 헤더가 fixed이므로 겹치지 않게 여백 추가 */
-        background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('about-banner.jpg');
-        background-size: cover; background-position: center;
-        padding: 100px 10%; text-align: center; color: white; 
-        border-bottom: 5px solid #ffcc00; 
-    }
-    .sub-header h2 { font-size: 2.8rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); letter-spacing: -1px; }
-
-    /* 5. 본문 컨테이너 및 섹션 타이틀 */
-    .container { max-width: 1100px; margin: 60px auto; padding: 0 20px; }
-    .section-title { 
-        font-size: 2.2rem; margin-bottom: 50px; text-align: center;
-        color: #111; position: relative; padding-bottom: 15px;
-    }
-    .section-title::after {
-        content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
-        width: 60px; height: 4px; background: #ffcc00;
-    }
-
-    /* 6. 상장(성과) 그리드 디자인 */
-    .awards-grid { 
-        display: grid; 
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-        gap: 35px; 
-    }
-    .award-card { 
-        background: #fff; padding: 25px; border-radius: 20px; 
-        border: 1px solid #eee; text-align: center; 
-        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        transition: all 0.3s ease;
-    }
-    .award-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
-    
-    .award-card img { 
-        width: 100%; height: auto; border-radius: 10px; 
-        margin-bottom: 20px; border: 1px solid #f0f0f0;
-    }
-    .award-card p { font-weight: bold; font-size: 1.15rem; margin: 10px 0 5px; color: #222; }
-    .award-card span { font-size: 0.95rem; color: #888; }
-
-    footer { background: #1a1a1a; color: #888; padding: 50px; text-align: center; margin-top: 100px; }
-
-    /* 7. [모바일 업데이트] 예술적 비율 대응 */
-    @media (max-width: 768px) {
-        header { 
-            flex-direction: column; height: auto; padding: 15px 10px;
-            background: rgba(18, 18, 18, 0.98);
+        /* 헤더 (index와 동일) */
+        header {
+            background-color: #121212; padding: 0 5%; height: 100px;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000;
         }
-        .logo-img { height: 40px; }
-        nav { margin-top: 15px; gap: 15px; width: 100%; justify-content: center; }
-        nav a { font-size: 0.9rem; }
-        
-        .sub-header { margin-top: 110px; padding: 60px 5%; }
-        .sub-header h2 { font-size: 1.8rem; }
-        .section-title { font-size: 1.7rem; }
-        .awards-grid { grid-template-columns: 1fr; gap: 25px; } 
-    }
-</style>
+        .logo-img { height: 60px; width: auto; transition: 0.3s; }
+        nav { display: flex; gap: 30px; }
+        nav a { color: #fff; text-decoration: none; font-weight: 500; }
+        nav a:hover, nav a[aria-current="page"] { color: #ffcc00; }
+
+        /* 배너 섹션 */
+        .banner {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('about_banner.jpg');
+            background-size: cover; background-position: center;
+            height: 350px; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; color: white;
+        }
+        .banner h1 { font-size: 3.5rem; margin: 0; font-family: 'Princess Sofia', cursive; color: #ffcc00; }
+
+        /* 탭 버튼 스타일 */
+        .tab-container { 
+            display: flex; justify-content: center; gap: 0; 
+            margin: -30px auto 50px; position: relative; z-index: 10;
+        }
+        .tab-btn {
+            background: #fff; border: 2px solid #ffcc00; padding: 15px 50px;
+            font-size: 1.2rem; font-weight: bold; cursor: pointer; transition: 0.3s;
+            color: #121212;
+        }
+        .tab-btn.left { border-radius: 50px 0 0 50px; }
+        .tab-btn.right { border-radius: 0 50px 50px 0; border-left: none; }
+        .tab-btn.active { background: #ffcc00; color: #fff; }
+
+        /* 조직도 컨텐츠 박스 */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px 80px; }
+        .content-section { display: none; animation: fadeIn 0.5s ease; }
+        .content-section.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* 멤버 카드 디자인 */
+        .group-title { text-align: center; font-size: 2rem; margin: 40px 0; color: #121212; }
+        .member-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 30px; }
+        .member-card { background: #fff; border-radius: 20px; padding: 25px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .photo-circle { width: 130px; height: 130px; border-radius: 50%; margin: 0 auto 15px; overflow: hidden; border: 3px solid #ffcc00; }
+        .photo-circle img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* 리더(서포터즈) 카드 디자인 */
+        .leader-card { 
+            display: flex; background: #fff; border-radius: 20px; padding: 35px; 
+            margin-bottom: 30px; align-items: center; gap: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .leader-photo { width: 180px; height: 180px; border-radius: 15px; overflow: hidden; flex-shrink: 0; }
+        .leader-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .leader-info h4 { font-size: 1.6rem; margin: 0; }
+        .role-tag { color: #e6b800; font-weight: bold; font-size: 1rem; }
+        .bio-text { color: #666; font-size: 1rem; margin-top: 10px; }
+
+        footer { background: #121212; color: #888; padding: 40px; text-align: center; }
+
+        @media (max-width: 768px) {
+            .leader-card { flex-direction: column; text-align: center; }
+            .tab-btn { padding: 12px 30px; font-size: 1rem; }
+        }
+    </style>
 </head>
 <body>
-    <audio id="introMusic">
-        <source src="aboutraphael.mp3" type="audio/mpeg">
-    </audio>
 
-    <header role="banner">
-    <div class="logo-container">
-        <a href="index.html">
-            <img src="RaphaelsvgLogo.png" alt="라파엘코러스" class="logo-img">
-        </a>
-    </div>
-    <nav role="navigation" aria-label="메인 메뉴">
+<header>
+    <a href="index.html"><img src="RaphaelsvgLogo.png" class="logo-img" alt="로고"></a>
+    <nav>
         <a href="index.html">Raphael</a>
         <a href="about.html" aria-current="page">About</a>
         <a href="story.html">Story</a>
@@ -130,76 +88,111 @@
     </nav>
 </header>
 
-    <section class="sub-header">
-        <h2>Glorious Records</h2>
+<section class="banner">
+    <h1>Glorious Records</h1>
+    <p>우리의 목소리가 기록이 되는 순간</p>
+</section>
+
+<div class="tab-container">
+    <button class="tab-btn left active" onclick="openTab('singers')">Singers</button>
+    <button class="tab-btn right" onclick="openTab('supporters')">Supporters</button>
+</div>
+
+<main class="container">
+    <section id="singers" class="content-section active">
+        <h3 class="group-title">Advisors</h3>
+        <div class="member-grid" id="advisor-list"></div>
+
+        <h3 class="group-title">Chorus Members</h3>
+        <div class="member-grid" id="member-list"></div>
     </section>
 
-    <main class="container">
-        <section>
-            <h3 class="section-title">라파엘의 발자취</h3>
-            <p style="text-align:center; color:#666; margin-bottom:50px;">라파엘코러스의 땀과 꿈으로 남긴 소중한 발자취입니다.</p>
-            
-            <div class="awards-grid">
-                <article class="award-card"><img src="award1.jpg" alt="상장1"><p>전국 장애인 합창대회 대상</p><span>국제장애인문화교류협회</span></article>
-                <article class="award-card"><img src="award2.jpg" alt="상장2"><p>사회복지 유공자 표창</p><span>종로구사회복지협의</span></article>
-                <article class="award-card"><img src="award3.jpg" alt="상장3"><p>부산국제합창대회 심사위원상</p><span>부산국제합창축제</span></article>
-                <article class="award-card"><img src="award4.jpg" alt="상장4"><p>제16회 전국환경노래경연대회 대상</p><span>KBS대구/대구시</span></article>
-                <article class="award-card"><img src="award5.jpg" alt="상장5"><p>표창장</p><span>문화체육관광부</span></article>
-                <article class="award-card"><img src="award7.jpg" alt="상장7"><p>전국장애인합창대회 최고상</p><span>국무총리</span></article>
-                <article class="award-card"><img src="award8.jpg" alt="상장8"><p>Orientale Concentus IV 우승</p><span>대만 국제합창제</span></article>
-                <article class="award-card"><img src="award9.jpg" alt="상장9"><p>2014 KBS 더 하모니 우수상</p><span>KBS</span></article>
+    <section id="supporters" class="content-section">
+        <h3 class="group-title">Our Leadership</h3>
+        <div id="leader-list"></div>
+
+        <h3 class="group-title">Artistic Staff</h3>
+        <div class="member-grid" id="staff-list"></div>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 Raphael Chorus. All rights reserved.</p>
+</footer>
+
+<script>
+    const orgData = {
+        advisors: [
+            { name: "고문 1", photo: "adv1.jpg" },
+            { name: "고문 2", photo: "adv2.jpg" }
+        ],
+        members: [
+            { name: "단원 1", photo: "m1.jpg", part: "Soprano" },
+            { name: "단원 2", photo: "m2.jpg", part: "Alto" },
+            { name: "단원 3", photo: "m3.jpg", part: "Tenor" },
+            { name: "단원 4", photo: "m4.jpg", part: "Bass" }
+        ],
+        leaders: [
+            { name: "예술감독 성함", role: "Artistic Director", photo: "dir.jpg", bio: "경력사항을 입력하세요.<br>여러 줄 입력이 가능합니다." },
+            { name: "단장 성함", role: "President", photo: "pres.jpg", bio: "단장님의 인사말이나 약력을 입력하세요." }
+        ],
+        staff: [
+            { name: "트레이너 성함", role: "Vocal Trainer", photo: "train.jpg" },
+            { name: "반주자 성함", role: "Accompanist", photo: "piano.jpg" }
+        ]
+    };
+
+    function renderAll() {
+        // 고문 렌더링
+        document.getElementById('advisor-list').innerHTML = orgData.advisors.map(a => `
+            <div class="member-card">
+                <div class="photo-circle"><img src="${a.photo}"></div>
+                <div style="font-weight:bold;">${a.name}</div>
+                <div style="color:#e6b800; font-size:0.9rem;">고문</div>
             </div>
-        </section>
-    </main>
+        `).join('');
 
-    <footer>
-        <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
-    </footer>
+        // 단원 렌더링
+        document.getElementById('member-list').innerHTML = orgData.members.map(m => `
+            <div class="member-card">
+                <div class="photo-circle"><img src="${m.photo}"></div>
+                <div style="font-weight:bold;">${m.name}</div>
+                <div style="color:#999; font-size:0.85rem;">${m.part}</div>
+            </div>
+        `).join('');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const audio = document.getElementById('introMusic');
-            let isPlaying = false; // 현재 재생 중인지 확인
-            let autoPlayStarted = false; // 타이머가 실행되었는지 확인
+        // 리더(감독/단장) 렌더링
+        document.getElementById('leader-list').innerHTML = orgData.leaders.map(l => `
+            <div class="leader-card">
+                <div class="leader-photo"><img src="${l.photo}"></div>
+                <div class="leader-info">
+                    <span class="role-tag">${l.role}</span>
+                    <h4>${l.name}</h4>
+                    <p class="bio-text">${l.bio}</p>
+                </div>
+            </div>
+        `).join('');
 
-            // 5초 뒤 재생 시도 함수
-            const startMusic = () => {
-                if(autoPlayStarted) return;
-                autoPlayStarted = true;
-                
-                setTimeout(() => {
-                    audio.play().then(() => {
-                        isPlaying = true;
-                    }).catch(e => {
-                        console.log("자동재생 대기 중...");
-                        autoPlayStarted = false; // 실패 시 다시 시도 가능하게 초기화
-                    });
-                }, 5000);
-            };
+        // 스태프(트레이너/반주) 렌더링
+        document.getElementById('staff-list').innerHTML = orgData.staff.map(s => `
+            <div class="member-card">
+                <div class="photo-circle"><img src="${s.photo}"></div>
+                <div style="font-weight:bold;">${s.name}</div>
+                <div style="color:#e6b800; font-size:0.9rem;">${s.role}</div>
+            </div>
+        `).join('');
+    }
 
-            // 화면을 클릭하거나 건드렸을 때 처리
-            const handleInteraction = (e) => {
-                // 1. 만약 음악이 이미 나오고 있다면 클릭 시 정지 (스크롤 제외)
-                if (isPlaying && e.type === 'click') {
-                    audio.pause();
-                    isPlaying = false;
-                    console.log("음악 정지됨");
-                    return;
-                }
+    function openTab(tabId) {
+        document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        
+        document.getElementById(tabId).classList.add('active');
+        event.currentTarget.classList.add('active');
+    }
 
-                // 2. 음악이 아직 안 나오고 있다면 (첫 상호작용) 재생 준비
-                if (!isPlaying) {
-                    startMusic();
-                }
-            };
+    window.onload = renderAll;
+</script>
 
-            // 클릭과 터치에 반응 (스크롤 휠은 소리 끄기에 영향을 주지 않음)
-            document.addEventListener('click', handleInteraction);
-            document.addEventListener('touchstart', handleInteraction);
-            
-            // 페이지 로드 시 일단 타이머 시작 시도
-            startMusic();
-        });
-    </script>
 </body>
 </html>
