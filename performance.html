@@ -10,7 +10,7 @@
 
         /* 2. 통합 헤더 - 메인 페이지와 통일 */
         header {
-            background-color: #121212; /* 고급스러운 블랙 배경 */
+            background-color: #121212;
             padding: 0 5%;
             height: 100px;
             display: flex;
@@ -52,7 +52,7 @@
             transition: color 0.3s;
         }
         nav a:hover, nav a[aria-current="page"] {
-            color: #ffcc00; /* 황금색 강조 */
+            color: #ffcc00;
         }
 
         /* 4. 갤러리 상단 배너 */
@@ -72,19 +72,55 @@
         .banner p { font-size: 1.2rem; margin-top: 10px; font-weight: 300; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
 
         /* 5. 메인 컨텐츠 영역 */
-        .container { max-width: 1100px; margin: 60px auto; padding: 0 20px 100px; }
-        .gallery-title-area { text-align: center; margin-bottom: 50px; }
-        .gallery-title-area h2 { font-size: 2.2rem; color: #121212; margin-bottom: 10px; }
-        .gallery-title-area p { color: #666; font-size: 1.05rem; }
-
-        /* 6. 구글 포토 액자를 감싸는 부드러운 박스 스타일 */
-        .gallery-wrapper {
+        .container { max-width: 800px; margin: 60px auto; padding: 0 20px 100px; }
+        
+        /* 6. 앨범 안내 카드 디자인 */
+        .gallery-card {
             background: #fff;
-            padding: 0;
+            padding: 50px 30px;
             border-radius: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            height: 800px; /* 갤러리 창의 세로 높이 */
-            overflow: hidden;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .gallery-card h2 {
+            font-size: 2.2rem;
+            color: #121212;
+            margin-bottom: 15px;
+        }
+
+        .gallery-card p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        /* ✨ 구글 포토 이동 버튼 스타일 */
+        .btn-google-photos {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffcc00, #ffa500);
+            color: #121212;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 18px 45px;
+            border-radius: 50px;
+            box-shadow: 0 5px 20px rgba(255, 204, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-google-photos:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 204, 0, 0.6);
+            background: linear-gradient(135deg, #ffe066, #ffb326);
+        }
+
+        .sub-info {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #999;
         }
 
         /* 7. 하단 푸터 */
@@ -99,7 +135,8 @@
             .banner { height: 200px; }
             .banner h1 { font-size: 2.5rem; }
             .container { margin: 30px auto; }
-            .gallery-wrapper { height: 550px; } /* 모바일에서는 높이를 조금 줄임 */
+            .gallery-card { padding: 40px 20px; }
+            .btn-google-photos { font-size: 1.05rem; padding: 15px 30px; width: 80%; }
         }
     </style>
 </head>
@@ -124,16 +161,19 @@
 </section>
 
 <main class="container">
-    <div class="gallery-title-area">
-        <h2>Photo Gallery</h2>
-        <p>기적같은 하루하루를 살아가는 라파엘코러스의 소중한 기록들입니다.</p>
-    </div>
-
-    <div class="gallery-wrapper">
-        <iframe src="https://photos.app.goo.gl/G4b3t7rQRmXXFKRP7" style="width: 100%; height: 100%; border: none;" title="라파엘코러스 구글 포토 앨범">
-            이 브라우저는 갤러리 화면을 지원하지 않습니다. 
-            <a href="https://photos.app.goo.gl/G4b3t7rQRmXXFKRP7" target="_blank">여기 회원용 링크를 클릭해 전체 사진첩을 확인하세요.</a>
-        </iframe>
+    <div class="gallery-card">
+        <h2>라파엘코러스 사진첩</h2>
+        <p>
+            기적 같은 하루하루를 살아가는 라파엘코러스의 소중한 순간들입니다.<br>
+            단원들의 열정적인 연습 풍경과 감동적인 공연 현장 사진을<br>
+            <strong>구글 공식 포토 앨범</strong>을 통해 실시간으로 가장 선명하게 만나보세요.
+        </p>
+        
+        <a href="https://photos.app.goo.gl/G4b3t7rQRmXXFKRP7" target="_blank" class="btn-photos btn-google-photos">
+            📸 공식 사진첩 보러가기
+        </a>
+        
+        <p class="sub-info">* 버튼을 누르시면 새 창에서 구글 포토 앨범으로 안전하게 이동합니다.</p>
     </div>
 </main>
 
