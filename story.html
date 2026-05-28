@@ -5,55 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>스토리 - 라파엘코러스</title>
     <meta name="description" content="라파엘코러스 - 시각장애인으로 구성된 천상의 화음, 희망을 노래하는 합창단입니다.">
-    <meta name="keywords" content="라파엘코러스, 라파엘, 장애인, 장애인합창단, 시각장애인 합창단, 합창단, Raphael Chorus, Raphael, Disabled, Choir for the Disabled, Blind Choir, Choir, Performance">
-    <meta name="author" content="라파엘코러스">
-    
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="라파엘코러스 - 희망의 화음">
-    <meta property="og:description" content="시각장애를 넘어 아름다운 노래를 선사하는 라파엘코러스입니다.">
-    <meta property="og:image" content="https://raphaelchorus.github.io/SeoulForest_20260525_18.jpg"> 
-    <meta property="og:url" content="https://raphaelchorus.github.io">
-    
-    <style>
-    /* 1. 기본 설정 */
-    body { 
+  <style>
+    /* 1. 기본 설정 및 화면 떨림 방지 */
+    html, body { 
+        margin: 0; padding: 0; width: 100%; overflow-x: hidden;
         font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; 
-        margin: 0; padding: 0; line-height: 1.8; 
-        background-color: #fffbe6; color: #333; 
+        line-height: 1.8; color: #333; background-color: #fffbe6; 
     }
-
-    /* 2. [업데이트] index와 완벽 일치하는 헤더 디자인 */
+    
+    /* 2. [업데이트] 통합 헤더 디자인 - index와 100% 일치 */
     header { 
-        background-color: #121212; 
+        position: fixed; /* 페이지 상단에 고정 */
+        top: 0; left: 0; width: 100%; 
+        display: flex; justify-content: space-between; align-items: center; 
         padding: 0 5%; 
-        height: 100px; 
-        display: flex; 
-        justify-content: space-between; 
-        align-items: center; 
-        position: sticky; 
-        top: 0; 
-        z-index: 1000; 
-        box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        height: 80px; /* 헤더 높이 통일 */
+        z-index: 1000; box-sizing: border-box;
+        background: rgba(18, 18, 18, 0.95); /* 고급스러운 진회색 반투명 */
+        box-shadow: 0 2px 15px rgba(0,0,0,0.3);
     }
 
-    .logo-container { display: flex; align-items: center; text-decoration: none; background: none !important; }
+    .logo-container { display: flex; align-items: center; }
 
+    /* [핵심] 금빛 로고 필터 적용 */
     .logo-img { 
-        height: 60px; 
+        height: 50px; 
         width: auto; 
         display: block;
+        /* 검은 로고를 샴페인 골드로 변환 */
+        filter: invert(85%) sepia(20%) saturate(800%) hue-rotate(350%) brightness(105%) contrast(105%);
         transition: transform 0.3s ease;
     }
     .logo-img:hover { transform: scale(1.05); }
 
     /* 3. 네비게이션 스타일 */
-    nav { display: flex; gap: 30px; }
+    nav { display: flex; gap: 25px; }
+
     nav a { 
         color: #fff; text-decoration: none; 
-        font-weight: 500; font-size: 1.1rem;
+        font-weight: bold; font-size: 1.05rem;
         transition: color 0.3s ease;
     }
-    nav a:hover, nav a[aria-current="page"] { color: #ffcc00; }
+    nav a:hover { color: #ffcc00; }
+    nav a[aria-current="page"] { color: #ffcc00; border-bottom: 2px solid #ffcc00; }
         
 /* 4. 상단 배경 배너 (헤더 높이만큼 여백 추가) */
     .sub-header { 
