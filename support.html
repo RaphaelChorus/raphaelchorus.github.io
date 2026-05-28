@@ -209,50 +209,6 @@
         <p>&copy; 2026 라파엘코러스. All rights reserved.</p>
     </footer>
 
-        <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const audio = document.getElementById('introMusic');
-            let isPlaying = false; // 현재 재생 중인지 확인
-            let autoPlayStarted = false; // 타이머가 실행되었는지 확인
-
-            // 5초 뒤 재생 시도 함수
-            const startMusic = () => {
-                if(autoPlayStarted) return;
-                autoPlayStarted = true;
-                
-                setTimeout(() => {
-                    audio.play().then(() => {
-                        isPlaying = true;
-                    }).catch(e => {
-                        console.log("자동재생 대기 중...");
-                        autoPlayStarted = false; // 실패 시 다시 시도 가능하게 초기화
-                    });
-                }, 5000);
-            };
-
-            // 화면을 클릭하거나 건드렸을 때 처리
-            const handleInteraction = (e) => {
-                // 1. 만약 음악이 이미 나오고 있다면 클릭 시 정지 (스크롤 제외)
-                if (isPlaying && e.type === 'click') {
-                    audio.pause();
-                    isPlaying = false;
-                    console.log("음악 정지됨");
-                    return;
-                }
-
-                // 2. 음악이 아직 안 나오고 있다면 (첫 상호작용) 재생 준비
-                if (!isPlaying) {
-                    startMusic();
-                }
-            };
-
-            // 클릭과 터치에 반응 (스크롤 휠은 소리 끄기에 영향을 주지 않음)
-            document.addEventListener('click', handleInteraction);
-            document.addEventListener('touchstart', handleInteraction);
-            
-            // 페이지 로드 시 일단 타이머 시작 시도
-            startMusic();
-        });
-    </script>
+       
 </body>
 </html>
